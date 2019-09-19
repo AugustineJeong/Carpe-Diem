@@ -15,30 +15,48 @@ public class Main {
         System.out.println("Would you like to schedule another event into your calendar?");
     }
 
-    // receives EventList from setevent(), and pass it on to loop at main
-    // passes on the updated EventList
+    // receives EventList from setevent(), and asks if the user wants to add an event
+    // checks for user response, keeps asking user to add event(s) until user responds 'no'
+    // returns updated EventList
     private static EventList userresponse(EventList events) {
-        Scanner scan = new Scanner(System.in);
         String response;
         Event event1;
         event1 = new Event();
 
-        response = scan.nextLine();
+        while (true) {
 
-        if (response.equals("yes")) {
-            events = event1.setevent(events);
-        } else if (response.equals("no")) {
-            goodbye();
-        } else {
-            System.out.println("response unrecognized. Please respond by 'yes' or 'no'.");
+            response = response();
+
+            if (response.equals("yes")) {
+                events = event1.setevent(events);
+            } else if (response.equals("no")) {
+                goodbye();
+                return events;
+            }
+
+            askuser();
         }
-
-        return events;
     }
 
     // Notifies the end of event schedule addition
     private static void goodbye() {
         System.out.println("Sure. No additional event will be scheduled");
+    }
+
+    // checks if the user response is valid (i.e. checks if it is 'yes' or 'no')
+    // loops until user inputs a valid response
+    private static String response() {
+        while (true) {
+            Scanner scan = new Scanner(System.in);
+            String response;
+            response = scan.nextLine();
+
+            if (!((response.equals("yes")) || (response.equals("no")))) {
+                System.out.println("response unrecognized. Please respond by 'yes' or 'no'.");
+            } else {
+                return response;
+            }
+        }
     }
 
     // Creates a EventList, 'events', that will be used to store all events through out the whole program
@@ -47,16 +65,6 @@ public class Main {
         events = new EventList();
 
         welcome();
-        //askuser();
-
-
         events = userresponse(events);
-
-        Event x;
-        x = events.first();
-
-        String str;
-        str = x.returnevent();
-
     }
 }

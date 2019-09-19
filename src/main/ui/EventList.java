@@ -5,7 +5,7 @@ import java.util.*;
 public class EventList {
 
     // fields
-    ArrayList<Event> eventArrayList;
+    public ArrayList<Event> eventArrayList;
 
     // constructor
     public EventList() {
@@ -24,6 +24,16 @@ public class EventList {
 
         eventslist = this.eventArrayList;
         event = eventslist.get(0);
+        return event;
+    }
+
+    // returns second event of EventList
+    public Event second() {
+        ArrayList<Event> eventslist;
+        Event event;
+
+        eventslist = this.eventArrayList;
+        event = eventslist.get(1);
         return event;
     }
 }
