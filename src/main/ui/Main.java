@@ -52,7 +52,7 @@ public class Main {
             response = scan.nextLine();
 
             if (!((response.equals("yes")) || (response.equals("no")))) {
-                System.out.println("response unrecognized. Please respond by 'yes' or 'no'.");
+                System.out.println("Response unrecognized. Please respond by 'yes' or 'no'.");
             } else {
                 return response;
             }
@@ -66,5 +66,7 @@ public class Main {
 
         welcome();
         events = userresponse(events);
+
+        events.print();
     }
 }

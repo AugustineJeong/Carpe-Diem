@@ -27,13 +27,17 @@ public class EventList {
         return event;
     }
 
-    // returns second event of EventList
-    public Event second() {
+    // prints details of all events in EventList
+    public void print() {
         ArrayList<Event> eventslist;
         Event event;
 
         eventslist = this.eventArrayList;
-        event = eventslist.get(1);
-        return event;
+
+        while (eventslist.size() > 0) {
+            event = eventslist.get(0);
+            System.out.println(event.returnevent());
+            eventslist.remove(0);
+        }
     }
 }
