@@ -58,6 +58,5 @@ public class Main {
         String str;
         str = x.returnevent();
 
-        System.out.println(str);
     }
 }
