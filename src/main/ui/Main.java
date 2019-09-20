@@ -21,10 +21,10 @@ public class Main {
     private static EventList userresponse(EventList events) {
         String response;
         Event event1;
-        event1 = new Event();
+
 
         while (true) {
-
+            event1 = new Event();
             response = response();
 
             if (response.equals("yes")) {
