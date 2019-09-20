@@ -17,7 +17,7 @@ public class Main {
 
     // receives EventList from setevent(), and asks if the user wants to add an event
     // checks for user response, keeps asking user to add event(s) until user responds 'no'
-    // returns updated EventList
+    // returns the updated EventList
     private static EventList userresponse(EventList events) {
         String response;
         Event event1;
