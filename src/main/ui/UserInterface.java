@@ -1,6 +1,8 @@
 package ui;
 
 import java.util.*;
+
+import model.Event;
 import model.EventList;
 
 public class UserInterface {
@@ -19,25 +21,45 @@ public class UserInterface {
         return events;
     }
 
-    public EventList execute(EventList events) {
+    public void execute(EventList prevEvents) {
         String response;
 
         while (true) {
             System.out.println("______________________________________");
-            events = this.mainMenu(events);
+
+            prevEvents = this.mainMenu(prevEvents);
+
             System.out.println("______________________________________");
 
-            System.out.println("Return to main menu?");
-            response = validResponse();
-            if (response.equals("no")) {
-                System.out.println("Exiting program...");
-                return events;
-            }
-            System.out.println();
+            System.out.println("Press any key to return to main menu.");
+            anyKey();
         }
     }
 
-    private String validResponse() {
+
+    private EventList selection(EventList events) {
+        Scanner input = new Scanner(System.in);
+        int choice = input.nextInt();
+
+        if (choice == 1) {
+            events = events.setEvents();
+        } else if (choice == 2) {
+            events.print();
+        } else if (choice == 3) {
+            System.out.println("This feature is not available yet. Suck it up.");
+        } else {
+            System.out.println("You have make an invalid selection.");
+        }
+        return events;
+    }
+
+    private void anyKey() {
+        Scanner scan = new Scanner(System.in);
+        String response;
+        response = scan.nextLine();
+    }
+
+    /*private String validResponse() {
 
         while (true) {
             Scanner scan = new Scanner(System.in);
@@ -51,22 +73,5 @@ public class UserInterface {
             }
         }
     }
-
-    private EventList selection(EventList events) {
-        Scanner input = new Scanner(System.in);
-        int choice = input.nextInt();
-
-        if (choice == 1) {
-            events = events.setEvents();
-            return events;
-        } else if (choice == 2) {
-            events.print();
-        } else if (choice == 3) {
-            System.out.println("This feature is not available yet. Suck it up.");
-        }   else {
-            System.out.println("You have make an invalid selection.");
-        }
-
-        return events;
-    }
+*/
 }

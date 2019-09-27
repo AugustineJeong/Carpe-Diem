@@ -12,6 +12,6 @@ public class Main {
         events = new EventList();
         program = new UserInterface();
 
-        events = program.execute(events);
+        program.execute(events);
     }
 }

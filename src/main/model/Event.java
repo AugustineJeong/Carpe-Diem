@@ -61,7 +61,7 @@ public class Event {
         events.addEvent(event1);
 
         System.out.println();
-        System.out.println("Event '" + event1.activity + "' " + " has been scheduled.");
+        System.out.println("Event '" + event1.activity + "' " + "has been scheduled.");
         System.out.println();
 
         return events;
