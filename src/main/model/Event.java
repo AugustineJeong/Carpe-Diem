@@ -20,40 +20,15 @@ public class Event {
         end = 1500;
     }
 
-    // update date of event
-    public void updatedate(String x) {
-        this.date = x;
-    }
-
-    // update name of event
-    public void updateactivity(String x) {
-        this.activity = x;
-    }
-
-    // update the start time of event
-    public void updatetime(int x) {
-        this.time = x;
-    }
-
-    // update the duration of event
-    public void updateduration(int x) {
-        this.duration = x;
-    }
-
-    // update the end time of event
-    public void updateend(int x) {
-        this.end = x;
-    }
-
     // return the details of event as a string
-    public String returnevent() {
+    public String returnEvent() {
         String message;
         message = "'" + this.activity + "'" +  " scheduled from " + this.time + " to " + this.end;
         return message;
     }
 
     // creates new configured class and stores it to EventList
-    public EventList setevent(EventList events) {
+    public EventList setEvent(EventList events) {
         Event event1;
 
         event1 = this.questions();
@@ -69,7 +44,7 @@ public class Event {
 
     // questions to be used for setevent
     // question to configure new Event
-    public Event questions() {
+    private Event questions() {
         Scanner scan = new Scanner(System.in);
 
         String response1;
@@ -77,20 +52,45 @@ public class Event {
 
         System.out.println("What would you like to name the event?");
         response1 = scan.nextLine();
-        this.updateactivity(response1);
+        this.updateActivity(response1);
 
         System.out.println("What day is this event on?");
         response1 = scan.nextLine();
-        this.updatedate(response1);
+        this.updateDate(response1);
 
         System.out.println("What time does this event start");
         response2 = scan.nextInt();
-        this.updatetime(response2);
+        this.updateTime(response2);
 
         System.out.println("How long is this event?");
         response2 = scan.nextInt();
-        this.updateduration(response2);
+        this.updateDuration(response2);
 
         return this;
+    }
+
+    // update date of event
+    private void updateDate(String x) {
+        this.date = x;
+    }
+
+    // update name of event
+    private void updateActivity(String x) {
+        this.activity = x;
+    }
+
+    // update the start time of event
+    private void updateTime(int x) {
+        this.time = x;
+    }
+
+    // update the duration of event
+    private void updateDuration(int x) {
+        this.duration = x;
+    }
+
+    // update the end time of event
+    private void updateEnd(int x) {
+        this.end = x;
     }
 }

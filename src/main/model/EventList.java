@@ -29,7 +29,7 @@ public class EventList {
         while (true) {
             event1 = new Event();
 
-            events = event1.setevent(events);
+            events = event1.setEvent(events);
 
             askUserAgain();
             response = validResponse();
@@ -69,7 +69,7 @@ public class EventList {
 
         while (i < eventslist.size()) {
             event = eventslist.get(i);
-            System.out.println("[" + z + "]" + event.returnevent());
+            System.out.println("[" + z + "]" + event.returnEvent());
             i++;
             z++;
         }

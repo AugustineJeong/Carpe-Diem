@@ -2,12 +2,11 @@ package ui;
 
 import java.util.*;
 
-import model.Event;
 import model.EventList;
 
-public class UserInterface {
+class UserInterface {
 
-    public EventList mainMenu(EventList events) {
+    private EventList mainMenu(EventList events) {
         System.out.println("[Simple Scheduler beta 1.01]");
         System.out.println("PLEASE MAKE A SELECTION FROM THE FOLLOWING MENU");
         System.out.println();
@@ -21,7 +20,7 @@ public class UserInterface {
         return events;
     }
 
-    public void execute(EventList prevEvents) {
+    void execute(EventList prevEvents) {
         String response;
 
         System.out.println("______________________________________");
