@@ -24,16 +24,16 @@ public class UserInterface {
     public void execute(EventList prevEvents) {
         String response;
 
-        while (true) {
-            System.out.println("______________________________________");
+        System.out.println("______________________________________");
 
-            prevEvents = this.mainMenu(prevEvents);
+        prevEvents = this.mainMenu(prevEvents);
 
-            System.out.println("______________________________________");
+        System.out.println("______________________________________");
 
-            System.out.println("Press any key to return to main menu.");
-            anyKey();
-        }
+        System.out.println("Press any key to return to main menu.");
+        anyKey();
+
+        execute(prevEvents);
     }
 
 
@@ -48,7 +48,7 @@ public class UserInterface {
         } else if (choice == 3) {
             System.out.println("This feature is not available yet. Suck it up.");
         } else {
-            System.out.println("You have make an invalid selection.");
+            System.out.println("You have made an invalid selection.");
         }
         return events;
     }

@@ -55,7 +55,8 @@ public class EventList {
     public void print() {
         ArrayList<Event> eventslist;
         Event event;
-        int i = 1;
+        int i = 0;
+        int z = 1;
 
         eventslist = this.eventArrayList;
 
@@ -66,11 +67,11 @@ public class EventList {
             System.out.println("YOU DO NOT HAVE ANY SCHEDULED EVENTS");
         }
 
-        while (eventslist.size() > 0) {
-            event = eventslist.get(0);
-            System.out.println("[" + i + "]" + event.returnevent());
-            eventslist.remove(0);
+        while (i < eventslist.size()) {
+            event = eventslist.get(i);
+            System.out.println("[" + z + "]" + event.returnevent());
             i++;
+            z++;
         }
     }
 
