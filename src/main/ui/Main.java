@@ -1,8 +1,6 @@
 package ui;
 
-import event.EventList;
-
-import javax.jws.soap.SOAPBinding;
+import model.EventList;
 
 public class Main {
 
@@ -14,8 +12,6 @@ public class Main {
         events = new EventList();
         program = new UserInterface();
 
-        events = program.mainMenu(events);
-
-        events.print();
+        events = program.execute(events);
     }
 }

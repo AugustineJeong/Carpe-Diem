@@ -1,6 +1,4 @@
-package event;
-
-import ui.UserInterface;
+package model;
 
 import java.util.*;
 
@@ -62,7 +60,11 @@ public class EventList {
         eventslist = this.eventArrayList;
 
         System.out.println();
-        System.out.println("YOU HAVE THE FOLLOWING SCHEDULED EVENTS:");
+        if (eventslist.size() > 0) {
+            System.out.println("YOU HAVE THE FOLLOWING SCHEDULED EVENTS:");
+        } else {
+            System.out.println("YOU DO NOT HAVE ANY SCHEDULED EVENTS");
+        }
 
         while (eventslist.size() > 0) {
             event = eventslist.get(0);

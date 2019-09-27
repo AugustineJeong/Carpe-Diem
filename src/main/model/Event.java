@@ -1,4 +1,4 @@
-package event;
+package model;
 
 import java.util.*;
 
@@ -59,6 +59,11 @@ public class Event {
         event1 = this.questions();
 
         events.addEvent(event1);
+
+        System.out.println();
+        System.out.println("Event '" + event1.activity + "' " + " has been scheduled.");
+        System.out.println();
+
         return events;
     }
 
