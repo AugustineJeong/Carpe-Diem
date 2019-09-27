@@ -67,6 +67,7 @@ public class Event {
 
         return this;
     }
+
     //MODIFIES: this
     //EFFECTS: update date of event
     public void updateDate(String x) {
