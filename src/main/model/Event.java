@@ -4,14 +4,12 @@ import java.util.*;
 
 public class Event {
 
-    // fields
     private String date;
     private String activity;
     private int time;
     private int duration;
     private int end;
 
-    // constructor
     public Event() {
         date = "Monday";
         activity = "interview";
@@ -20,18 +18,19 @@ public class Event {
         end = 1500;
     }
 
-    // return the details of event as a string
+    //EFFECTS: Returns the details of the event
     public String returnEvent() {
         String message;
-        message = "'" + this.activity + "'" +  " scheduled from " + this.time + " to " + this.end;
+        message = "'" + this.activity + "'" +  " scheduled on " + this.date + " from " + this.time + " to " + this.end;
         return message;
     }
 
-    // creates new configured class and stores it to EventList
+    //MODIFIES: this and the EventList parameter
+    //EFFECTS: configures event and stores it to EventList
     public EventList setEvent(EventList events) {
         Event event1;
 
-        event1 = this.questions();
+        event1 = this.configureEvent();
 
         events.addEvent(event1);
 
@@ -42,9 +41,9 @@ public class Event {
         return events;
     }
 
-    // questions to be used for setevent
-    // question to configure new Event
-    private Event questions() {
+    //MODIFIES: this
+    //EFFECTS: configures the details of the event
+    private Event configureEvent() {
         Scanner scan = new Scanner(System.in);
 
         String response1;
@@ -68,29 +67,62 @@ public class Event {
 
         return this;
     }
-
-    // update date of event
-    private void updateDate(String x) {
+    //MODIFIES: this
+    //EFFECTS: update date of event
+    public void updateDate(String x) {
         this.date = x;
     }
 
-    // update name of event
-    private void updateActivity(String x) {
+    //MODIFIES: this
+    //EFFECTS: update name of event
+    public void updateActivity(String x) {
         this.activity = x;
     }
 
-    // update the start time of event
-    private void updateTime(int x) {
+    //MODIFIES: this
+    //EFFECTS: update the start time of event
+    public void updateTime(int x) {
         this.time = x;
     }
 
-    // update the duration of event
-    private void updateDuration(int x) {
+    //MODIFIES: this
+    //EFFECTS: update the duration of event
+    public void updateDuration(int x) {
         this.duration = x;
     }
 
-    // update the end time of event
-    private void updateEnd(int x) {
+    //MODIFIES: this
+    //EFFECTS: update the end time of event
+    public void updateEnd(int x) {
         this.end = x;
+    }
+
+    //EFFECTS: returns date
+    public String getDate() {
+        return date;
+    }
+
+    //EFFECTS: returns activity
+
+    public String getActivity() {
+        return activity;
+    }
+
+    //EFFECTS: returns time
+
+    public int getTime() {
+        return time;
+    }
+
+    //EFFECTS: returns duration
+
+    public int getDuration() {
+        return duration;
+    }
+
+    //EFFECTS: returns end time
+
+    public int getEnd() {
+        return end;
     }
 }

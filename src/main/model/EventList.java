@@ -4,22 +4,20 @@ import java.util.*;
 
 public class EventList {
 
-    // fields
     private ArrayList<Event> eventArrayList;
 
-    // constructor
     public EventList() {
         eventArrayList = new ArrayList<>();
     }
 
-    // adds an event to the current list of events
+    //MODIFIES: this
+    //EFFECTS: adds the Event parameter to this EventList's ArrayList
     public void addEvent(Event event) {
-        eventArrayList.add(event);
+        this.eventArrayList.add(event);
     }
 
-    // receives EventList from setevent(), and asks if the user wants to add an event
-    // checks for user response, keeps asking user to add event(s) until user responds 'no'
-    // returns the updated EventList
+    //MODIFIES: this
+    //EFFECTS: Adds new configured event(s) to this EventList
     public EventList setEvents() {
         String response;
         Event event1;
@@ -41,7 +39,8 @@ public class EventList {
         }
     }
 
-    // returns first event of EventList
+    //REQUIRES: This EventList's ArrayList must not be empty
+    //EFFECTS: returns first event of this EventList
     public Event first() {
         ArrayList<Event> eventslist;
         Event event;
@@ -51,7 +50,7 @@ public class EventList {
         return event;
     }
 
-    // prints details of all events in EventList
+    //EFFECTS: Prints all events in this EventList
     public void print() {
         ArrayList<Event> eventslist;
         Event event;
@@ -75,8 +74,7 @@ public class EventList {
         }
     }
 
-    // checks if the user response is valid (i.e. checks if it is 'yes' or 'no')
-    // loops until user inputs a valid response
+    //EFFECTS: Returns scanner string only if it is either 'yes' or 'no'
     private String validResponse() {
         while (true) {
             Scanner scan = new Scanner(System.in);
@@ -91,12 +89,12 @@ public class EventList {
         }
     }
 
-    // Asks another time if the user would like to schedule another event
+    //EFFECTS: Prints message
     private void askUserAgain() {
         System.out.println("Would you like to schedule another event into your calendar?");
     }
 
-    // Notifies the end of event schedule addition
+    //EFFECT: Prints message
     private void goodbye() {
         System.out.println("Sure. No additional event will be scheduled");
     }

@@ -6,20 +6,8 @@ import model.EventList;
 
 class UserInterface {
 
-    private EventList mainMenu(EventList events) {
-        System.out.println("[Simple Scheduler beta 1.01]");
-        System.out.println("PLEASE MAKE A SELECTION FROM THE FOLLOWING MENU");
-        System.out.println();
-        System.out.println("[1] Add Events");
-        System.out.println("[2] View Events");
-        System.out.println("[3] Delete Event");
-        System.out.println();
-
-        events = selection(events);
-
-        return events;
-    }
-
+    //MODIFIES: The passed EventList parameter
+    //EFFECTS: Launches the entire program
     void execute(EventList prevEvents) {
         String response;
 
@@ -35,7 +23,24 @@ class UserInterface {
         execute(prevEvents);
     }
 
+    //MODIFIES: The passed EventList parameter
+    //EFFECTS: Prints user options and executes chosen task, returns updated EventList
+    private EventList mainMenu(EventList events) {
+        System.out.println("[Simple Scheduler beta 1.01]");
+        System.out.println("PLEASE MAKE A SELECTION FROM THE FOLLOWING MENU");
+        System.out.println();
+        System.out.println("[1] Add Events");
+        System.out.println("[2] View Events");
+        System.out.println("[3] Delete Event");
+        System.out.println();
 
+        events = selection(events);
+
+        return events;
+    }
+
+    //MODIFIES: The passed EventList parameter
+    //EFFECTS: Executes chosen option, returns updated EventList
     private EventList selection(EventList events) {
         Scanner input = new Scanner(System.in);
         int choice = input.nextInt();
