@@ -1,15 +1,15 @@
-package ui;
+package event;
 
 import java.util.*;
 
 public class Event {
 
     // fields
-    String date;
-    String activity;
-    int time;
-    int duration;
-    int end;
+    private String date;
+    private String activity;
+    private int time;
+    private int duration;
+    private int end;
 
     // constructor
     public Event() {
@@ -48,7 +48,7 @@ public class Event {
     // return the details of event as a string
     public String returnevent() {
         String message;
-        message = "You have an event: '" + this.activity + "' scheduled from " + this.time + " to " + this.end;
+        message = "'" + this.activity + "'" +  " scheduled from " + this.time + " to " + this.end;
         return message;
     }
 
