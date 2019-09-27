@@ -68,7 +68,7 @@ public class EventList {
 
         while (i < eventslist.size()) {
             event = eventslist.get(i);
-            System.out.println("[" + z + "]" + event.returnEvent());
+            System.out.println("[" + z + "]" + event.returnEventDetails());
             i++;
             z++;
         }

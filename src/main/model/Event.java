@@ -19,7 +19,7 @@ public class Event {
     }
 
     //EFFECTS: Returns the details of the event
-    public String returnEvent() {
+    public String returnEventDetails() {
         String message;
         message = "'" + this.activity + "'" +  " scheduled on " + this.date + " from " + this.time + " to " + this.end;
         return message;

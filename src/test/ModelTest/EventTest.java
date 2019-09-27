@@ -21,7 +21,7 @@ class EventTest {
         expectedDetails = "'interview' scheduled on Monday from 1400 to 1500";
 
         String eventDetails;
-        eventDetails = event.returnEvent();
+        eventDetails = event.returnEventDetails();
 
         assertEquals(expectedDetails, eventDetails);
     }
