@@ -18,17 +18,17 @@ public class EventListTest {
         event1 = new Event();
         event2 = new Event();
 
-        event1.updateDate("1");
-        event1.updateActivity("2");
-        event1.updateTime(3);
-        event1.updateDuration(4);
-        event1.updateEnd(5);
+        event1.setDate("1");
+        event1.setActivity("2");
+        event1.setTime(3);
+        event1.setDuration(4);
+        event1.setEnd(5);
 
-        event2.updateDate("21");
-        event2.updateActivity("22");
-        event2.updateTime(23);
-        event2.updateDuration(24);
-        event2.updateEnd(25);
+        event2.setDate("21");
+        event2.setActivity("22");
+        event2.setTime(23);
+        event2.setDuration(24);
+        event2.setEnd(25);
 
         events = new EventList();
 

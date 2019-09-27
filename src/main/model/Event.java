@@ -51,50 +51,50 @@ public class Event {
 
         System.out.println("What would you like to name the event?");
         response1 = scan.nextLine();
-        this.updateActivity(response1);
+        this.setActivity(response1);
 
         System.out.println("What day is this event on?");
         response1 = scan.nextLine();
-        this.updateDate(response1);
+        this.setDate(response1);
 
         System.out.println("What time does this event start");
         response2 = scan.nextInt();
-        this.updateTime(response2);
+        this.setTime(response2);
 
         System.out.println("How long is this event?");
         response2 = scan.nextInt();
-        this.updateDuration(response2);
+        this.setDuration(response2);
 
         return this;
     }
 
     //MODIFIES: this
     //EFFECTS: update date of event
-    public void updateDate(String x) {
+    public void setDate(String x) {
         this.date = x;
     }
 
     //MODIFIES: this
     //EFFECTS: update name of event
-    public void updateActivity(String x) {
+    public void setActivity(String x) {
         this.activity = x;
     }
 
     //MODIFIES: this
     //EFFECTS: update the start time of event
-    public void updateTime(int x) {
+    public void setTime(int x) {
         this.time = x;
     }
 
     //MODIFIES: this
     //EFFECTS: update the duration of event
-    public void updateDuration(int x) {
+    public void setDuration(int x) {
         this.duration = x;
     }
 
     //MODIFIES: this
     //EFFECTS: update the end time of event
-    public void updateEnd(int x) {
+    public void setEnd(int x) {
         this.end = x;
     }
 
