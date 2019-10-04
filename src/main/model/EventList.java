@@ -1,10 +1,9 @@
 package model;
 
 import file.*;
+
+import java.io.*;
 import java.util.*;
-import java.io.FileWriter;
-import java.io.PrintWriter;
-import java.io.IOException;
 
 
 public class EventList implements Loadable, Saveable {
@@ -79,11 +78,53 @@ public class EventList implements Loadable, Saveable {
         }
     }
 
-    public void load() {
+    public void save() throws IOException {
+        ArrayList<Event> eventslist;
+        eventslist = this.eventArrayList;
+        int i = 0;
+
+        File file = new File("./data/save.txt");
+        FileWriter fw = new FileWriter(file);
+        PrintWriter pw = new PrintWriter(fw);
+
+        while (i < eventslist.size()) {
+            pw.println(eventslist.get(i).getCategory());
+            pw.println(eventslist.get(i).getDate());
+            pw.println(eventslist.get(i).getActivity());
+            pw.println(eventslist.get(i).getTime());
+            pw.println(eventslist.get(i).getDuration());
+            pw.println(eventslist.get(i).getEnd());
+            pw.println(eventslist.get(i).getWeatherSensitive());
+            i++;
+        }
+        pw.println("007");
+        pw.close();
     }
 
-    public void save() {
+    public void load() throws FileNotFoundException {
+        File file = new File("./data/save.txt");
+        Scanner scan = new Scanner(file);
+
+        while (true) {
+            Event event = new Event();
+
+            String y = scan.next();
+            Boolean x = y.equals("007");
+            if (x) {
+                break;
+            }
+
+            event.setCategory(y);
+            event.setDate(scan.next());
+            event.setActivity(scan.next());
+            event.setTime(scan.nextInt());
+            event.setDuration(scan.nextInt());
+            event.setEnd(scan.nextInt());
+            event.setWeatherSensitive(scan.nextBoolean());
+            this.addEvent(event);
+        }
     }
+
 
     //EFFECTS: Returns scanner string only if it is either 'yes' or 'no'
     private String validResponse() {

@@ -1,6 +1,8 @@
 package file;
 
+import java.io.FileNotFoundException;
+
 public interface Loadable {
-    public void load();
+    public void load() throws FileNotFoundException;
 
 }

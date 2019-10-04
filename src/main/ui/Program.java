@@ -1,5 +1,6 @@
 package ui;
 
+import java.io.IOException;
 import java.util.*;
 
 import model.EventList;
@@ -14,9 +15,7 @@ class Program {
 
     //MODIFIES: The passed EventList parameter
     //EFFECTS: Launches the entire program
-    void program() {
-        String response;
-
+    void program() throws IOException {
         System.out.println("______________________________________");
 
         this.events = this.mainMenu(this.events);
@@ -31,7 +30,7 @@ class Program {
 
     //MODIFIES: The passed EventList parameter
     //EFFECTS: Prints user options and executes chosen task, returns updated EventList
-    private EventList mainMenu(EventList events) {
+    private EventList mainMenu(EventList events) throws IOException {
         System.out.println("[Simple Scheduler beta 1.01]");
         System.out.println("PLEASE MAKE A SELECTION FROM THE FOLLOWING MENU");
         System.out.println();
@@ -48,7 +47,7 @@ class Program {
 
     //MODIFIES: The passed EventList parameter
     //EFFECTS: Executes chosen option, returns updated EventList
-    private EventList selection(EventList events) {
+    private EventList selection(EventList events) throws IOException {
         Scanner input = new Scanner(System.in);
         int choice = input.nextInt();
 
@@ -61,6 +60,9 @@ class Program {
         } else {
             System.out.println("You have made an invalid selection.");
         }
+
+        this.events.save();
+
         return events;
     }
 

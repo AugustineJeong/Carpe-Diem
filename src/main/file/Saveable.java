@@ -1,5 +1,7 @@
 package file;
 
+import java.io.IOException;
+
 public interface Saveable {
-    public void save();
+    public void save() throws IOException;
 }
