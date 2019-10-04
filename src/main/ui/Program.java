@@ -3,24 +3,31 @@ package ui;
 import java.util.*;
 
 import model.EventList;
+import file.*;
 
-class UserInterface {
+class Program implements Savable, Loadable {
+
+    private EventList events;
+
+    public Program(EventList events) {
+        this.events = events;
+    }
 
     //MODIFIES: The passed EventList parameter
     //EFFECTS: Launches the entire program
-    void execute(EventList prevEvents) {
+    void program() {
         String response;
 
         System.out.println("______________________________________");
 
-        prevEvents = this.mainMenu(prevEvents);
+        this.events = this.mainMenu(this.events);
 
         System.out.println("______________________________________");
 
         System.out.println("Press any key to return to main menu.");
         anyKey();
 
-        execute(prevEvents);
+        program();
     }
 
     //MODIFIES: The passed EventList parameter

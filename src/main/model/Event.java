@@ -26,7 +26,7 @@ public class Event {
     }
 
     //MODIFIES: this and the EventList parameter
-    //EFFECTS: configures event and stores it to EventList
+    //EFFECTS: configures event and stores it to EventList parameter
     public EventList setEvent(EventList events) {
         Event event1;
 

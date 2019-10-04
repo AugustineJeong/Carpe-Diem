@@ -52,31 +52,31 @@ class EventTest {
     }
 
     @Test
-    public void updateDateTest() {
+    public void setDateTest() {
         event.setDate("Saturday");
         assertEquals("Saturday", event.getDate());
     }
 
     @Test
-    public void updateActivityTest() {
+    public void setActivityTest() {
         event.setActivity("party");
         assertEquals("party", event.getActivity());
     }
 
     @Test
-    public void updateTimeTest() {
+    public void setTimeTest() {
         event.setTime(2200);
         assertEquals(2200, event.getTime());
     }
 
     @Test
-    public void updateDurationTest() {
+    public void setDurationTest() {
         event.setDuration(30);
         assertEquals(30, event.getDuration());
     }
 
     @Test
-    public void updateEndTest() {
+    public void setEndTest() {
         event.setEnd(2300);
         assertEquals(2300, event.getEnd());
     }
