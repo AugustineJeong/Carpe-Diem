@@ -3,9 +3,8 @@ package ui;
 import java.util.*;
 
 import model.EventList;
-import file.*;
 
-class Program implements Savable, Loadable {
+class Program {
 
     private EventList events;
 
@@ -37,8 +36,9 @@ class Program implements Savable, Loadable {
         System.out.println("PLEASE MAKE A SELECTION FROM THE FOLLOWING MENU");
         System.out.println();
         System.out.println("[1] Add Events");
-        System.out.println("[2] View Events");
-        System.out.println("[3] Delete Event");
+        System.out.println("[2] View All Events");
+        System.out.println("[3] View Events by Category");
+        System.out.println("[4] Delete Event");
         System.out.println();
 
         events = selection(events);
@@ -56,7 +56,7 @@ class Program implements Savable, Loadable {
             events = events.setEvents();
         } else if (choice == 2) {
             events.print();
-        } else if (choice == 3) {
+        } else if (choice == 3 || choice == 4) {
             System.out.println("This feature is not available yet. Suck it up.");
         } else {
             System.out.println("You have made an invalid selection.");

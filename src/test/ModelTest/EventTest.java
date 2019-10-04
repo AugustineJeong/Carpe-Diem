@@ -18,12 +18,16 @@ class EventTest {
     @Test
     public void returnEventTest() {
         String expectedDetails;
-        expectedDetails = "'interview' scheduled on Monday from 1400 to 1500";
+        expectedDetails = " work | 'interview' scheduled on Monday from 1400 to 1500";
 
         String eventDetails;
         eventDetails = event.returnEventDetails();
 
         assertEquals(expectedDetails, eventDetails);
+    }
+    @Test
+    public void getCategoryTest() {
+        assertEquals("work", event.getCategory());
     }
 
     @Test
@@ -49,6 +53,18 @@ class EventTest {
     @Test
     public void getEndTest() {
         assertEquals(1500, event.getEnd());
+    }
+
+    @Test
+    public void getWeatherSensitive() {
+        assertEquals(false, event.getWeatherSensitive());
+    }
+
+
+    @Test
+    public void setCategoryTest() {
+        event.setCategory("work");
+        assertEquals("work", event.getCategory());
     }
 
     @Test
@@ -79,5 +95,11 @@ class EventTest {
     public void setEndTest() {
         event.setEnd(2300);
         assertEquals(2300, event.getEnd());
+    }
+
+    @Test
+    public void setWeatherSensitive() {
+        event.setWeatherSensitive(true);
+        assertEquals(true, event.getWeatherSensitive());
     }
 }

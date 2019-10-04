@@ -1,41 +1,46 @@
 package model;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import java.util.*;
 
 public class Event {
 
+    private String category;
     private String date;
     private String activity;
     private int time;
     private int duration;
     private int end;
+    private boolean weatherSensitive;
 
     public Event() {
+        category = "work";
         date = "Monday";
         activity = "interview";
         time = 1400;
         duration = 60;
         end = 1500;
+        weatherSensitive = false;
     }
 
     //EFFECTS: Returns the details of the event
     public String returnEventDetails() {
         String message;
-        message = "'" + this.activity + "'" +  " scheduled on " + this.date + " from " + this.time + " to " + this.end;
+        message = " " + this.category + " | " + "'" + this.activity + "'" +  " scheduled on " + this.date + " from "
+                + this.time + " to " + this.end;
         return message;
     }
 
     //MODIFIES: this and the EventList parameter
     //EFFECTS: configures event and stores it to EventList parameter
     public EventList setEvent(EventList events) {
-        Event event1;
+        this.configureEvent();
 
-        event1 = this.configureEvent();
-
-        events.addEvent(event1);
+        events.addEvent(this);
 
         System.out.println();
-        System.out.println("Event '" + event1.activity + "' " + "has been scheduled.");
+        System.out.println("Event '" + this.activity + "' " + "has been scheduled.");
         System.out.println();
 
         return events;
@@ -43,11 +48,15 @@ public class Event {
 
     //MODIFIES: this
     //EFFECTS: configures the details of the event
-    private Event configureEvent() {
+    private void configureEvent() {
         Scanner scan = new Scanner(System.in);
 
         String response1;
         int response2;
+
+        System.out.println("What would you like to categorize the event as?");
+        response1 = scan.nextLine();
+        this.setCategory(response1);
 
         System.out.println("What would you like to name the event?");
         response1 = scan.nextLine();
@@ -64,8 +73,12 @@ public class Event {
         System.out.println("How long is this event?");
         response2 = scan.nextInt();
         this.setDuration(response2);
+    }
 
-        return this;
+    //MODIFIES: this
+    //EFFECTS: update category of event
+    public void setCategory(String x) {
+        this.category = x;
     }
 
     //MODIFIES: this
@@ -98,6 +111,17 @@ public class Event {
         this.end = x;
     }
 
+    //MODIFIES: this
+    //EFFECTS: update category of event
+    public void setWeatherSensitive(Boolean x) {
+        this.weatherSensitive = x;
+    }
+
+    //EFFECTS: returns category
+    public String getCategory() {
+        return category;
+    }
+
     //EFFECTS: returns date
     public String getDate() {
         return date;
@@ -125,5 +149,9 @@ public class Event {
 
     public int getEnd() {
         return end;
+    }
+
+    public Boolean getWeatherSensitive() {
+        return weatherSensitive;
     }
 }

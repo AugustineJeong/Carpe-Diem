@@ -1,8 +1,13 @@
 package model;
 
+import file.*;
 import java.util.*;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.IOException;
 
-public class EventList {
+
+public class EventList implements Loadable, Saveable {
 
     private ArrayList<Event> eventArrayList;
 
@@ -72,6 +77,12 @@ public class EventList {
             i++;
             z++;
         }
+    }
+
+    public void load() {
+    }
+
+    public void save() {
     }
 
     //EFFECTS: Returns scanner string only if it is either 'yes' or 'no'
