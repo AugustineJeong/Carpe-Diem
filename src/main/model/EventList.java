@@ -45,12 +45,12 @@ public class EventList implements Loadable, Saveable {
 
     //REQUIRES: This EventList's ArrayList must not be empty
     //EFFECTS: returns first event of this EventList
-    public Event first() {
+    public Event get(int i) {
         ArrayList<Event> eventslist;
         Event event;
 
         eventslist = this.eventArrayList;
-        event = eventslist.get(0);
+        event = eventslist.get(i - 1);
         return event;
     }
 

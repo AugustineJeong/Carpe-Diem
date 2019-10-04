@@ -1,4 +1,4 @@
-package ModelTest;
+package modelTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -38,7 +38,7 @@ public class EventListTest {
 
     @Test
     public void firstTest() {
-        assertEquals(event1, events.first());
+        assertEquals(event1, events.get(1));
     }
 }
 

@@ -14,7 +14,7 @@ public class Main {
         prevEvents.load();
 
         //instantiation of implementation
-        UserInterface program1 = new Program(prevEvents);
+        UserInterface program1 = new InterfaceVersion1(prevEvents);
         program1.execute();
     }
 }

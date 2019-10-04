@@ -5,11 +5,11 @@ import java.util.*;
 
 import model.EventList;
 
-class Program implements UserInterface {
+class InterfaceVersion1 implements UserInterface {
 
     private EventList events;
 
-    public Program(EventList events) {
+    public InterfaceVersion1(EventList events) {
         this.events = events;
     }
 
