@@ -3,6 +3,7 @@ package ui;
 import java.io.IOException;
 import java.util.*;
 
+import file.Saveable;
 import model.EventList;
 
 class Program {
@@ -61,7 +62,7 @@ class Program {
             System.out.println("You have made an invalid selection.");
         }
 
-        this.events.save();
+        events.save();
 
         return events;
     }
