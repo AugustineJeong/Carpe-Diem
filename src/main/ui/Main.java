@@ -19,8 +19,5 @@ public class Main {
 
         program1 = new Program(prevEvents);
         program1.program();
-
-        Loadable x = new EventList();
-        x.
     }
 }
