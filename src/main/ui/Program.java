@@ -3,10 +3,9 @@ package ui;
 import java.io.IOException;
 import java.util.*;
 
-import file.Saveable;
 import model.EventList;
 
-class Program {
+class Program implements UserInterface {
 
     private EventList events;
 
@@ -16,7 +15,7 @@ class Program {
 
     //MODIFIES: The passed EventList parameter
     //EFFECTS: Launches the entire program
-    void program() throws IOException {
+    public void execute() throws IOException {
         System.out.println("______________________________________");
 
         this.events = this.mainMenu(this.events);
@@ -26,7 +25,7 @@ class Program {
         System.out.println("Press any key to return to main menu.");
         anyKey();
 
-        program();
+        execute();
     }
 
     //MODIFIES: The passed EventList parameter
