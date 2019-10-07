@@ -21,31 +21,6 @@ public class EventList implements Loadable, Saveable {
         this.eventArrayList.add(event);
     }
 
-    //MODIFIES: this
-    //EFFECTS: Adds new configured event(s) to this EventList
-    public EventList setEvents() {
-        String response;
-        Event event1;
-        EventList events;
-        events = this;
-
-        while (true) {
-            event1 = new Event();
-
-            events = event1.setEvent(events);
-
-            //ask user again
-            System.out.println("Would you like to schedule another event into your calendar?");
-            response = InterfaceVersion1.validResponse();
-
-            if (response.equals("no")) {
-                //say goodbye
-                System.out.println("Sure. No additional event will be scheduled");
-                return events;
-            }
-        }
-    }
-
     //REQUIRES: This EventList's ArrayList must not be empty
     //EFFECTS: returns first event of this EventList
     public Event get(int i) {
@@ -111,15 +86,15 @@ public class EventList implements Loadable, Saveable {
         while (true) {
             Event event = new Event();
 
-            String y = scan.next();
-            Boolean x = y.equals("007");
-            if (x) {
+            String s = scan.next();
+            if (s.equals("007")) {
                 break;
             }
 
-            event.setCategory(y);
+            event.setCategory(s);
             event.setDate(scan.next());
-            event.setActivity(scan.next());
+            scan.nextLine();
+            event.setActivity(scan.nextLine());
             event.setTime(scan.nextInt());
             event.setDuration(scan.nextInt());
             event.setEnd(scan.nextInt());

@@ -3,6 +3,7 @@ package ui;
 import java.io.IOException;
 import java.util.*;
 
+import model.Event;
 import model.EventList;
 
 public class InterfaceVersion1 implements UserInterface {
@@ -52,7 +53,7 @@ public class InterfaceVersion1 implements UserInterface {
         int choice = input.nextInt();
 
         if (choice == 1) {
-            events = events.setEvents();
+            events = this.setEvents(events);
         } else if (choice == 2) {
             events.print();
         } else if (choice == 3 || choice == 4) {
@@ -72,8 +73,89 @@ public class InterfaceVersion1 implements UserInterface {
         response = scan.nextLine();
     }
 
+    //MODIFIES: EventList parameter
+    //EFFECTS: Adds new configured event(s) to EventList parameter
+    private EventList setEvents(EventList events) {
+        String response;
+        Event event1;
+
+        while (true) {
+            events = this.addNewEvent(events);
+
+            //ask user again
+            System.out.println("Would you like to schedule another event into your calendar?");
+            response = validResponse();
+
+            if (response.equals("no")) {
+                //say goodbye
+                System.out.println("Sure. No additional event will be scheduled");
+                return events;
+            }
+        }
+    }
+
+    //MODIFIES: this and the EventList parameter
+    //EFFECTS: configures new event and stores it to EventList parameter
+    private EventList addNewEvent(EventList events) {
+        Event event;
+        event = new Event();
+
+        event = this.configureEventMain(event);
+
+        events.addEvent(event);
+
+        System.out.println();
+        System.out.println("Event '" + event.getActivity() + "' " + "has been scheduled.");
+        System.out.println();
+
+        return events;
+    }
+
+    //MODIFIES: Event parameter
+    //EFFECTS: configures the details of the passed Event parameter
+    private Event configureEventMain(Event event) {
+        Scanner scan = new Scanner(System.in);
+
+        String responseString;
+
+        System.out.println("What would you like to categorize the event as?");
+        responseString = scan.nextLine();
+        event.setCategory(responseString);
+
+        System.out.println("What would you like to name the event?");
+        responseString = scan.nextLine();
+        event.setActivity(responseString);
+
+        System.out.println("What day is this event on?");
+        responseString = scan.nextLine();
+        event.setDate(responseString);
+
+        // further configures event
+        configureEventHelper(event);
+
+        return event;
+    }
+
+    //MODIFIES: Event parameter
+    //EFFECTS: further configures the details of the passed Event parameter
+    private void configureEventHelper(Event event) {
+        Scanner scan = new Scanner(System.in);
+
+        int responseInt;
+
+        System.out.println("What time, in hours, does this event start?");
+        responseInt = scan.nextInt();
+        event.setTime(responseInt);
+
+        System.out.println("How long, in hours, is this event?");
+        responseInt = scan.nextInt();
+        event.setDuration(responseInt);
+
+        event.setCalculatedEnd();
+    }
+
     //EFFECTS: Returns scanner string only if it is either 'yes' or 'no'
-    public static String validResponse() {
+    private static String validResponse() {
         while (true) {
             Scanner scan = new Scanner(System.in);
             String response;

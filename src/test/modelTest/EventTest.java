@@ -102,4 +102,22 @@ class EventTest {
         event.setWeatherSensitive(true);
         assertEquals(true, event.getWeatherSensitive());
     }
+
+    @Test
+    public void setCalculatedEndTest() {
+        event.setTime(5);
+        event.setDuration(10);
+        event.setCalculatedEnd();
+        assertEquals(15, event.getEnd());
+
+        event.setTime(5);
+        event.setDuration(20);
+        event.setCalculatedEnd();
+        assertEquals(1, event.getEnd());
+
+        event.setTime(7);
+        event.setDuration(100);
+        event.setCalculatedEnd();
+        assertEquals(11, event.getEnd());
+    }
 }
