@@ -1,6 +1,7 @@
 package model;
 
 import file.*;
+import ui.*;
 
 import java.io.*;
 import java.util.*;
@@ -33,11 +34,13 @@ public class EventList implements Loadable, Saveable {
 
             events = event1.setEvent(events);
 
-            askUserAgain();
-            response = validResponse();
+            //ask user again
+            System.out.println("Would you like to schedule another event into your calendar?");
+            response = InterfaceVersion1.validResponse();
 
             if (response.equals("no")) {
-                goodbye();
+                //say goodbye
+                System.out.println("Sure. No additional event will be scheduled");
                 return events;
             }
         }
@@ -123,31 +126,5 @@ public class EventList implements Loadable, Saveable {
             event.setWeatherSensitive(scan.nextBoolean());
             this.addEvent(event);
         }
-    }
-
-
-    //EFFECTS: Returns scanner string only if it is either 'yes' or 'no'
-    private String validResponse() {
-        while (true) {
-            Scanner scan = new Scanner(System.in);
-            String response;
-            response = scan.nextLine();
-
-            if (!((response.equals("yes")) || (response.equals("no")))) {
-                System.out.println("Response unrecognized. Please respond by 'yes' or 'no'.");
-            } else {
-                return response;
-            }
-        }
-    }
-
-    //EFFECTS: Prints message
-    private void askUserAgain() {
-        System.out.println("Would you like to schedule another event into your calendar?");
-    }
-
-    //EFFECT: Prints message
-    private void goodbye() {
-        System.out.println("Sure. No additional event will be scheduled");
     }
 }

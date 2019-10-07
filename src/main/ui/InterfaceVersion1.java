@@ -5,7 +5,7 @@ import java.util.*;
 
 import model.EventList;
 
-class InterfaceVersion1 implements UserInterface {
+public class InterfaceVersion1 implements UserInterface {
 
     private EventList events;
 
@@ -72,8 +72,8 @@ class InterfaceVersion1 implements UserInterface {
         response = scan.nextLine();
     }
 
-    /*private String validResponse() {
-
+    //EFFECTS: Returns scanner string only if it is either 'yes' or 'no'
+    public static String validResponse() {
         while (true) {
             Scanner scan = new Scanner(System.in);
             String response;
@@ -86,5 +86,4 @@ class InterfaceVersion1 implements UserInterface {
             }
         }
     }
-*/
 }
