@@ -35,10 +35,11 @@ public class InterfaceVersion1 implements UserInterface {
         System.out.println("[Simple Scheduler alpha 1.1 - Interface 1]");
         System.out.println("PLEASE MAKE A SELECTION FROM THE FOLLOWING MENU");
         System.out.println();
-        System.out.println("[1] Add Events");
-        System.out.println("[2] View All Events");
-        System.out.println("[3] View Events by Category");
-        System.out.println("[4] Delete Event");
+        System.out.println("[1] Add Event(s)");
+        System.out.println("[2] Add ToDo(s)");
+        System.out.println("[3] View All Events");
+        System.out.println("[4] View Events by Category");
+        System.out.println("[5] Delete Event");
         System.out.println();
 
         events = selection(events);
@@ -51,12 +52,11 @@ public class InterfaceVersion1 implements UserInterface {
     private EventList selection(EventList events) throws IOException {
         Scanner input = new Scanner(System.in);
         int choice = input.nextInt();
-
         if (choice == 1) {
             events = this.setEvents(events);
-        } else if (choice == 2) {
+        } else if (choice == 3) {
             events.print();
-        } else if (choice == 3 || choice == 4) {
+        } else if (choice == 4 || choice == 5) {
             System.out.println("This feature is not available yet. Suck it up.");
         } else {
             System.out.println("You have made an invalid selection.");
@@ -102,7 +102,7 @@ public class InterfaceVersion1 implements UserInterface {
 
         event = this.configureEventMain(event);
 
-        events.addEvent(event);
+        events.addItem(event);
 
         System.out.println();
         System.out.println("Event '" + event.getActivity() + "' " + "has been scheduled.");

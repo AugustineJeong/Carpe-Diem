@@ -1,16 +1,16 @@
 package model;
 
 import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 
+public class ToDoList extends ItemList {
 
-public class EventList extends ItemList {
-
-    public EventList() {
+    public ToDoList() {
         super();
     }
 
-    //EFFECTS: Prints all events in this EventList
+    //EFFECTS: Prints all ToDos in this ToDoList
     @Override
     public void print() {
         ArrayList<Item> itemlist;
@@ -22,9 +22,9 @@ public class EventList extends ItemList {
 
         System.out.println();
         if (itemlist.size() > 0) {
-            System.out.println("YOU HAVE THE FOLLOWING SCHEDULED EVENTS:");
+            System.out.println("YOU HAVE THE FOLLOWING TODO TASKS:");
         } else {
-            System.out.println("YOU DO NOT HAVE ANY SCHEDULED EVENTS");
+            System.out.println("YOU DO NOT HAVE ANY TODO");
         }
 
         while (i < itemlist.size()) {
@@ -41,7 +41,7 @@ public class EventList extends ItemList {
         itemlist = this.itemArrayList;
         int i = 0;
 
-        File file = new File("./data/saveEvents.txt");
+        File file = new File("./data/saveToDos.txt");
         FileWriter fw = new FileWriter(file);
         PrintWriter pw = new PrintWriter(fw);
 
@@ -49,10 +49,6 @@ public class EventList extends ItemList {
             pw.println(itemlist.get(i).getDate());
             pw.println(itemlist.get(i).getIsEvent());
             pw.println(itemlist.get(i).getActivity());
-            pw.println(itemlist.get(i).getTime());
-            pw.println(itemlist.get(i).getDuration());
-            pw.println(itemlist.get(i).getEnd());
-            pw.println(itemlist.get(i).getWeatherSensitive());
             i++;
         }
         pw.println("007");
@@ -61,7 +57,7 @@ public class EventList extends ItemList {
 
     @Override
     public void load() throws FileNotFoundException {
-        File file = new File("./data/saveEvents.txt");
+        File file = new File("./data/saveToDos.txt");
         Scanner scan = new Scanner(file);
 
         while (true) {
@@ -76,10 +72,6 @@ public class EventList extends ItemList {
             event.setIsEvent(scan.nextBoolean());
             scan.nextLine();
             event.setActivity(scan.nextLine());
-            event.setTime(scan.nextInt());
-            event.setDuration(scan.nextInt());
-            event.setEnd(scan.nextInt());
-            event.setWeatherSensitive(scan.nextBoolean());
             this.addItem(event);
         }
     }
