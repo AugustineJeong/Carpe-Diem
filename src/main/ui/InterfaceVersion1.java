@@ -5,13 +5,17 @@ import java.util.*;
 
 import model.Event;
 import model.EventList;
+import model.ToDo;
+import model.ToDoList;
 
 public class InterfaceVersion1 implements UserInterface {
 
-    private EventList events;
+    private EventList eventlist;
+    private ToDoList todolist;
 
-    public InterfaceVersion1(EventList events) {
-        this.events = events;
+    public InterfaceVersion1() {
+        eventlist = new EventList();
+        todolist = new ToDoList();
     }
 
     //MODIFIES: The passed EventList parameter
@@ -19,7 +23,7 @@ public class InterfaceVersion1 implements UserInterface {
     public void execute() throws IOException {
         System.out.println("______________________________________");
 
-        this.events = this.mainMenu(this.events);
+        mainMenuOptions();
 
         System.out.println("______________________________________");
 
@@ -31,40 +35,42 @@ public class InterfaceVersion1 implements UserInterface {
 
     //MODIFIES: The passed EventList parameter
     //EFFECTS: Prints user options and executes chosen task, returns updated EventList
-    private EventList mainMenu(EventList events) throws IOException {
+    private void mainMenuOptions() throws IOException {
         System.out.println("[Simple Scheduler alpha 1.1 - Interface 1]");
         System.out.println("PLEASE MAKE A SELECTION FROM THE FOLLOWING MENU");
         System.out.println();
         System.out.println("[1] Add Event(s)");
         System.out.println("[2] Add ToDo(s)");
-        System.out.println("[3] View All Events");
+        System.out.println("[3] View All Items");
         System.out.println("[4] View Events by Category");
         System.out.println("[5] Delete Event");
         System.out.println();
 
-        events = selection(events);
-
-        return events;
+        selection();
     }
 
     //MODIFIES: The passed EventList parameter
     //EFFECTS: Executes chosen option, returns updated EventList
-    private EventList selection(EventList events) throws IOException {
+    private void selection() throws IOException {
+        eventlist = new EventList();
+        todolist = new ToDoList();
+        this.eventlist.load();
+        this.todolist.load();
+
         Scanner input = new Scanner(System.in);
         int choice = input.nextInt();
         if (choice == 1) {
-            events = this.setEvents(events);
+            setEvents(this.eventlist);
+        } else if (choice == 2) {
+            setToDos(this.todolist);
         } else if (choice == 3) {
-            events.print();
+            this.eventlist.print();
+            this.todolist.print();
         } else if (choice == 4 || choice == 5) {
             System.out.println("This feature is not available yet. Suck it up.");
         } else {
             System.out.println("You have made an invalid selection.");
         }
-
-        events.save();
-
-        return events;
     }
 
     private void anyKey() {
@@ -75,12 +81,11 @@ public class InterfaceVersion1 implements UserInterface {
 
     //MODIFIES: EventList parameter
     //EFFECTS: Adds new configured event(s) to EventList parameter
-    private EventList setEvents(EventList events) {
+    private void setEvents(EventList eventlist) throws IOException {
         String response;
-        Event event1;
 
         while (true) {
-            events = this.addNewEvent(events);
+            eventlist = this.addNewEvent(eventlist);
 
             //ask user again
             System.out.println("Would you like to schedule another event into your calendar?");
@@ -89,31 +94,74 @@ public class InterfaceVersion1 implements UserInterface {
             if (response.equals("no")) {
                 //say goodbye
                 System.out.println("Sure. No additional event will be scheduled");
-                return events;
+
+                eventlist.save();
+
+                break;
+            }
+        }
+    }
+
+    //MODIFIES: ToDoList parameter
+    //EFFECTS: Adds new configured task(s) to ToDoList parameter
+    private void setToDos(ToDoList todolist) throws IOException {
+        String response;
+
+        while (true) {
+            todolist = this.addNewToDo(todolist);
+
+            //ask user again
+            System.out.println("Would you like to add another ToDo task?");
+            response = validResponse();
+
+            if (response.equals("no")) {
+                //say goodbye
+                System.out.println("Sure. No additional ToDo will be scheduled");
+
+                todolist.save();
+
+                break;
             }
         }
     }
 
     //MODIFIES: this and the EventList parameter
     //EFFECTS: configures new event and stores it to EventList parameter
-    private EventList addNewEvent(EventList events) {
+    private EventList addNewEvent(EventList eventlist) {
         Event event;
         event = new Event();
 
-        event = this.configureEventMain(event);
+        event = this.configureEvent(event);
 
-        events.addItem(event);
+        eventlist.addItem(event);
 
         System.out.println();
         System.out.println("Event '" + event.getActivity() + "' " + "has been scheduled.");
         System.out.println();
 
-        return events;
+        return eventlist;
+    }
+
+    //MODIFIES: this and the ToDoList parameter
+    //EFFECTS: configures new task and stores it to EventList parameter
+    private ToDoList addNewToDo(ToDoList todolist) {
+        ToDo todo;
+        todo = new ToDo();
+
+        todo = this.configureToDo(todo);
+
+        todolist.addItem(todo);
+
+        System.out.println();
+        System.out.println("ToDo task '" + todo.getActivity() + "' " + "has been added.");
+        System.out.println();
+
+        return todolist;
     }
 
     //MODIFIES: Event parameter
     //EFFECTS: configures the details of the passed Event parameter
-    private Event configureEventMain(Event event) {
+    private Event configureEvent(Event event) {
         Scanner scan = new Scanner(System.in);
 
         String responseString;
@@ -139,6 +187,24 @@ public class InterfaceVersion1 implements UserInterface {
         event.setCalculatedEnd();
 
         return event;
+    }
+
+    //MODIFIES: parameter
+    //EFFECTS: configures the details of the passed Event parameter
+    private ToDo configureToDo(ToDo todo) {
+        Scanner scan = new Scanner(System.in);
+
+        String responseString;
+
+        System.out.println("What would you like to name the ToDo task?");
+        responseString = scan.nextLine();
+        todo.setActivity(responseString);
+
+        System.out.println("What day is this event on?");
+        responseString = scan.nextLine();
+        todo.setDate(responseString);
+
+        return todo;
     }
 
     //EFFECTS: Returns scanner string only if it is either 'yes' or 'no'

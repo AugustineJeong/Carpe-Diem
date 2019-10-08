@@ -5,7 +5,7 @@ import file.*;
 import java.io.*;
 import java.util.*;
 
-abstract class ItemList implements Loadable, Saveable {
+public abstract class ItemList implements Loadable, Saveable {
 
     protected ArrayList<Item> itemArrayList;
 

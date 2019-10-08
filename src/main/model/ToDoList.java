@@ -24,7 +24,7 @@ public class ToDoList extends ItemList {
         if (itemlist.size() > 0) {
             System.out.println("YOU HAVE THE FOLLOWING TODO TASKS:");
         } else {
-            System.out.println("YOU DO NOT HAVE ANY TODO");
+            System.out.println("YOU DO NOT HAVE ANY TODO TASK");
         }
 
         while (i < itemlist.size()) {
