@@ -32,7 +32,7 @@ public class InterfaceVersion1 implements UserInterface {
     //MODIFIES: The passed EventList parameter
     //EFFECTS: Prints user options and executes chosen task, returns updated EventList
     private EventList mainMenu(EventList events) throws IOException {
-        System.out.println("[Simple Scheduler beta 1.01]");
+        System.out.println("[Simple Scheduler alpha 1.1 - Interface 1]");
         System.out.println("PLEASE MAKE A SELECTION FROM THE FOLLOWING MENU");
         System.out.println();
         System.out.println("[1] Add Events");
@@ -118,10 +118,6 @@ public class InterfaceVersion1 implements UserInterface {
 
         String responseString;
 
-        System.out.println("What would you like to categorize the event as?");
-        responseString = scan.nextLine();
-        event.setCategory(responseString);
-
         System.out.println("What would you like to name the event?");
         responseString = scan.nextLine();
         event.setActivity(responseString);
@@ -129,17 +125,6 @@ public class InterfaceVersion1 implements UserInterface {
         System.out.println("What day is this event on?");
         responseString = scan.nextLine();
         event.setDate(responseString);
-
-        // further configures event
-        configureEventHelper(event);
-
-        return event;
-    }
-
-    //MODIFIES: Event parameter
-    //EFFECTS: further configures the details of the passed Event parameter
-    private void configureEventHelper(Event event) {
-        Scanner scan = new Scanner(System.in);
 
         int responseInt;
 
@@ -152,6 +137,8 @@ public class InterfaceVersion1 implements UserInterface {
         event.setDuration(responseInt);
 
         event.setCalculatedEnd();
+
+        return event;
     }
 
     //EFFECTS: Returns scanner string only if it is either 'yes' or 'no'
