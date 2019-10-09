@@ -17,7 +17,7 @@ public class Event extends Item {
     @Override
     public String returnItemDetails() {
         String message;
-        message = " | " + "'" + this.activity + "'" +  " scheduled on " + this.date + " from "
+        message = " '" + this.activity + "'" +  " scheduled on " + this.date + " from "
                 + this.time + " to " + this.end;
         return message;
     }

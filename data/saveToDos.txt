@@ -1,4 +1,10 @@
-1
-false
-1
+Monday
+true
+Interview
+Tuesday
+true
+Do home
+Friday
+true
+Do project
 007

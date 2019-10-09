@@ -16,7 +16,7 @@ public abstract class Item {
     }
 
     //EFFECTS: Returns the details of the item
-    abstract String returnItemDetails();
+    public abstract String returnItemDetails();
 
     //MODIFIES: this
     //EFFECTS: update isEvent status of item

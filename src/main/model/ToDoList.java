@@ -61,18 +61,18 @@ public class ToDoList extends ItemList {
         Scanner scan = new Scanner(file);
 
         while (true) {
-            Event event = new Event();
+            ToDo todo = new ToDo();
 
             String s = scan.next();
             if (s.equals("007")) {
                 break;
             }
 
-            event.setDate(s);
-            event.setIsEvent(scan.nextBoolean());
+            todo.setDate(s);
+            todo.setIsEvent(scan.nextBoolean());
             scan.nextLine();
-            event.setActivity(scan.nextLine());
-            this.addItem(event);
+            todo.setActivity(scan.nextLine());
+            this.addItem(todo);
         }
     }
 }

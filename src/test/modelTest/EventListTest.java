@@ -27,7 +27,7 @@ public class EventListTest {
         event1.setEnd(12);
         event1.setWeatherSensitive(false);
 
-        event2.setIsEvent(false);
+        event2.setIsEvent(true);
         event2.setDate("Saturday");
         event2.setActivity("Skiing");
         event2.setTime(7);
@@ -56,7 +56,6 @@ public class EventListTest {
         assertEquals(event1, events1.get(1));
         assertEquals(event2, events1.get(2));
         assertEquals(event3, events1.get(3));
-
     }
 
     @Test
