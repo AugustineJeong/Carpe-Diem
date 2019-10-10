@@ -90,6 +90,7 @@ public abstract class Item {
         return end;
     }
 
+    //EFFECTS: returns the boolean value of whether the item is weather sensitive
     public Boolean getWeatherSensitive() {
         return weatherSensitive;
     }

@@ -7,7 +7,7 @@ public class ToDo extends Item {
         this.isEvent = false;
     }
 
-    // Returns the value of the item
+    //EFFECTS: Returns a string of details of this item
     @Override
     public String returnItemDetails() {
         String message;

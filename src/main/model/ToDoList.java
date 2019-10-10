@@ -10,31 +10,7 @@ public class ToDoList extends ItemList {
         super();
     }
 
-    //EFFECTS: Prints all ToDos in this ToDoList
-    @Override
-    public void print() {
-        ArrayList<Item> itemlist;
-        Item item;
-        int i = 0;
-        int z = 1;
-
-        itemlist = this.itemArrayList;
-
-        System.out.println();
-        if (itemlist.size() > 0) {
-            System.out.println("YOU HAVE THE FOLLOWING TODO TASKS:");
-        } else {
-            System.out.println("YOU DO NOT HAVE ANY TODO TASK");
-        }
-
-        while (i < itemlist.size()) {
-            item = itemlist.get(i);
-            System.out.println("[" + z + "]" + item.returnItemDetails());
-            i++;
-            z++;
-        }
-    }
-
+    //EFFECTS: Saves all ToDos in this ToDoList to text file
     @Override
     public void save() throws IOException {
         ArrayList<Item> itemlist;
@@ -55,6 +31,7 @@ public class ToDoList extends ItemList {
         pw.close();
     }
 
+    //EFFECTS: Loads all ToDos from text file to this ToDoList
     @Override
     public void load() throws FileNotFoundException {
         File file = new File("./data/saveToDos.txt");

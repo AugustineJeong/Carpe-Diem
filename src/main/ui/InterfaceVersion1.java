@@ -1,12 +1,10 @@
 package ui;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.*;
 
-import model.Event;
-import model.EventList;
-import model.ToDo;
-import model.ToDoList;
+import model.*;
 
 public class InterfaceVersion1 implements UserInterface {
 
@@ -64,8 +62,8 @@ public class InterfaceVersion1 implements UserInterface {
         } else if (choice == 2) {
             setToDos(this.todolist);
         } else if (choice == 3) {
-            this.eventlist.print();
-            this.todolist.print();
+            print(this.eventlist);
+            print(this.todolist);
         } else if (choice == 4 || choice == 5) {
             System.out.println("This feature is not available yet. Suck it up.");
         } else {
@@ -77,6 +75,44 @@ public class InterfaceVersion1 implements UserInterface {
         Scanner scan = new Scanner(System.in);
         String response;
         response = scan.nextLine();
+    }
+
+    //EFFECTS: Prints details of all Events in EventList parameter;
+    public void print(EventList eventList) {
+        int z = 1;
+        int i = 1;
+
+        System.out.println();
+        if (eventList.length() > 0) {
+            System.out.println("YOU HAVE THE FOLLOWING SCHEDULED EVENTS:");
+        } else {
+            System.out.println("YOU DO NOT HAVE ANY EVENTS SCHEDULED");
+        }
+
+        while (i <= eventList.length()) {
+            System.out.println("[" + z + "]" + eventList.get(i).returnItemDetails());
+            z++;
+            i++;
+        }
+    }
+
+    //EFFECTS: Prints details of all tasks in ToDoList parameter;
+    public void print(ToDoList todolist) {
+        int z = 1;
+        int i = 1;
+
+        System.out.println();
+        if (todolist.length() > 0) {
+            System.out.println("YOU HAVE THE FOLLOWING TODO TASKS:");
+        } else {
+            System.out.println("YOU DO NOT HAVE ANY TODO TASK");
+        }
+
+        while (i <= todolist.length()) {
+            System.out.println("[" + z + "]" + todolist.get(i).returnItemDetails());
+            z++;
+            i++;
+        }
     }
 
     //MODIFIES: EventList parameter
@@ -142,8 +178,8 @@ public class InterfaceVersion1 implements UserInterface {
         return eventlist;
     }
 
-    //MODIFIES: this and the ToDoList parameter
-    //EFFECTS: configures new task and stores it to EventList parameter
+    //MODIFIES: This and the ToDoList parameter
+    //EFFECTS: Configures new task and stores it to EventList parameter
     private ToDoList addNewToDo(ToDoList todolist) {
         ToDo todo;
         todo = new ToDo();
@@ -160,7 +196,7 @@ public class InterfaceVersion1 implements UserInterface {
     }
 
     //MODIFIES: Event parameter
-    //EFFECTS: configures the details of the passed Event parameter
+    //EFFECTS: Configures the details of the passed Event parameter
     private Event configureEvent(Event event) {
         Scanner scan = new Scanner(System.in);
 
@@ -189,8 +225,8 @@ public class InterfaceVersion1 implements UserInterface {
         return event;
     }
 
-    //MODIFIES: parameter
-    //EFFECTS: configures the details of the passed Event parameter
+    //MODIFIES: Parameter
+    //EFFECTS: Configures the details of the passed Event parameter
     private ToDo configureToDo(ToDo todo) {
         Scanner scan = new Scanner(System.in);
 

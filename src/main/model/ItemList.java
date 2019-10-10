@@ -13,14 +13,14 @@ public abstract class ItemList implements Loadable, Saveable {
         itemArrayList = new ArrayList<>();
     }
 
-    //MODIFIES: this
-    //EFFECTS: adds the Item parameter to this ItemList's ArrayList
+    //MODIFIES: This
+    //EFFECTS: Adds the Item parameter to this ItemList's ArrayList
     public void addItem(Item item) {
         this.itemArrayList.add(item);
     }
 
     //REQUIRES: This ItemList's ArrayList must not be empty
-    //EFFECTS: returns 'i'th item of this ItemList
+    //EFFECTS: Returns 'i'th item of this ItemList
     public Item get(int i) {
         ArrayList<Item> itemlist;
         Item item;
@@ -30,8 +30,10 @@ public abstract class ItemList implements Loadable, Saveable {
         return item;
     }
 
-    //EFFECTS: Prints all items in this EventList
-    public abstract void print();
+    //EFFECTS: Returns the number of items in this itemArrayList
+    public int length() {
+        return this.itemArrayList.size();
+    }
 
     public abstract void save() throws IOException;
 

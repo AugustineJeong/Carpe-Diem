@@ -22,8 +22,8 @@ public class Event extends Item {
         return message;
     }
 
-    //MODIFIES: this
-    //EFFECTS: update the end time of event
+    //MODIFIES: This
+    //EFFECTS: Update the end time of event
     public void setCalculatedEnd() {
         int endTime;
         endTime = this.time + this.duration;

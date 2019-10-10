@@ -10,31 +10,7 @@ public class EventList extends ItemList {
         super();
     }
 
-    //EFFECTS: Prints all events in this EventList
-    @Override
-    public void print() {
-        ArrayList<Item> itemlist;
-        Item item;
-        int i = 0;
-        int z = 1;
-
-        itemlist = this.itemArrayList;
-
-        System.out.println();
-        if (itemlist.size() > 0) {
-            System.out.println("YOU HAVE THE FOLLOWING SCHEDULED EVENTS:");
-        } else {
-            System.out.println("YOU DO NOT HAVE ANY SCHEDULED EVENTS");
-        }
-
-        while (i < itemlist.size()) {
-            item = itemlist.get(i);
-            System.out.println("[" + z + "]" + item.returnItemDetails());
-            i++;
-            z++;
-        }
-    }
-
+    //EFFECTS: Saves all Events in this EventList to text file
     @Override
     public void save() throws IOException {
         ArrayList<Item> itemlist;
@@ -59,6 +35,7 @@ public class EventList extends ItemList {
         pw.close();
     }
 
+    //EFFECTS: Loads all Events from text file to this EventList
     @Override
     public void load() throws FileNotFoundException {
         File file = new File("./data/saveEvents.txt");
