@@ -11,11 +11,11 @@ import java.io.IOException;
 
 public class EventListTest {
 
-    EventList events1 = new EventList();
-    EventList events2 = new EventList();
-    Event event1 = new Event();
-    Event event2 = new Event();
-    Event event3 = new Event();
+    private EventList events1 = new EventList();
+    private EventList events2 = new EventList();
+    private Event event1 = new Event();
+    private Event event2 = new Event();
+    private Event event3 = new Event();
 
     @BeforeEach
     public void setup() throws IOException {
@@ -109,6 +109,16 @@ public class EventListTest {
         assertEquals(events2.get(3).getDuration(), event3.getDuration());
         assertEquals(events2.get(3).getEnd(), event3.getEnd());
         assertEquals(events2.get(3).getWeatherSensitive(), event3.getWeatherSensitive());
+    }
+
+    @Test
+    public void lengthTest() {
+        int length;
+        length = events1.length();
+
+        int expectedLength;
+        expectedLength = 3;
+        assertEquals(expectedLength, length);
     }
 }
 

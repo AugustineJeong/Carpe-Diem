@@ -8,7 +8,7 @@ import model.Event;
 
 class EventTest {
 
-    Event event;
+    private Event event;
 
     @BeforeEach
     public void setup() {
@@ -18,7 +18,7 @@ class EventTest {
     @Test
     public void returnEventTest() {
         String expectedDetails;
-        expectedDetails = " work | 'interview' scheduled on Monday from 1400 to 1500";
+        expectedDetails = " 'interview' scheduled on Monday from 10 to 15";
 
         String eventDetails;
         eventDetails = event.returnItemDetails();
@@ -38,17 +38,17 @@ class EventTest {
 
     @Test
     public void getTimeTest() {
-        assertEquals(1400, event.getTime());
+        assertEquals(10, event.getTime());
     }
 
     @Test
     public void getDurationTest() {
-        assertEquals(60, event.getDuration());
+        assertEquals(5, event.getDuration());
     }
 
     @Test
     public void getEndTest() {
-        assertEquals(1500, event.getEnd());
+        assertEquals(15, event.getEnd());
     }
 
     @Test

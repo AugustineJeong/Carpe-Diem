@@ -10,11 +10,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ToDoListTest {
 
-    ToDoList todolist1 = new ToDoList();
-    ToDoList todolist2 = new ToDoList();
-    ToDo todo1 = new ToDo();
-    ToDo todo2 = new ToDo();
-    ToDo todo3 = new ToDo();
+    private ToDoList todolist1 = new ToDoList();
+    private ToDoList todolist2 = new ToDoList();
+    private ToDo todo1 = new ToDo();
+    private ToDo todo2 = new ToDo();
+    private ToDo todo3 = new ToDo();
 
     @BeforeEach
     public void setup() throws IOException {
@@ -77,5 +77,15 @@ public class ToDoListTest {
         assertEquals(todolist2.get(3).getIsEvent(), todo3.getIsEvent());
         assertEquals(todolist2.get(3).getDate(), todo3.getDate());
         assertEquals(todolist2.get(3).getActivity(), todo3.getActivity());
+    }
+
+    @Test
+    public void lengthTest() {
+        int length;
+        length = todolist1.length();
+
+        int expectedLength;
+        expectedLength = 3;
+        assertEquals(expectedLength, length);
     }
 }

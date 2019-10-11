@@ -1,7 +1,10 @@
 Monday
-false
-yes
-yeet
-false
-yeet
+true
+Interview
+Tuesday
+true
+Do home
+Friday
+true
+Do project
 007
