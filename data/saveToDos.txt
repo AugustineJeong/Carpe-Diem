@@ -7,4 +7,10 @@ Do home
 Friday
 true
 Do project
+Wednesday
+false
+Study
+Saturday
+false
+Run
 007

@@ -35,8 +35,10 @@ public abstract class ItemList implements Loadable, Saveable {
         return this.itemArrayList.size();
     }
 
+    //EFFECTS: saves the ItemList as a text file
     public abstract void save() throws IOException;
 
+    //EFFECTS: loads the details of ItemList from a text file
     public abstract void load() throws FileNotFoundException;
 }
 
