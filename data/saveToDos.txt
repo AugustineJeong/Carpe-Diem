@@ -7,10 +7,10 @@ Do home
 Friday
 true
 Do project
-Wednesday
+yes
 false
-Study
-Saturday
+yes
+1
 false
-Run
+1
 007

@@ -6,11 +6,6 @@ public class Event extends Item {
 
     public Event() {
         super();
-        this.isEvent = true;
-        this.time = 10;
-        this.duration = 5;
-        this.end = 15;
-        this.weatherSensitive = false;
     }
 
     //MODIFIES: this

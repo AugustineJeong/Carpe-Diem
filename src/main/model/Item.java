@@ -13,6 +13,11 @@ public abstract class Item {
     public Item() {
         date = "Monday";
         activity = "interview";
+        this.isEvent = true;
+        this.time = 10;
+        this.duration = 5;
+        this.end = 15;
+        this.weatherSensitive = false;
     }
 
     //EFFECTS: Returns the details of the item

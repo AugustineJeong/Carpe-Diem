@@ -9,116 +9,99 @@ import model.*;
 
 import java.io.IOException;
 
-public class EventListTest {
-
-    private EventList events1 = new EventList();
-    private EventList events2 = new EventList();
-    private Event event1 = new Event();
-    private Event event2 = new Event();
-    private Event event3 = new Event();
+public class EventListTest extends ItemListTest {
 
     @BeforeEach
     public void setup() throws IOException {
-        event1.setIsEvent(true);
-        event1.setDate("Monday");
-        event1.setActivity("Interview");
-        event1.setTime(10);
-        event1.setDuration(2);
-        event1.setEnd(12);
-        event1.setWeatherSensitive(false);
+        itemlist1 = new EventList();
+        itemlist2 = new EventList();
+        item1 = new Event();
+        item2 = new Event();
+        item3 = new Event();
 
-        event2.setIsEvent(true);
-        event2.setDate("Saturday");
-        event2.setActivity("Skiing");
-        event2.setTime(7);
-        event2.setDuration(5);
-        event2.setEnd(12);
-        event2.setWeatherSensitive(true);
+        item1.setIsEvent(true);
+        item1.setDate("Monday");
+        item1.setActivity("Interview");
+        item1.setTime(10);
+        item1.setDuration(2);
+        item1.setEnd(12);
+        item1.setWeatherSensitive(false);
 
-        event3.setIsEvent(true);
-        event3.setDate("Tuesday");
-        event3.setActivity("Project");
-        event3.setTime(8);
-        event3.setDuration(1);
-        event3.setEnd(9);
-        event3.setWeatherSensitive(false);
+        item2.setIsEvent(true);
+        item2.setDate("Saturday");
+        item2.setActivity("Skiing");
+        item2.setTime(7);
+        item2.setDuration(5);
+        item2.setEnd(12);
+        item2.setWeatherSensitive(true);
 
-        events1.addItem(event1);
-        events1.addItem(event2);
-        events1.addItem(event3);
+        item3.setIsEvent(true);
+        item3.setDate("Tuesday");
+        item3.setActivity("Project");
+        item3.setTime(8);
+        item3.setDuration(1);
+        item3.setEnd(9);
+        item3.setWeatherSensitive(false);
 
-        events1.save();
-        events2.load();
-    }
+        itemlist1.addItem(item1);
+        itemlist1.addItem(item2);
+        itemlist1.addItem(item3);
 
-    @Test
-    public void getTest() {
-        assertEquals(event1, events1.get(1));
-        assertEquals(event2, events1.get(2));
-        assertEquals(event3, events1.get(3));
+        itemlist1.save();
+        itemlist2.load();
     }
 
     @Test
     public void testLoadSave() {
         // test that values of events saved and loaded are the same
-        assertEquals(events1.get(1).getIsEvent(), events2.get(1).getIsEvent());
-        assertEquals(events1.get(1).getDate(), events2.get(1).getDate());
-        assertEquals(events1.get(1).getActivity(), events2.get(1).getActivity());
-        assertEquals(events1.get(1).getTime(), events2.get(1).getTime());
-        assertEquals(events1.get(1).getDuration(), events2.get(1).getDuration());
-        assertEquals(events1.get(1).getEnd(), events2.get(1).getEnd());
-        assertEquals(events1.get(1).getWeatherSensitive(), events2.get(1).getWeatherSensitive());
+        assertEquals(itemlist1.get(1).getIsEvent(), itemlist2.get(1).getIsEvent());
+        assertEquals(itemlist1.get(1).getDate(), itemlist2.get(1).getDate());
+        assertEquals(itemlist1.get(1).getActivity(), itemlist2.get(1).getActivity());
+        assertEquals(itemlist1.get(1).getTime(), itemlist2.get(1).getTime());
+        assertEquals(itemlist1.get(1).getDuration(), itemlist2.get(1).getDuration());
+        assertEquals(itemlist1.get(1).getEnd(), itemlist2.get(1).getEnd());
+        assertEquals(itemlist1.get(1).getWeatherSensitive(), itemlist2.get(1).getWeatherSensitive());
 
-        assertEquals(events1.get(2).getIsEvent(), events2.get(2).getIsEvent());
-        assertEquals(events1.get(2).getDate(), events2.get(2).getDate());
-        assertEquals(events1.get(2).getActivity(), events2.get(2).getActivity());
-        assertEquals(events1.get(2).getTime(), events2.get(2).getTime());
-        assertEquals(events1.get(2).getDuration(), events2.get(2).getDuration());
-        assertEquals(events1.get(2).getEnd(), events2.get(2).getEnd());
-        assertEquals(events1.get(2).getWeatherSensitive(), events2.get(2).getWeatherSensitive());
+        assertEquals(itemlist1.get(2).getIsEvent(), itemlist2.get(2).getIsEvent());
+        assertEquals(itemlist1.get(2).getDate(), itemlist2.get(2).getDate());
+        assertEquals(itemlist1.get(2).getActivity(), itemlist2.get(2).getActivity());
+        assertEquals(itemlist1.get(2).getTime(), itemlist2.get(2).getTime());
+        assertEquals(itemlist1.get(2).getDuration(), itemlist2.get(2).getDuration());
+        assertEquals(itemlist1.get(2).getEnd(), itemlist2.get(2).getEnd());
+        assertEquals(itemlist1.get(2).getWeatherSensitive(), itemlist2.get(2).getWeatherSensitive());
 
-        assertEquals(events1.get(3).getIsEvent(), events2.get(3).getIsEvent());
-        assertEquals(events1.get(3).getDate(), events2.get(3).getDate());
-        assertEquals(events1.get(3).getActivity(), events2.get(3).getActivity());
-        assertEquals(events1.get(3).getTime(), events2.get(3).getTime());
-        assertEquals(events1.get(3).getDuration(), events2.get(3).getDuration());
-        assertEquals(events1.get(3).getEnd(), events2.get(3).getEnd());
-        assertEquals(events1.get(3).getWeatherSensitive(), events2.get(3).getWeatherSensitive());
+        assertEquals(itemlist1.get(3).getIsEvent(), itemlist2.get(3).getIsEvent());
+        assertEquals(itemlist1.get(3).getDate(), itemlist2.get(3).getDate());
+        assertEquals(itemlist1.get(3).getActivity(), itemlist2.get(3).getActivity());
+        assertEquals(itemlist1.get(3).getTime(), itemlist2.get(3).getTime());
+        assertEquals(itemlist1.get(3).getDuration(), itemlist2.get(3).getDuration());
+        assertEquals(itemlist1.get(3).getEnd(), itemlist2.get(3).getEnd());
+        assertEquals(itemlist1.get(3).getWeatherSensitive(), itemlist2.get(3).getWeatherSensitive());
 
         // test that values of events saved and loaded are the same, this time using initial event inputs.
-        assertEquals(events2.get(1).getIsEvent(), event1.getIsEvent());
-        assertEquals(events2.get(1).getDate(), event1.getDate());
-        assertEquals(events2.get(1).getActivity(), event1.getActivity());
-        assertEquals(events2.get(1).getTime(), event1.getTime());
-        assertEquals(events2.get(1).getDuration(), event1.getDuration());
-        assertEquals(events2.get(1).getEnd(), event1.getEnd());
-        assertEquals(events2.get(1).getWeatherSensitive(), event1.getWeatherSensitive());
+        assertEquals(itemlist2.get(1).getIsEvent(), item1.getIsEvent());
+        assertEquals(itemlist2.get(1).getDate(), item1.getDate());
+        assertEquals(itemlist2.get(1).getActivity(), item1.getActivity());
+        assertEquals(itemlist2.get(1).getTime(), item1.getTime());
+        assertEquals(itemlist2.get(1).getDuration(), item1.getDuration());
+        assertEquals(itemlist2.get(1).getEnd(), item1.getEnd());
+        assertEquals(itemlist2.get(1).getWeatherSensitive(), item1.getWeatherSensitive());
 
-        assertEquals(events2.get(2).getIsEvent(), event2.getIsEvent());
-        assertEquals(events2.get(2).getDate(), event2.getDate());
-        assertEquals(events2.get(2).getActivity(), event2.getActivity());
-        assertEquals(events2.get(2).getTime(), event2.getTime());
-        assertEquals(events2.get(2).getDuration(), event2.getDuration());
-        assertEquals(events2.get(2).getEnd(), event2.getEnd());
-        assertEquals(events2.get(2).getWeatherSensitive(), event2.getWeatherSensitive());
+        assertEquals(itemlist2.get(2).getIsEvent(), item2.getIsEvent());
+        assertEquals(itemlist2.get(2).getDate(), item2.getDate());
+        assertEquals(itemlist2.get(2).getActivity(), item2.getActivity());
+        assertEquals(itemlist2.get(2).getTime(), item2.getTime());
+        assertEquals(itemlist2.get(2).getDuration(), item2.getDuration());
+        assertEquals(itemlist2.get(2).getEnd(), item2.getEnd());
+        assertEquals(itemlist2.get(2).getWeatherSensitive(), item2.getWeatherSensitive());
 
-        assertEquals(events2.get(3).getIsEvent(), event3.getIsEvent());
-        assertEquals(events2.get(3).getDate(), event3.getDate());
-        assertEquals(events2.get(3).getActivity(), event3.getActivity());
-        assertEquals(events2.get(3).getTime(), event3.getTime());
-        assertEquals(events2.get(3).getDuration(), event3.getDuration());
-        assertEquals(events2.get(3).getEnd(), event3.getEnd());
-        assertEquals(events2.get(3).getWeatherSensitive(), event3.getWeatherSensitive());
-    }
-
-    @Test
-    public void lengthTest() {
-        int length;
-        length = events1.length();
-
-        int expectedLength;
-        expectedLength = 3;
-        assertEquals(expectedLength, length);
+        assertEquals(itemlist2.get(3).getIsEvent(), item3.getIsEvent());
+        assertEquals(itemlist2.get(3).getDate(), item3.getDate());
+        assertEquals(itemlist2.get(3).getActivity(), item3.getActivity());
+        assertEquals(itemlist2.get(3).getTime(), item3.getTime());
+        assertEquals(itemlist2.get(3).getDuration(), item3.getDuration());
+        assertEquals(itemlist2.get(3).getEnd(), item3.getEnd());
+        assertEquals(itemlist2.get(3).getWeatherSensitive(), item3.getWeatherSensitive());
     }
 }
 
