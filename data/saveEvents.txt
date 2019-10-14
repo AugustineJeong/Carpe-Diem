@@ -19,18 +19,4 @@ Project
 1
 9
 false
-Monday
-true
-party
-7
-3
-10
-false
-Tuesday
-true
-Study Session
-3
-1
-4
-false
 007
