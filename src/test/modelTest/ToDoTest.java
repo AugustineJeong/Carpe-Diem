@@ -4,13 +4,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import model.Item;
 import model.ToDo;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class ToDoTest extends ItemTest {
-
-    @BeforeEach
-    public void setup() { item = new ToDo(); }
+public class ToDoTest {
 
     @Test
     public void returnItemDetailsTest() {

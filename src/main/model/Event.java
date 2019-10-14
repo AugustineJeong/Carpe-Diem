@@ -21,4 +21,16 @@ public class Event extends Item {
                 + this.time + " to " + this.end;
         return message;
     }
+
+    //MODIFIES: This
+    //EFFECTS: Update the end time of event
+    public void setCalculatedEnd() {
+        int endTime;
+        endTime = this.time + this.duration;
+        if (endTime > 24) {
+            this.end = endTime - ((endTime / 24) * 24);
+        } else {
+            this.end = endTime;
+        }
+    }
 }
