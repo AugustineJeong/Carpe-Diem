@@ -13,4 +13,7 @@ Study
 Saturday
 false
 Run
+Monday
+false
+Party
 007
