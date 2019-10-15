@@ -3,10 +3,10 @@ package ui;
 import java.io.IOException;
 import java.util.*;
 
-import Exceptions.NoMoreEvent;
-import Exceptions.UserEndProgram;
-import Exceptions.IntExpectedDuration;
-import Exceptions.IntExpectedTime;
+import exceptions.NoMoreEvent;
+import exceptions.UserEndProgram;
+import exceptions.IntExpectedDuration;
+import exceptions.IntExpectedTime;
 import model.*;
 
 public class InterfaceVersion1 implements UserInterface {
@@ -132,15 +132,10 @@ public class InterfaceVersion1 implements UserInterface {
             try {
                 eventlist = this.addNewEvent(eventlist);
             } catch (IntExpectedTime intExpectedTime) {
-                System.out.println("______________________________________");
-                System.out.println("ERROR. USER DID NOT ENTER TIME IN INTEGERS.");
-                System.out.println("______________________________________");
+                expectedIntErrorMessage("Time");
                 mainMenuOptions();
             } catch (IntExpectedDuration intExpectedDuration) {
-                System.out.println("______________________________________");
-                System.out.println();
-                System.out.println("ERROR. USER DID NOT ENTER DURATION IN INTEGERS.");
-                System.out.println("______________________________________");
+                expectedIntErrorMessage("Duration");
                 mainMenuOptions();
             }
 
@@ -150,7 +145,13 @@ public class InterfaceVersion1 implements UserInterface {
                 break;
             }
         }
+    }
 
+    private void expectedIntErrorMessage(String string) {
+        System.out.println("______________________________________");
+        System.out.println();
+        System.out.println("ERROR. USER DID NOT ENTER " + string + " IN INTEGERS.");
+        System.out.println("______________________________________");
     }
 
     //MODIFIES: EventList parameter;
