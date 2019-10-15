@@ -193,6 +193,8 @@ public class InterfaceVersion1 implements UserInterface {
         }
     }
 
+    //
+
     //MODIFIES: this and the EventList parameter
     //EFFECTS: configures new event and stores it to EventList parameter
     private EventList addNewEvent(EventList eventlist) throws IntExpectedTime, IntExpectedDuration {

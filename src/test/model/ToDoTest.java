@@ -8,7 +8,9 @@ import org.junit.jupiter.api.Test;
 public class ToDoTest extends ItemTest {
 
     @BeforeEach
-    public void setup() { item = new ToDo(); }
+    public void setup() {
+        item = new ToDo();
+    }
 
     @Test
     public void returnItemDetailsTest() {

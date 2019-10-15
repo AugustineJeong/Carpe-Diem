@@ -11,7 +11,7 @@ public class ToDo extends Item {
     @Override
     public String returnItemDetails() {
         String message;
-        message = " '" + this.activity + "'" +  " by " + this.date;
+        message = " '" + this.activity + "'" + " by " + this.date;
         return message;
     }
 }
