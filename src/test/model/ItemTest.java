@@ -1,11 +1,8 @@
-package modelTest;
+package model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import model.Item;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import model.Event;
 
 abstract class ItemTest {
     public Item item;

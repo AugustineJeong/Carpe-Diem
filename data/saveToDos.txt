@@ -7,10 +7,10 @@ Do home
 Friday
 true
 Do project
-yes
+a
 false
-yes
-1
+a
+e
 false
-1
+e
 007

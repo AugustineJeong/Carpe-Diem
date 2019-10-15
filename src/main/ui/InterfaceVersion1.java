@@ -1,9 +1,10 @@
 package ui;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.*;
 
+import Exceptions.IntExpectedDuration;
+import Exceptions.IntExpectedTime;
 import model.*;
 
 public class InterfaceVersion1 implements UserInterface {
@@ -24,7 +25,6 @@ public class InterfaceVersion1 implements UserInterface {
         mainMenuOptions();
 
         System.out.println("______________________________________");
-
         System.out.println("Press any key to return to main menu.");
         anyKey();
 
@@ -58,7 +58,9 @@ public class InterfaceVersion1 implements UserInterface {
         Scanner input = new Scanner(System.in);
         int choice = input.nextInt();
         if (choice == 1) {
+
             setEvents(this.eventlist);
+
         } else if (choice == 2) {
             setToDos(this.todolist);
         } else if (choice == 3) {
@@ -118,24 +120,48 @@ public class InterfaceVersion1 implements UserInterface {
     //MODIFIES: EventList parameter
     //EFFECTS: Adds new configured event(s) to EventList parameter
     private void setEvents(EventList eventlist) throws IOException {
+        try {
+            eventlist = this.addNewEvent(eventlist);
+        } catch (IntExpectedTime intExpectedTime) {
+            System.out.println("______________________________________");
+            System.out.println("ERROR. USER DID NOT ENTER TIME IN INTEGERS.");
+            System.out.println("______________________________________");
+            mainMenuOptions();
+        } catch (IntExpectedDuration intExpectedDuration) {
+            System.out.println("______________________________________");
+            System.out.println();
+            System.out.println("ERROR. USER DID NOT ENTER DURATION IN INTEGERS.");
+            System.out.println("______________________________________");
+            mainMenuOptions();
+        } finally {
+            System.out.println("error free!");
+        }
+
+        askUserAgain(eventlist);
+    }
+
+    //MODIFIES: EventList parameter;
+    //EFFECTS: Recurses back to set another event or stops
+    private void askUserAgain(EventList eventlist) throws IOException {
         String response;
 
-        while (true) {
-            eventlist = this.addNewEvent(eventlist);
+        System.out.println("Would you like to schedule another event into your calendar?");
+        response = validResponse();
 
-            //ask user again
-            System.out.println("Would you like to schedule another event into your calendar?");
-            response = validResponse();
+        if (response.equals("no")) {
+            //say goodbye
+            System.out.println("Sure. No additional event will be scheduled");
+            eventlist.save();
 
-            if (response.equals("no")) {
-                //say goodbye
-                System.out.println("Sure. No additional event will be scheduled");
-
-                eventlist.save();
-
-                break;
-            }
+            //since I changed the loop to a recursion, I cannot place a break; here.
+            //so instead, I recurse back to execute() after asking requesting user to press any key.
+            System.out.println("______________________________________");
+            System.out.println("Press any key to return to main menu.");
+            anyKey();
+            execute();
         }
+
+        setEvents(eventlist);
     }
 
     //MODIFIES: ToDoList parameter
@@ -163,7 +189,7 @@ public class InterfaceVersion1 implements UserInterface {
 
     //MODIFIES: this and the EventList parameter
     //EFFECTS: configures new event and stores it to EventList parameter
-    private EventList addNewEvent(EventList eventlist) {
+    private EventList addNewEvent(EventList eventlist) throws IntExpectedTime, IntExpectedDuration {
         Event event;
         event = new Event();
 
@@ -197,7 +223,7 @@ public class InterfaceVersion1 implements UserInterface {
 
     //MODIFIES: Event parameter
     //EFFECTS: Configures the details of the passed Event parameter
-    private Event configureEvent(Event event) {
+    private Event configureEvent(Event event) throws IntExpectedTime, IntExpectedDuration {
         Scanner scan = new Scanner(System.in);
 
         String responseString;
@@ -210,14 +236,43 @@ public class InterfaceVersion1 implements UserInterface {
         responseString = scan.nextLine();
         event.setDate(responseString);
 
+
+        event = configureEventHelper1(event);
+
+        return event;
+    }
+
+    private Event configureEventHelper1(Event event) throws IntExpectedTime, IntExpectedDuration {
+        Scanner scan = new Scanner(System.in);
+
+        String response;
         int responseInt;
 
         System.out.println("What time, in hours, does this event start?");
-        responseInt = scan.nextInt();
+        response = scan.nextLine();
+        if (response.matches("[.]*[^0-9]*[.]*")) {
+            throw new IntExpectedTime();
+        }
+        responseInt = Integer.parseInt(response);
         event.setTime(responseInt);
 
+        event = configureEventHelper2(event);
+
+        return event;
+    }
+
+    private Event configureEventHelper2(Event event) throws IntExpectedDuration {
+        Scanner scan = new Scanner(System.in);
+
+        String response;
+        int responseInt;
+
         System.out.println("How long, in hours, is this event?");
-        responseInt = scan.nextInt();
+        response = scan.nextLine();
+        if (response.matches("[.]*[^0-9]*[.]*")) {
+            throw new IntExpectedDuration();
+        }
+        responseInt = Integer.parseInt(response);
         event.setDuration(responseInt);
 
         event.setCalculatedEnd();

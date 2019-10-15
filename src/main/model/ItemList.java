@@ -22,11 +22,9 @@ public abstract class ItemList implements Loadable, Saveable {
     //REQUIRES: This ItemList's ArrayList must not be empty
     //EFFECTS: Returns 'i'th item of this ItemList
     public Item get(int i) {
-        ArrayList<Item> itemlist;
         Item item;
 
-        itemlist = this.itemArrayList;
-        item = itemlist.get(i - 1);
+        item = this.itemArrayList.get(i - 1);
         return item;
     }
 
