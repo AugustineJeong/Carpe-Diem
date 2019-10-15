@@ -21,5 +21,6 @@ class EventTest extends ItemTest {
         eventDetails = item.returnItemDetails();
 
         assertEquals(expectedDetails, eventDetails);
+        
     }
 }
