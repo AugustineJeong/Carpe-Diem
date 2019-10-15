@@ -3,6 +3,8 @@ package ui;
 import java.io.IOException;
 import java.util.*;
 
+import Exceptions.NoMoreEvent;
+import Exceptions.UserEndProgram;
 import Exceptions.IntExpectedDuration;
 import Exceptions.IntExpectedTime;
 import model.*;
@@ -20,21 +22,28 @@ public class InterfaceVersion1 implements UserInterface {
     //MODIFIES: The passed EventList parameter
     //EFFECTS: Launches the entire program
     public void execute() throws IOException {
-        System.out.println("______________________________________");
+        while (true) {
+            System.out.println("______________________________________");
 
-        mainMenuOptions();
+            try {
+                mainMenuOptions();
+            } catch (UserEndProgram userEndProgram) {
+                System.out.println("Exiting Program...");
+                break;
+            } finally {
+                System.out.println();
+                System.out.println("[Simple Scheduler alpha v1.2 - Interface 1]");
+            }
 
-        System.out.println("______________________________________");
-        System.out.println("Press any key to return to main menu.");
-        anyKey();
-
-        execute();
+            System.out.println("______________________________________");
+            System.out.println("Press any key to return to main menu.");
+            anyKey();
+        }
     }
 
     //MODIFIES: The passed EventList parameter
     //EFFECTS: Prints user options and executes chosen task, returns updated EventList
-    private void mainMenuOptions() throws IOException {
-        System.out.println("[Simple Scheduler alpha 1.1 - Interface 1]");
+    private void mainMenuOptions() throws IOException, UserEndProgram {
         System.out.println("PLEASE MAKE A SELECTION FROM THE FOLLOWING MENU");
         System.out.println();
         System.out.println("[1] Add Event(s)");
@@ -42,6 +51,7 @@ public class InterfaceVersion1 implements UserInterface {
         System.out.println("[3] View All Items");
         System.out.println("[4] View Events by Category");
         System.out.println("[5] Delete Event");
+        System.out.println("[6] Exit Program");
         System.out.println();
 
         selection();
@@ -49,7 +59,7 @@ public class InterfaceVersion1 implements UserInterface {
 
     //MODIFIES: The passed EventList parameter
     //EFFECTS: Executes chosen option, returns updated EventList
-    private void selection() throws IOException {
+    private void selection() throws IOException, UserEndProgram {
         eventlist = new EventList();
         todolist = new ToDoList();
         this.eventlist.load();
@@ -58,16 +68,14 @@ public class InterfaceVersion1 implements UserInterface {
         Scanner input = new Scanner(System.in);
         int choice = input.nextInt();
         if (choice == 1) {
-
             setEvents(this.eventlist);
-
         } else if (choice == 2) {
             setToDos(this.todolist);
         } else if (choice == 3) {
             print(this.eventlist);
             print(this.todolist);
-        } else if (choice == 4 || choice == 5) {
-            System.out.println("This feature is not available yet. Suck it up.");
+        } else if (choice == 6) {
+            throw new UserEndProgram();
         } else {
             System.out.println("You have made an invalid selection.");
         }
@@ -119,30 +127,35 @@ public class InterfaceVersion1 implements UserInterface {
 
     //MODIFIES: EventList parameter
     //EFFECTS: Adds new configured event(s) to EventList parameter
-    private void setEvents(EventList eventlist) throws IOException {
-        try {
-            eventlist = this.addNewEvent(eventlist);
-        } catch (IntExpectedTime intExpectedTime) {
-            System.out.println("______________________________________");
-            System.out.println("ERROR. USER DID NOT ENTER TIME IN INTEGERS.");
-            System.out.println("______________________________________");
-            mainMenuOptions();
-        } catch (IntExpectedDuration intExpectedDuration) {
-            System.out.println("______________________________________");
-            System.out.println();
-            System.out.println("ERROR. USER DID NOT ENTER DURATION IN INTEGERS.");
-            System.out.println("______________________________________");
-            mainMenuOptions();
-        } finally {
-            System.out.println("error free!");
+    private void setEvents(EventList eventlist) throws IOException, UserEndProgram {
+        while (true) {
+            try {
+                eventlist = this.addNewEvent(eventlist);
+            } catch (IntExpectedTime intExpectedTime) {
+                System.out.println("______________________________________");
+                System.out.println("ERROR. USER DID NOT ENTER TIME IN INTEGERS.");
+                System.out.println("______________________________________");
+                mainMenuOptions();
+            } catch (IntExpectedDuration intExpectedDuration) {
+                System.out.println("______________________________________");
+                System.out.println();
+                System.out.println("ERROR. USER DID NOT ENTER DURATION IN INTEGERS.");
+                System.out.println("______________________________________");
+                mainMenuOptions();
+            }
+
+            try {
+                askUserAgain();
+            } catch (NoMoreEvent noMoreEvent) {
+                break;
+            }
         }
 
-        askUserAgain(eventlist);
     }
 
     //MODIFIES: EventList parameter;
     //EFFECTS: Recurses back to set another event or stops
-    private void askUserAgain(EventList eventlist) throws IOException {
+    private void askUserAgain() throws IOException, NoMoreEvent {
         String response;
 
         System.out.println("Would you like to schedule another event into your calendar?");
@@ -153,15 +166,8 @@ public class InterfaceVersion1 implements UserInterface {
             System.out.println("Sure. No additional event will be scheduled");
             eventlist.save();
 
-            //since I changed the loop to a recursion, I cannot place a break; here.
-            //so instead, I recurse back to execute() after asking requesting user to press any key.
-            System.out.println("______________________________________");
-            System.out.println("Press any key to return to main menu.");
-            anyKey();
-            execute();
+            throw new NoMoreEvent();
         }
-
-        setEvents(eventlist);
     }
 
     //MODIFIES: ToDoList parameter
