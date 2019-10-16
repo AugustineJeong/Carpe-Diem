@@ -3,10 +3,7 @@ package ui;
 import java.io.IOException;
 import java.util.*;
 
-import exceptions.NoMoreEvent;
-import exceptions.UserEndProgram;
-import exceptions.IntExpectedDuration;
-import exceptions.IntExpectedTime;
+import exceptions.*;
 import model.*;
 
 public class InterfaceVersion1 implements UserInterface {
@@ -127,16 +124,17 @@ public class InterfaceVersion1 implements UserInterface {
 
     //MODIFIES: EventList parameter
     //EFFECTS: Adds new configured event(s) to EventList parameter
-    private void setEvents(EventList eventlist) throws IOException, UserEndProgram {
+    private void setEvents(EventList eventlist) throws IOException {
         while (true) {
             try {
                 eventlist = this.addNewEvent(eventlist);
+                eventlist.save();
             } catch (IntExpectedTime intExpectedTime) {
-                expectedIntErrorMessage("Time");
-                mainMenuOptions();
+                expectedIntErrorMessage("TIME");
+                break;
             } catch (IntExpectedDuration intExpectedDuration) {
-                expectedIntErrorMessage("Duration");
-                mainMenuOptions();
+                expectedIntErrorMessage("DURATION");
+                break;
             }
 
             try {
@@ -156,7 +154,7 @@ public class InterfaceVersion1 implements UserInterface {
 
     //MODIFIES: EventList parameter;
     //EFFECTS: Recurses back to set another event or stops
-    private void askUserAgain() throws IOException, NoMoreEvent {
+    private void askUserAgain() throws NoMoreEvent {
         String response;
 
         System.out.println("Would you like to schedule another event into your calendar?");
@@ -165,7 +163,6 @@ public class InterfaceVersion1 implements UserInterface {
         if (response.equals("no")) {
             //say goodbye
             System.out.println("Sure. No additional event will be scheduled");
-            eventlist.save();
 
             throw new NoMoreEvent();
         }
@@ -284,7 +281,12 @@ public class InterfaceVersion1 implements UserInterface {
         responseInt = Integer.parseInt(response);
         event.setDuration(responseInt);
 
-        event.setCalculatedEnd();
+        try {
+            event.setCalculatedEnd();
+        } catch (NotSameDay notSameDay) {
+            System.out.println();
+            System.out.println("Warning: your event does not start and end on the same date.");
+        }
 
         return event;
     }

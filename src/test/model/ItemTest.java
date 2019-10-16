@@ -72,22 +72,4 @@ abstract class ItemTest {
         item.setWeatherSensitive(true);
         assertEquals(true, item.getWeatherSensitive());
     }
-
-    @Test
-    public void setCalculatedEndTest() {
-        item.setTime(5);
-        item.setDuration(10);
-        item.setCalculatedEnd();
-        assertEquals(15, item.getEnd());
-
-        item.setTime(5);
-        item.setDuration(20);
-        item.setCalculatedEnd();
-        assertEquals(1, item.getEnd());
-
-        item.setTime(7);
-        item.setDuration(100);
-        item.setCalculatedEnd();
-        assertEquals(11, item.getEnd());
-    }
 }

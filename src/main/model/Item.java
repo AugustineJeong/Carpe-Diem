@@ -1,5 +1,7 @@
 package model;
 
+import exceptions.NotSameDay;
+
 public abstract class Item {
 
     protected boolean isEvent;
@@ -102,11 +104,12 @@ public abstract class Item {
 
     //MODIFIES: This
     //EFFECTS: Update the end time of event
-    public void setCalculatedEnd() {
+    public void setCalculatedEnd() throws NotSameDay {
         int endTime;
         endTime = this.time + this.duration;
         if (endTime > 24) {
             this.end = endTime - ((endTime / 24) * 24);
+            throw new NotSameDay();
         } else {
             this.end = endTime;
         }
