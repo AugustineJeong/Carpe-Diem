@@ -10,6 +10,7 @@ public class ToDoList extends ItemList {
         super();
     }
 
+    //citation: (line 21-23, 32) copied / learned from Paul Miskew's video: youtube.com/watch?v=k3K9KHPYZFc
     //EFFECTS: Saves all ToDos in this ToDoList to text file
     @Override
     public void save() throws IOException {
@@ -31,6 +32,7 @@ public class ToDoList extends ItemList {
         pw.close();
     }
 
+    //citation: (lines 39-40) copied / learned from Paul Miskew's video: www.youtube.com/watch?v=81ZpSI4PqFo
     //EFFECTS: Loads all ToDos from text file to this ToDoList
     @Override
     public void load() throws FileNotFoundException {

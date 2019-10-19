@@ -10,6 +10,7 @@ public class EventList extends ItemList {
         super();
     }
 
+    //citation: (line 21-23, 36) copied / learned from Paul Miskew's video: youtube.com/watch?v=k3K9KHPYZFc
     //EFFECTS: Saves all Events in this EventList to text file
     @Override
     public void save() throws IOException {
@@ -35,6 +36,7 @@ public class EventList extends ItemList {
         pw.close();
     }
 
+    //citation: (lines 43-44) copied / learned from Paul Miskew's video: www.youtube.com/watch?v=81ZpSI4PqFo
     //EFFECTS: Loads all Events from text file to this EventList
     @Override
     public void load() throws FileNotFoundException {

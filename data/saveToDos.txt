@@ -7,4 +7,10 @@ Do home
 Friday
 true
 Do project
+test
+false
+hello 
+nada
+false
+task
 007
