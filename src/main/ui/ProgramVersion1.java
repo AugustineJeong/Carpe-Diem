@@ -10,6 +10,7 @@ public class ProgramVersion1 implements UserInterface {
 
     private EventList eventlist;
     private ToDoList todolist;
+    private Flag flag = new Flag("blue");
 
     public ProgramVersion1() {
         eventlist = new EventList();
@@ -46,10 +47,15 @@ public class ProgramVersion1 implements UserInterface {
         System.out.println("[1] Add Event(s)");
         System.out.println("[2] Add ToDo(s)");
         System.out.println("[3] View All Items");
-        System.out.println("[4] View Events by Category");
+        System.out.println("[4] Mark / un-mark event");
         System.out.println("[5] Delete Event");
         System.out.println("[6] Exit Program");
         System.out.println();
+
+        this.eventlist = new EventList();
+        this.todolist = new ToDoList();
+        this.eventlist.load();
+        this.todolist.load();
 
         selection();
     }
@@ -57,11 +63,6 @@ public class ProgramVersion1 implements UserInterface {
     //MODIFIES: The passed EventList parameter
     //EFFECTS: Executes chosen option, returns updated EventList
     private void selection() throws IOException, UserEndProgram {
-        eventlist = new EventList();
-        todolist = new ToDoList();
-        this.eventlist.load();
-        this.todolist.load();
-
         Scanner input = new Scanner(System.in);
         int choice = input.nextInt();
         if (choice == 1) {
@@ -71,12 +72,108 @@ public class ProgramVersion1 implements UserInterface {
         } else if (choice == 3) {
             print(this.eventlist);
             print(this.todolist);
+        } else if (choice == 4) {
+            print(this.eventlist);
+            print(this.todolist);
+            itemSelector();
         } else if (choice == 6) {
             throw new UserEndProgram();
         } else {
             System.out.println("You have made an invalid selection.");
         }
     }
+
+    private void itemSelector() {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Would you like to flag / un-flag an EVENT or a TODO?");
+        String response = scan.nextLine();
+        while (true) {
+            if (response.equalsIgnoreCase("event")) {
+                eventSelector();
+                break;
+            } else if (response.equalsIgnoreCase("todo")) {
+                todoSelector();
+                break;
+            } else {
+                response = scan.nextLine();
+                continue;
+            }
+        }
+    }
+
+    private void eventSelector() {
+        System.out.println("Which event would you like to flag / un-flag?");
+        System.out.println("Please enter the number of the event.");
+        Scanner scan = new Scanner(System.in);
+        String response = scan.nextLine();
+        while (true) {
+            try {
+                int choice = Integer.parseInt(response) - 1;
+                if (choice > this.eventlist.length()) {
+                    continue;
+                }
+                flagOrUnFlagItem(1, choice);
+            } catch (NumberFormatException e) {
+                continue;
+            }
+        }
+    }
+
+    private void todoSelector() {
+        System.out.println("Which event would you like to flag / un-unflag?");
+        System.out.println("Please enter the number of the ToDo.");
+        Scanner scan = new Scanner(System.in);
+        while (true) {
+            String response = scan.nextLine();
+            try {
+                int choice = Integer.parseInt(response) - 1;
+                if (choice > this.todolist.length()) {
+                    continue;
+                }
+                flagOrUnFlagItem(2, choice);
+            } catch (NumberFormatException e) {
+                continue;
+            }
+        }
+    }
+
+    private void flagOrUnFlagItem(int itemType, int choice) {
+        System.out.println("Would you like to ADD or REMOVE a flag?");
+        Scanner scan = new Scanner(System.in);
+        String response = scan.nextLine();
+        while (true) {
+            if (response.equalsIgnoreCase("add")) {
+                break;
+            } else if (response.equalsIgnoreCase("remove")) {
+                break;
+            } else {
+                response = scan.nextLine();
+                continue;
+            }
+        }
+        if (response.equals("add")) {
+            addFlag(itemType, choice);
+        } else {
+            removeFlag(itemType, choice);
+        }
+    }
+
+    private void addFlag(int itemType, int choice) {
+        if (itemType == 1) {
+            this.eventlist.get(choice).addFlag(flag);
+        } else {
+            this.todolist.get(choice).addFlag(flag);
+        }
+    }
+
+    private void removeFlag(int itemType, int choice) {
+        if (itemType == 1) {
+            this.eventlist.get(choice).removeFlag(flag);
+        } else {
+            this.todolist.get(choice).removeFlag(flag);
+        }
+    }
+
 
     private void anyKey() {
         Scanner scan = new Scanner(System.in);

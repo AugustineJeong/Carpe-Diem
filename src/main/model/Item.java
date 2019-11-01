@@ -2,6 +2,9 @@ package model;
 
 import exceptions.NotSameDay;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Item {
 
     protected boolean isEvent;
@@ -11,6 +14,8 @@ public abstract class Item {
     protected int duration;
     protected int end;
     protected boolean weatherSensitive;
+
+    private List<Flag> flags = new ArrayList<>();
 
     public Item() {
         date = "Monday";
@@ -112,6 +117,20 @@ public abstract class Item {
             throw new NotSameDay();
         } else {
             this.end = endTime;
+        }
+    }
+
+    public void addFlag(Flag f) {
+        if (!flags.contains(f)) {
+            flags.add(f);
+            f.addItem(this);
+        }
+    }
+
+    public void removeFlag(Flag f) {
+        if (flags.contains(f)) {
+            flags.remove(f);
+            f.removeItem(this);
         }
     }
 }
