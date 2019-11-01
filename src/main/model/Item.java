@@ -128,6 +128,11 @@ public abstract class Item {
         }
     }
 
+    public Boolean isFlagged() {
+        return (flags.size() > 0);
+    }
+
+
     public void removeFlag(Flag f) {
         if (flags.contains(f)) {
             flags.remove(f);

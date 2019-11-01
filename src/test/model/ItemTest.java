@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 abstract class ItemTest {
     public Item item;
+    public Flag flag = new Flag("blue");
 
     @Test
     public void getDateTest() {
@@ -71,5 +72,20 @@ abstract class ItemTest {
     public void setWeatherSensitive() {
         item.setWeatherSensitive(true);
         assertEquals(true, item.getWeatherSensitive());
+    }
+
+    @Test
+    public void addFlagTest() {
+        item.addFlag(flag);
+
+        assertTrue(item.isFlagged());
+    }
+
+    @Test
+    public void removeFlagTest() {
+        addFlagTest();
+
+        item.removeFlag(flag);
+        assertFalse(item.isFlagged());
     }
 }
