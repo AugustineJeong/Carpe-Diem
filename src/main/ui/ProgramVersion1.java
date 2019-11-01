@@ -12,6 +12,8 @@ public class ProgramVersion1 implements UserInterface {
     private ToDoList todolist;
     private Flag flag = new Flag("blue");
 
+    private Map<Boolean, ItemList> flagMap = new HashMap<>();
+
     public ProgramVersion1() {
         eventlist = new EventList();
         todolist = new ToDoList();
@@ -113,6 +115,7 @@ public class ProgramVersion1 implements UserInterface {
                     continue;
                 }
                 flagOrUnFlagItem(1, choice);
+                break;
             } catch (NumberFormatException e) {
                 continue;
             }
@@ -120,17 +123,18 @@ public class ProgramVersion1 implements UserInterface {
     }
 
     private void todoSelector() {
-        System.out.println("Which event would you like to flag / un-unflag?");
+        System.out.println("Which event would you like to flag / un-flag?");
         System.out.println("Please enter the number of the ToDo.");
         Scanner scan = new Scanner(System.in);
         while (true) {
             String response = scan.nextLine();
             try {
-                int choice = Integer.parseInt(response) - 1;
+                int choice = Integer.parseInt(response);
                 if (choice > this.todolist.length()) {
                     continue;
                 }
                 flagOrUnFlagItem(2, choice);
+                break;
             } catch (NumberFormatException e) {
                 continue;
             }
@@ -160,9 +164,17 @@ public class ProgramVersion1 implements UserInterface {
 
     private void addFlag(int itemType, int choice) {
         if (itemType == 1) {
-            this.eventlist.get(choice).addFlag(flag);
+            if (!this.flag.containsSameItem(this.eventlist.get(choice))) {
+                this.eventlist.get(choice).addFlag(flag);
+            } else {
+                System.out.println("This event is already flagged!");
+            }
         } else {
-            this.todolist.get(choice).addFlag(flag);
+            if (!this.flag.containsSameItem(this.todolist.get(choice))) {
+                this.todolist.get(choice).addFlag(flag);
+            } else {
+                System.out.println("This ToDo is already flagged!");
+            }
         }
     }
 

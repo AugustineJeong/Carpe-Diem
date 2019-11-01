@@ -16,7 +16,7 @@ public class Flag {
         if (!items.contains(i)) {
             items.add(i);
             i.addFlag(this);
-            System.out.println("You now have " + this.items.size() + " marked items.");
+            System.out.println("You now have " + this.items.size() + " flagged items.");
         }
     }
 
@@ -28,5 +28,12 @@ public class Flag {
         }
     }
 
-
+    public Boolean containsSameItem(Item i) {
+        for (Item item : items) {
+            if (item.getActivity().equals(i.getActivity())) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
