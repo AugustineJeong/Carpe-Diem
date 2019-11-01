@@ -4,6 +4,7 @@ import exceptions.NotSameDay;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public abstract class Item {
 
@@ -132,6 +133,23 @@ public abstract class Item {
             flags.remove(f);
             f.removeItem(this);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Item item = (Item) o;
+        return activity.equals(item.activity);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(activity);
     }
 }
 

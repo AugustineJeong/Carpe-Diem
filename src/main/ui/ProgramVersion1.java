@@ -13,13 +13,14 @@ public class ProgramVersion1 implements UserInterface {
     private ToDoList todolist;
     private Flag flag = new Flag("blue");
 
-    private Map<Boolean, Item> flagMap = new HashMap<>();
+    private Map<String, List<Item>> flagMap = new HashMap<>();
 
     public ProgramVersion1() throws FileNotFoundException {
         this.eventlist = new EventList();
         this.todolist = new ToDoList();
         this.eventlist.load();
         this.todolist.load();
+        this.flagMap.put("Blue Flag", new ArrayList<>());
     }
 
     //MODIFIES: The passed EventList parameter
@@ -54,8 +55,8 @@ public class ProgramVersion1 implements UserInterface {
         System.out.println("[1] Add Event(s)");
         System.out.println("[2] Add ToDo(s)");
         System.out.println("[3] View All Items");
-        System.out.println("[4] Mark / un-mark event");
-        System.out.println("[5] Delete Event");
+        System.out.println("[4] Flag / un-flag Event");
+        System.out.println("[5] View Flagged Items");
         System.out.println("[6] Exit Program");
         System.out.println();
 
@@ -64,7 +65,7 @@ public class ProgramVersion1 implements UserInterface {
 
     //MODIFIES: The passed EventList parameter
     //EFFECTS: Executes chosen option, returns updated EventList
-    private void selection() throws IOException, UserEndProgram {
+    private void selection() throws UserEndProgram {
         Scanner input = new Scanner(System.in);
         int choice = input.nextInt();
         if (choice == 1) {
@@ -81,7 +82,14 @@ public class ProgramVersion1 implements UserInterface {
         } else if (choice == 6) {
             throw new UserEndProgram();
         } else {
-            System.out.println("You have made an invalid selection.");
+            printFlaggedItems();
+        }
+    }
+
+    private void printFlaggedItems() {
+        List<Item> list = flagMap.get("Blue Flag");
+        for (Item i : list) {
+            System.out.println(i.returnItemDetails());
         }
     }
 
@@ -166,14 +174,16 @@ public class ProgramVersion1 implements UserInterface {
         if (itemType == 1) {
             if (!this.flag.containsSameItem(this.eventlist.get(choice))) {
                 this.eventlist.get(choice).addFlag(flag);
-                flagMap.put(true, eventlist.get(choice));
+                Item item = this.eventlist.get(choice);
+                flagMap.get("Blue Flag").add(item);
             } else {
                 System.out.println("This event is already flagged!");
             }
         } else {
             if (!this.flag.containsSameItem(this.todolist.get(choice))) {
                 this.todolist.get(choice).addFlag(flag);
-                flagMap.put(true, todolist.get(choice));
+                Item item = this.todolist.get(choice);
+                flagMap.get("Blue Flag").add(item);
             } else {
                 System.out.println("This ToDo is already flagged!");
             }
@@ -183,11 +193,14 @@ public class ProgramVersion1 implements UserInterface {
     private void removeFlag(int itemType, int choice) {
         if (itemType == 1) {
             this.eventlist.get(choice).removeFlag(flag);
+            Item item = this.eventlist.get(choice);
+            flagMap.get("Blue Flag").remove(item);
         } else {
             this.todolist.get(choice).removeFlag(flag);
+            Item item = this.todolist.get(choice);
+            flagMap.get("Blue Flag").remove(item);
         }
     }
-
 
     private void anyKey() {
         Scanner scan = new Scanner(System.in);
