@@ -68,9 +68,9 @@ public class ProgramVersion1 implements UserInterface {
         Scanner input = new Scanner(System.in);
         int choice = input.nextInt();
         if (choice == 1) {
-            setEvents(this.eventlist);
+            setEvents();
         } else if (choice == 2) {
-            setToDos(this.todolist);
+            setToDos();
         } else if (choice == 3) {
             print(this.eventlist);
             print(this.todolist);
@@ -233,13 +233,12 @@ public class ProgramVersion1 implements UserInterface {
         }
     }
 
-    //MODIFIES: EventList parameter
-    //EFFECTS: Adds new configured event(s) to EventList parameter
-    private void setEvents(EventList eventlist) throws IOException {
+    //MODIFIES: this
+    //EFFECTS: Adds new configured event(s) to this EventList
+    private void setEvents() {
         while (true) {
             try {
-                eventlist = this.addNewEvent(eventlist);
-                this.eventlist = eventlist;
+                this.addNewEvent();
             } catch (IntExpectedTime intExpectedTime) {
                 expectedIntErrorMessage("TIME");
                 break;
@@ -263,7 +262,7 @@ public class ProgramVersion1 implements UserInterface {
         System.out.println("______________________________________");
     }
 
-    //MODIFIES: EventList parameter;
+    //MODIFIES: this
     //EFFECTS: Recurses back to set another event or stops
     private void askUserAgain() throws NoMoreEvent {
         String response;
@@ -280,12 +279,12 @@ public class ProgramVersion1 implements UserInterface {
     }
 
     //MODIFIES: ToDoList parameter
-    //EFFECTS: Adds new configured task(s) to ToDoList parameter
-    private void setToDos(ToDoList todolist) throws IOException {
+    //EFFECTS: Adds new configured task(s) in this ToDoList
+    private void setToDos() {
         String response;
 
         while (true) {
-            todolist = this.addNewToDo(todolist);
+            todolist = this.addNewToDo();
 
             //ask user again
             System.out.println("Would you like to add another ToDo task?");
@@ -304,32 +303,30 @@ public class ProgramVersion1 implements UserInterface {
 
     //
 
-    //MODIFIES: this and the EventList parameter
-    //EFFECTS: configures new event and stores it to EventList parameter
-    private EventList addNewEvent(EventList eventlist) throws IntExpectedTime, IntExpectedDuration {
+    //MODIFIES: this
+    //EFFECTS: configures new event and adds it in this EventList
+    private void addNewEvent() throws IntExpectedTime, IntExpectedDuration {
         Event event;
         event = new Event();
 
         event = this.configureEvent(event);
 
-        eventlist.addItem(event);
+        this.eventlist.addItem(event);
 
         System.out.println();
         System.out.println("Event '" + event.getActivity() + "' " + "has been scheduled.");
         System.out.println();
-
-        return eventlist;
     }
 
     //MODIFIES: This and the ToDoList parameter
-    //EFFECTS: Configures new task and stores it to EventList parameter
-    private ToDoList addNewToDo(ToDoList todolist) {
+    //EFFECTS: Configures new task and stores it in this ToDoList
+    private ToDoList addNewToDo() {
         ToDo todo;
         todo = new ToDo();
 
         todo = this.configureToDo(todo);
 
-        todolist.addItem(todo);
+        this.todolist.addItem(todo);
 
         System.out.println();
         System.out.println("ToDo task '" + todo.getActivity() + "' " + "has been added.");
