@@ -1,7 +1,5 @@
 package model;
 
-import java.util.*;
-
 public class Event extends Item {
 
     public Event() {

@@ -6,12 +6,12 @@ import java.util.*;
 import exceptions.*;
 import model.*;
 
-public class InterfaceVersion1 implements UserInterface {
+public class ProgramVersion1 implements UserInterface {
 
     private EventList eventlist;
     private ToDoList todolist;
 
-    public InterfaceVersion1() {
+    public ProgramVersion1() {
         eventlist = new EventList();
         todolist = new ToDoList();
     }
@@ -85,7 +85,7 @@ public class InterfaceVersion1 implements UserInterface {
     }
 
     //EFFECTS: Prints details of all Events in EventList parameter;
-    public void print(EventList eventList) {
+    private void print(EventList eventList) {
         int z = 1;
         int i = 1;
 
@@ -104,7 +104,7 @@ public class InterfaceVersion1 implements UserInterface {
     }
 
     //EFFECTS: Prints details of all tasks in ToDoList parameter;
-    public void print(ToDoList todolist) {
+    private void print(ToDoList todolist) {
         int z = 1;
         int i = 1;
 
@@ -310,7 +310,7 @@ public class InterfaceVersion1 implements UserInterface {
     }
 
     //EFFECTS: Returns scanner string only if it is either 'yes' or 'no'
-    private static String validResponse() {
+    private String validResponse() {
         while (true) {
             Scanner scan = new Scanner(System.in);
             String response;
