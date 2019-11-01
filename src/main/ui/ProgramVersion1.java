@@ -1,5 +1,6 @@
 package ui;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 
@@ -12,11 +13,13 @@ public class ProgramVersion1 implements UserInterface {
     private ToDoList todolist;
     private Flag flag = new Flag("blue");
 
-    private Map<Boolean, ItemList> flagMap = new HashMap<>();
+    private Map<Boolean, Item> flagMap = new HashMap<>();
 
-    public ProgramVersion1() {
-        eventlist = new EventList();
-        todolist = new ToDoList();
+    public ProgramVersion1() throws FileNotFoundException {
+        this.eventlist = new EventList();
+        this.todolist = new ToDoList();
+        this.eventlist.load();
+        this.todolist.load();
     }
 
     //MODIFIES: The passed EventList parameter
@@ -29,6 +32,8 @@ public class ProgramVersion1 implements UserInterface {
                 mainMenuOptions();
             } catch (UserEndProgram userEndProgram) {
                 System.out.println("Exiting Program...");
+                eventlist.save();
+                todolist.save();
                 break;
             } finally {
                 System.out.println();
@@ -53,11 +58,6 @@ public class ProgramVersion1 implements UserInterface {
         System.out.println("[5] Delete Event");
         System.out.println("[6] Exit Program");
         System.out.println();
-
-        this.eventlist = new EventList();
-        this.todolist = new ToDoList();
-        this.eventlist.load();
-        this.todolist.load();
 
         selection();
     }
@@ -110,7 +110,7 @@ public class ProgramVersion1 implements UserInterface {
         String response = scan.nextLine();
         while (true) {
             try {
-                int choice = Integer.parseInt(response) - 1;
+                int choice = Integer.parseInt(response);
                 if (choice > this.eventlist.length()) {
                     continue;
                 }
@@ -166,12 +166,14 @@ public class ProgramVersion1 implements UserInterface {
         if (itemType == 1) {
             if (!this.flag.containsSameItem(this.eventlist.get(choice))) {
                 this.eventlist.get(choice).addFlag(flag);
+                flagMap.put(true, eventlist.get(choice));
             } else {
                 System.out.println("This event is already flagged!");
             }
         } else {
             if (!this.flag.containsSameItem(this.todolist.get(choice))) {
                 this.todolist.get(choice).addFlag(flag);
+                flagMap.put(true, todolist.get(choice));
             } else {
                 System.out.println("This ToDo is already flagged!");
             }
@@ -237,7 +239,7 @@ public class ProgramVersion1 implements UserInterface {
         while (true) {
             try {
                 eventlist = this.addNewEvent(eventlist);
-                eventlist.save();
+                this.eventlist = eventlist;
             } catch (IntExpectedTime intExpectedTime) {
                 expectedIntErrorMessage("TIME");
                 break;
@@ -293,7 +295,7 @@ public class ProgramVersion1 implements UserInterface {
                 //say goodbye
                 System.out.println("Sure. No additional ToDo will be scheduled");
 
-                todolist.save();
+                this.todolist = todolist;
 
                 break;
             }
