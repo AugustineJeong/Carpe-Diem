@@ -1,11 +1,13 @@
 package ui;
 
-import java.io.IOException;
+import ui.program.Program;
+
+import java.io.FileNotFoundException;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
 
-        UserInterface program1 = new ProgramVersion1();
-        program1.execute();
+    public static void main(String[] args) throws FileNotFoundException {
+        Program program1 = new Program();
+        program1.runProgram();
     }
 }

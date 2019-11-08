@@ -1,0 +1,14 @@
+false
+Monday
+test
+0
+0
+0
+false
+true
+Tuesday
+Study Session
+7
+5
+12
+false

@@ -1,9 +1,8 @@
-package model;
+package model.item;
 
-import exceptions.NotSameDay;
 
-import java.util.ArrayList;
-import java.util.List;
+import model.marker.Flag;
+
 import java.util.Objects;
 
 public abstract class Item {
@@ -16,20 +15,25 @@ public abstract class Item {
     protected int end;
     protected boolean weatherSensitive;
 
-    private List<Flag> flags = new ArrayList<>();
+    private Flag flag;
+    private boolean isFlagged;
 
     public Item() {
-        date = "Monday";
-        activity = "interview";
-        this.isEvent = true;
-        this.time = 10;
-        this.duration = 5;
-        this.end = 15;
         this.weatherSensitive = false;
     }
 
     //EFFECTS: Returns the details of the item
-    public abstract String returnItemDetails();
+    public String returnItemDetails() {
+        String message;
+
+        message = " '" + this.activity + "'" + " by " + this.date;
+
+        if (this.isEvent) {
+            message = message + " from "
+                    + this.time + " to " + this.end;
+        }
+        return message;
+    }
 
     //MODIFIES: this
     //EFFECTS: update isEvent status of item
@@ -110,34 +114,57 @@ public abstract class Item {
 
     //MODIFIES: This
     //EFFECTS: Update the end time of event
-    public void setCalculatedEnd() throws NotSameDay {
+    public void setCalculatedEnd() {
         int endTime;
         endTime = this.time + this.duration;
         if (endTime > 24) {
             this.end = endTime - ((endTime / 24) * 24);
-            throw new NotSameDay();
+            System.out.println("Warning: Your activity does not end on the day it starts.");
         } else {
             this.end = endTime;
         }
     }
 
+    public Flag getFlag() {
+        return this.flag;
+    }
+
+    //MODIFIES: this and flag parameter
+    //EFFECTS: adds flag to the item
     public void addFlag(Flag f) {
-        if (!flags.contains(f)) {
-            flags.add(f);
-            f.addItem(this);
+        if (!this.isFlagged || !this.flag.equals(f)) {
+            if (!this.isFlagged) {
+                this.flag = f;
+                f.addItem(this);
+                this.isFlagged = true;
+            } else {
+                this.flag.removeItem(this);
+                this.isFlagged = false;
+                this.flag = f;
+                this.isFlagged = true;
+                f.addItem(this);
+            }
         }
     }
 
+    //MODIFIES: this and flag parameter
+    //EFFECTS: removes flag from item and removes this item from flag's item list
+    public void removeFlag() {
+        if (this.isFlagged) {
+            this.flag.removeItem(this);
+            flag = null;
+            this.isFlagged = false;
+        }
+    }
+
+    //EFFECTS: returns true if the item is already flagged
     public Boolean isFlagged() {
-        return (flags.size() > 0);
+        return this.isFlagged;
     }
 
-
-    public void removeFlag(Flag f) {
-        if (flags.contains(f)) {
-            flags.remove(f);
-            f.removeItem(this);
-        }
+    //EFFECTS: returns true if item is flagged by the passed flag parameter
+    public Boolean containsFlag(Flag f) {
+        return (this.flag.equals(f));
     }
 
     @Override
@@ -149,12 +176,16 @@ public abstract class Item {
             return false;
         }
         Item item = (Item) o;
-        return activity.equals(item.activity);
+        return isEvent == item.isEvent &&
+                time == item.time &&
+                date.equals(item.date) &&
+                activity.equals(item.activity);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(activity);
+        return Objects.hash(isEvent, date, activity, time);
     }
 }
+
 
