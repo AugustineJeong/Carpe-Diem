@@ -1,91 +1,122 @@
-//package model;
-//
-//import static org.junit.jupiter.api.Assertions.*;
-//
-//import org.junit.jupiter.api.Test;
-//
-//abstract class ItemTest {
-//    public Item item;
-//    public Flag flag = new Flag("blue");
-//
-//    @Test
-//    public void getDateTest() {
-//        assertEquals("Monday", item.getDate());
-//    }
-//
-//    @Test
-//    public void getActivityTest() {
-//        assertEquals("interview", item.getActivity());
-//    }
-//
-//    @Test
-//    public void getTimeTest() {
-//        assertEquals(10, item.getTime());
-//    }
-//
-//    @Test
-//    public void getDurationTest() {
-//        assertEquals(5, item.getDuration());
-//    }
-//
-//    @Test
-//    public void getEndTest() {
-//        assertEquals(15, item.getEnd());
-//    }
-//
-//    @Test
-//    public void getWeatherSensitive() {
-//        assertEquals(false, item.getWeatherSensitive());
-//    }
-//
-//    @Test
-//    public void setDateTest() {
-//        item.setDate("Saturday");
-//        assertEquals("Saturday", item.getDate());
-//    }
-//
-//    @Test
-//    public void setActivityTest() {
-//        item.setActivity("party");
-//        assertEquals("party", item.getActivity());
-//    }
-//
-//    @Test
-//    public void setTimeTest() {
-//        item.setTime(2200);
-//        assertEquals(2200, item.getTime());
-//    }
-//
-//    @Test
-//    public void setDurationTest() {
-//        item.setDuration(30);
-//        assertEquals(30, item.getDuration());
-//    }
-//
-//    @Test
-//    public void setEndTest() {
-//        item.setEnd(2300);
-//        assertEquals(2300, item.getEnd());
-//    }
-//
-//    @Test
-//    public void setWeatherSensitive() {
-//        item.setWeatherSensitive(true);
-//        assertEquals(true, item.getWeatherSensitive());
-//    }
-//
-//    @Test
-//    public void addFlagTest() {
-//        item.addFlag(flag);
-//
-//        assertTrue(item.isFlagged());
-//    }
-//
-//    @Test
-//    public void removeFlagTest() {
-//        addFlagTest();
-//
-//        item.removeFlag(flag);
-//        assertFalse(item.isFlagged());
-//    }
-//}
+package model;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import model.item.Event;
+import model.item.Item;
+import model.marker.Flag;
+import org.junit.jupiter.api.Test;
+
+abstract class ItemTest {
+    protected Item item;
+    protected Flag flag = new Flag("blue");
+
+    @Test
+     void testGetDateAndSetDate() {
+        item.setDate("Monday");
+        assertEquals("Monday", item.getDate());
+    }
+
+    @Test
+     void testGetActivityTestAndSetActivity() {
+        item.setActivity("interview");
+        assertEquals("interview", item.getActivity());
+    }
+
+    @Test
+     void testGetTimeAndSetTime() {
+        item.setTime(10);
+        assertEquals(10, item.getTime());
+    }
+
+    @Test
+     void testGetDurationAndSetDuration() {
+        item.setDuration(5);
+        assertEquals(5, item.getDuration());
+    }
+
+    @Test
+     void testGetTimeAndSetCalculatedEnd() {
+        item.setTime(10);
+        item.setDuration(5);
+        item.setCalculatedEnd();
+        assertEquals(15, item.getEnd());
+    }
+
+    @Test
+     void testGetTimeAndSetCalculatedEndNotSameDay() {
+        item.setTime(10);
+        item.setDuration(30);
+        item.setCalculatedEnd();
+        assertEquals(16, item.getEnd());
+    }
+
+    @Test
+     void getWeatherSensitive() {
+        assertEquals(false, item.getWeatherSensitive());
+    }
+
+    @Test
+     void setEndTest() {
+        item.setEnd(2300);
+        assertEquals(2300, item.getEnd());
+    }
+
+    @Test
+     void testSetWeatherSensitiveAndGetWeateherSensitive() {
+        item.setWeatherSensitive(true);
+        assertEquals(true, item.getWeatherSensitive());
+    }
+
+    @Test
+     void addFlagTest() {
+        item.addFlag(flag);
+
+        assertTrue(item.isFlagged());
+        assertTrue(item.containsFlag(flag));
+    }
+
+    @Test
+     void addFlagTestAlreadyFlagged() {
+        item.addFlag(flag);
+        Flag flag2 = new Flag("green");
+        item.addFlag(flag2);
+
+        assertTrue(item.isFlagged());
+        assertFalse(item.containsFlag(flag));
+        assertTrue(item.containsFlag(flag2));
+
+    }
+
+    @Test
+     void removeFlagTest() {
+        item.addFlag(flag);
+
+        item.removeFlag();
+        assertFalse(item.isFlagged());
+    }
+
+    @Test
+     void testContainsFlagTrue() {
+        item.addFlag(flag);
+
+        assertTrue(item.containsFlag(flag));
+    }
+
+    @Test
+     void testGetFlag() {
+        item.addFlag(flag);
+        assertEquals(flag, item.getFlag());
+    }
+
+    @Test
+     void testContainsFlagFalse() {
+        assertFalse(item.containsFlag(flag));
+    }
+
+    @Test
+     abstract void testGetIsEvent();
+
+    @Test
+     abstract void testSetIsEvent();
+}

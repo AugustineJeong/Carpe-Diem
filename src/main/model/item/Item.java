@@ -164,6 +164,9 @@ public abstract class Item {
 
     //EFFECTS: returns true if item is flagged by the passed flag parameter
     public Boolean containsFlag(Flag f) {
+        if (!this.isFlagged) {
+            return false;
+        }
         return (this.flag.equals(f));
     }
 
