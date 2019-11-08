@@ -40,8 +40,7 @@ public class Flag implements Marker {
     }
 
     //EFFECTS: returns true if item list already contains item parameter
-    //compares the details of the objects (name of activity and time), not their address
-    public Boolean containsSameItem(Item i) {
+    public boolean containsSameItem(Item i) {
         for (Item item : items) {
             if (item.getActivity().equals(i.getActivity()) && (item.getDate().equals(i.getDate()))) {
                 return true;

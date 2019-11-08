@@ -1,21 +1,14 @@
 package ui.program;
 
-import exceptions.IntExpectedDuration;
-import exceptions.IntExpectedTime;
-import exceptions.UserEndProgram;
+import exceptions.*;
 import model.data.TextSaveLoad;
 import model.item.Item;
 import model.marker.Flag;
-import ui.program.components.Configurer;
-import ui.program.components.InputManagement;
-import ui.program.components.Interface;
+import ui.program.components.*;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.*;
+import java.util.*;
+
 
 public class Program {
     private TextSaveLoad textSaveLoad;
@@ -25,6 +18,8 @@ public class Program {
     private InputManagement inputManagement;
     private Configurer configurer;
 
+    //constructor: creates an instance of a program
+    //MODIFIES: this
     public Program() {
         textSaveLoad = new TextSaveLoad();
         itemList = new ArrayList<>();
@@ -34,6 +29,8 @@ public class Program {
         flagMap = new HashMap<>();
     }
 
+    //MODIFIES: this
+    //EFFECTS: starts program
     public void runProgram() {
         try {
             itemList = textSaveLoad.load();
@@ -52,6 +49,8 @@ public class Program {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: executes main entry point into program's features
     public void execute() throws IOException, UserEndProgram {
         interface1.mainMenuOptions();
         int optionSelection = inputManagement.mainMenuOptionSelection();
@@ -63,6 +62,8 @@ public class Program {
         inputManagement.enterAnyKeyToContinue();
     }
 
+    //MODIFIES: this
+    //EFFECTS: runs selected feature of program
     private void runOptionSelection(int optionSelection) throws IntExpectedDuration, IntExpectedTime, IOException,
             UserEndProgram {
         if (optionSelection == 1) {
@@ -74,18 +75,16 @@ public class Program {
         } else if (optionSelection == 4) {
             interface1.print(itemList);
             itemFlagger();
-        } else if (optionSelection == 6) {
-            saveProgram();
-            throw new UserEndProgram();
-        } else {
+        } else if (optionSelection == 5) {
             getFlaggedItems();
+        } else {
+            textSaveLoad.save(this.itemList);
+            throw new UserEndProgram();
         }
     }
 
-    private void saveProgram() throws IOException {
-        textSaveLoad.save(this.itemList);
-    }
-
+    //MODIFIES: this
+    //EFFECTS: adds or removes a flag from an item
     private void itemFlagger() {
         interface1.addOrRemoveFlag();
         if (inputManagement.addOrRemoveSelection()) {
@@ -100,6 +99,7 @@ public class Program {
 
     }
 
+    //EFFECTS: prints all flagged items
     private void getFlaggedItems() {
         interface1.whatColourFlagWouldYouLikeToView();
         interface1.print(inputManagement.getItemsWithSameColourAsParameter(this.flagMap,

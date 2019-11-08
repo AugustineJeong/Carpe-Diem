@@ -18,6 +18,7 @@ public abstract class Item {
     private Flag flag;
     private boolean isFlagged;
 
+    //MODIFIES: this
     public Item() {
         this.weatherSensitive = false;
     }

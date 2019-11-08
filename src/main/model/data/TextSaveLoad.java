@@ -9,13 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-//citation: (line 15, 22-23, 35, 41) copied / learned from Paul Miskew's video: youtube.com/watch?v=k3K9KHPYZFc
+//citation: (line 15, 22-23, 35, 40) copied / learned from Paul Miskew's video: youtube.com/watch?v=k3K9KHPYZFc
 public class TextSaveLoad {
 
     private File file = new File("./data/saveItems.txt");
     private List<Item> itemList = new ArrayList<>();
 
-
+    //MODIFIES: saveItems.txt
     //EFFECTS: save all items in itemList parameter
     public void save(List<Item> itemList) throws IOException {
         int n = 0;

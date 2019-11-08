@@ -10,6 +10,7 @@ public class Configurer {
 
     private InputManagement inputManagement = new InputManagement();
 
+    //EFFECTS: creates, configures, and returns a new Item, new Event if isEvent is true, new Task otherwise
     public Item setItem(Boolean isEvent) throws IntExpectedDuration, IntExpectedTime {
         Item item = new Event();
         String itemType = "Event";
@@ -31,6 +32,7 @@ public class Configurer {
         return item;
     }
 
+    //EFFECTS: configures the details of an Event
     private Item configureItemHelper1(Item item) throws IntExpectedTime, IntExpectedDuration {
         System.out.println("What time, in hours, does this event start?");
 
@@ -44,6 +46,7 @@ public class Configurer {
         return configureItemHelper2(item);
     }
 
+    //EFFECTS: configures the details of an Event
     private Item configureItemHelper2(Item item) throws IntExpectedDuration {
         System.out.println("How long, in hours, is this event?");
         String response = inputManagement.anyStringResponse();
