@@ -9,14 +9,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+//citation: (line 15, 22-23, 35, 41) copied / learned from Paul Miskew's video: youtube.com/watch?v=k3K9KHPYZFc
 public class TextSaveLoad {
 
-    //citation: (line 19-21, 33) copied / learned from Paul Miskew's video: youtube.com/watch?v=k3K9KHPYZFc
+    private File file = new File("./data/saveItems.txt");
+    private List<Item> itemList = new ArrayList<>();
+
+
     //EFFECTS: save all items in itemList parameter
     public void save(List<Item> itemList) throws IOException {
         int n = 0;
-
-        File file = new File("./data/saveItems.txt");
         FileWriter fw = new FileWriter(file);
         PrintWriter pw = new PrintWriter(fw);
 
@@ -33,12 +35,9 @@ public class TextSaveLoad {
         pw.close();
     }
 
-    //citation: (lines 39-40) copied / learned from Paul Miskew's video: www.youtube.com/watch?v=81ZpSI4PqFo
     //EFFECTS: Loads all Events from text file to this EventList
     public List<Item> load() throws FileNotFoundException {
-        File file = new File("./data/saveItems.txt");
         Scanner scan = new Scanner(file);
-        List<Item> itemList = new ArrayList<>();
 
         while (scan.hasNext()) {
             Item i = new Task();

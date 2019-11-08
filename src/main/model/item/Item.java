@@ -176,10 +176,8 @@ public abstract class Item {
             return false;
         }
         Item item = (Item) o;
-        return isEvent == item.isEvent &&
-                time == item.time &&
-                date.equals(item.date) &&
-                activity.equals(item.activity);
+        return isEvent == item.isEvent && time == item.time && date.equals(item.date)
+                && activity.equals(item.activity);
     }
 
     @Override

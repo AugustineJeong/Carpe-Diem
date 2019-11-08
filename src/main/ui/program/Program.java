@@ -92,9 +92,10 @@ public class Program {
             interface1.pleaseSelectItemToFlag();
             inputManagement.flagSelectedItemWithGivenActivityName(this.flagMap, this.itemList,
                     inputManagement.anyStringResponse());
-        } else { interface1.pleaseSelectItemToUnFlag();
-        inputManagement.unFlagSelectedItemWithGivenActivityName(this.flagMap, this.itemList,
-                inputManagement.anyStringResponse());
+        } else {
+            interface1.pleaseSelectItemToUnFlag();
+            inputManagement.unFlagSelectedItemWithGivenActivityName(this.flagMap, this.itemList,
+                    inputManagement.anyStringResponse());
         }
 
     }
