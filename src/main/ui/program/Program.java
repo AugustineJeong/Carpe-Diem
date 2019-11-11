@@ -56,7 +56,7 @@ public class Program {
         int optionSelection = inputManagement.mainMenuOptionSelection();
         try {
             runOptionSelection(optionSelection);
-        } catch (IntExpectedDuration | IntExpectedTime i) {
+        } catch (IntExpectedDuration | IntExpectedTime | InvalidTimeFormat i) {
             interface1.invalidInput();
         }
         inputManagement.enterAnyKeyToContinue();
@@ -65,7 +65,7 @@ public class Program {
     //MODIFIES: this
     //EFFECTS: runs selected feature of program
     private void runOptionSelection(int optionSelection) throws IntExpectedDuration, IntExpectedTime, IOException,
-            UserEndProgram {
+            UserEndProgram, InvalidTimeFormat {
         if (optionSelection == 1) {
             this.itemList.add(configurer.setItem(true));
         } else if (optionSelection == 2) {

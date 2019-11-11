@@ -13,10 +13,14 @@ public class Interface {
     public Interface() {
     }
 
+    public void drawLine() {
+        System.out.println("_______________________________________________________");
+    }
+
     //EFFECTS: displays menu options of this interface
     public void mainMenuOptions() {
-        System.out.println("______________________________________");
-        System.out.println("PLEASE MAKE A SELECTION FROM THE FOLLOWING MENU");
+        drawLine();
+        System.out.println("PLEASE MAKE A SELECTION FROM THE FOLLOWING MENU OPTIONS");
         System.out.println();
         System.out.println("[1] Add Event(s)");
         System.out.println("[2] Add ToDo(s)");
@@ -38,11 +42,11 @@ public class Interface {
                 taskList.add(i);
             }
         }
-        System.out.println("______________________________________");
+        drawLine();
         printList(eventList, true);
         System.out.println();
         printList(taskList, false);
-        System.out.println("______________________________________");
+        drawLine();
     }
 
     //EFFECTS: prints all the items in the itemList parameter, under Event if isEventList parameter is true,
@@ -69,6 +73,27 @@ public class Interface {
             n++;
         }
     }
+
+    public void askItemName(String itemType) {
+        System.out.println("What would you like to name the " + itemType + " ?");
+    }
+
+    public void askItemDate(String itemType) {
+        System.out.println("What day is this " + itemType + " on?");
+    }
+
+    public void askItemTime() {
+        System.out.println("What time, in military hours, does this event start? (ex. 12:30PM = 1230, 7:30AM = 0730)");
+    }
+
+    public void askItemDuration() {
+        System.out.println("How long, in hours, is this event? (ex. 1 hour 30 minutes = 1.5)");
+    }
+
+    public void pressEnterToContinue() {
+        System.out.println("Press enter to continue.");
+    }
+
 
     //EFFECTS: prints message to notify user of invalid input
     public void invalidInput() {

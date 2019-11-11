@@ -37,18 +37,18 @@ abstract class ItemTest {
 
     @Test
      void testGetTimeAndSetCalculatedEnd() {
-        item.setTime(10);
+        item.setTime(1000);
         item.setDuration(5);
         item.setCalculatedEnd();
-        assertEquals(15, item.getEnd());
+        assertEquals(1500, item.getEnd());
     }
 
     @Test
      void testGetTimeAndSetCalculatedEndNotSameDay() {
-        item.setTime(10);
+        item.setTime(1000);
         item.setDuration(30);
         item.setCalculatedEnd();
-        assertEquals(16, item.getEnd());
+        assertEquals(1600, item.getEnd());
     }
 
     @Test

@@ -141,7 +141,7 @@ public class InputManagement {
             return (flagMap.get(flag));
         }
         interface1.noMatchFound();
-        return (new ArrayList<Item>());
+        return (new ArrayList<>());
     }
 
     //EFFECTS: returns whatever user enters
@@ -153,7 +153,8 @@ public class InputManagement {
     //EFFECTS: scans for any user input
     public void enterAnyKeyToContinue() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Please enter any key to continue.");
+        interface1.pressEnterToContinue();
+
         scanner.nextLine();
     }
 }

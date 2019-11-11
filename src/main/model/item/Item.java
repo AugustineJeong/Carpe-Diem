@@ -117,9 +117,9 @@ public abstract class Item {
     //EFFECTS: Update the end time of event
     public void setCalculatedEnd() {
         int endTime;
-        endTime = this.time + this.duration;
-        if (endTime > 24) {
-            this.end = endTime - ((endTime / 24) * 24);
+        endTime = this.time + (this.duration * 100);
+        if (endTime > 2400) {
+            this.end = endTime - ((endTime / 2400) * 2400);
             System.out.println("Warning: Your activity does not end on the day it starts.");
         } else {
             this.end = endTime;

@@ -15,7 +15,7 @@ class EventTest extends ItemTest {
         item = new Event();
         item.setActivity("interview");
         item.setDate("Monday");
-        item.setTime(10);
+        item.setTime(1000);
         item.setDuration(5);
         item.setCalculatedEnd();
     }
@@ -23,7 +23,7 @@ class EventTest extends ItemTest {
     @Test
      void testReturnItemDetails() {
         String expectedDetails;
-        expectedDetails = " 'interview' by Monday from 10 to 15";
+        expectedDetails = " 'interview' by Monday from 1000 to 1500";
 
         String eventDetails;
         eventDetails = item.returnItemDetails();
