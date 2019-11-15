@@ -1,17 +1,14 @@
 package network;
 
 import com.google.gson.*;
-import jdk.nashorn.internal.parser.JSONParser;
 import model.data.WeatherData;
 import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.JSONString;
 
 import java.io.*;
 import java.net.URL;
 
-//Citation: lines 21-38 taken from http://zetcode.com/articles/javareadwebpage/
-//Citation: lines 42, 44 taken from https://www.mkyong.com/java/how-to-parse-json-with-gson/
+//Citation: lines 29-36 taken from http://zetcode.com/articles/javareadwebpage/
+//Citation: lines 38, 41 taken from https://www.mkyong.com/java/how-to-parse-json-with-gson/
 
 public class WebDataLoad {
 

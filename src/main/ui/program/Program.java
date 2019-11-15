@@ -2,8 +2,11 @@ package ui.program;
 
 import exceptions.*;
 import model.data.TextSaveLoad;
+import model.data.WeatherData;
 import model.item.Item;
 import model.marker.Flag;
+import network.WebDataLoad;
+import org.json.JSONException;
 import ui.program.components.*;
 
 import java.io.*;
@@ -18,9 +21,12 @@ public class Program {
     private InputManagement inputManagement;
     private Configurer configurer;
 
+    private WebDataLoad webDataLoad = new WebDataLoad();
+    private WeatherData weatherData = webDataLoad.dataLoad();
+
     //constructor: creates an instance of a program
     //MODIFIES: this
-    public Program() {
+    public Program() throws IOException, JSONException {
         textSaveLoad = new TextSaveLoad();
         itemList = new ArrayList<>();
         interface1 = new Interface();
@@ -77,6 +83,9 @@ public class Program {
             itemFlagger();
         } else if (optionSelection == 5) {
             getFlaggedItems();
+        } else if (optionSelection == 6) {
+            System.out.println("It is currently " + weatherData.getMain().getTempInCelsius()
+                    + " degrees celsius with " + weatherData.getWeather().get(0).getDescription() + " in Vancouver");
         } else {
             textSaveLoad.save(this.itemList);
             throw new UserEndProgram();

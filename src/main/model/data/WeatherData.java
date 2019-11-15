@@ -7,8 +7,13 @@ import java.util.List;
 
 public class WeatherData {
     private List<Weather> weather;
+    private MainInfo main;
 
     public List<Weather> getWeather() {
         return weather;
+    }
+
+    public MainInfo getMain() {
+        return main;
     }
 }

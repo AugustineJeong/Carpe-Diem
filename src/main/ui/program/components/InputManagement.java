@@ -19,9 +19,9 @@ public class InputManagement {
             String response;
             response = scan.nextLine();
 
-            if ((response.equals("1")) || (response.equals("2")) || (response.equals("3"))) {
+            if ((response.equals("1")) || (response.equals("2")) || (response.equals("3")) || (response.equals("4"))) {
                 return (Integer.parseInt(response));
-            } else if ((response.equals("4")) || (response.equals("5")) || (response.equals("6"))) {
+            } else if ((response.equals("5")) || (response.equals("6")) || (response.equals("7"))) {
                 return (Integer.parseInt(response));
             }
             interface1.invalidInput();

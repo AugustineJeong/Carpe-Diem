@@ -27,7 +27,8 @@ public class Interface {
         System.out.println("[3] View All Items");
         System.out.println("[4] Flag / un-flag Event");
         System.out.println("[5] View Flagged Items");
-        System.out.println("[6] Exit Program");
+        System.out.println("[6] Check Today's Weather");
+        System.out.println("[7] Exit Program");
         System.out.println();
     }
 
