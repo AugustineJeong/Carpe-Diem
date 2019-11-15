@@ -24,5 +24,7 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="gson-2.8.6" level="project" />
+    <orderEntry type="library" name="java-json" level="project" />
   </component>
 </module>
