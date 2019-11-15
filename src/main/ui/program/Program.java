@@ -6,14 +6,14 @@ import model.data.WeatherData;
 import model.item.Item;
 import model.marker.Flag;
 import network.WebDataLoad;
-import org.json.JSONException;
+import observer.Subject;
 import ui.program.components.*;
 
 import java.io.*;
 import java.util.*;
 
 
-public class Program {
+public class Program extends Subject {
     private TextSaveLoad textSaveLoad;
     private List<Item> itemList;
     private Map<Flag, List<Item>> flagMap;
@@ -26,7 +26,7 @@ public class Program {
 
     //constructor: creates an instance of a program
     //MODIFIES: this
-    public Program() throws IOException, JSONException {
+    public Program() throws IOException {
         textSaveLoad = new TextSaveLoad();
         itemList = new ArrayList<>();
         interface1 = new Interface();
@@ -73,12 +73,22 @@ public class Program {
     private void runOptionSelection(int optionSelection) throws IntExpectedDuration, IntExpectedTime, IOException,
             UserEndProgram, InvalidTimeFormat {
         if (optionSelection == 1) {
-            this.itemList.add(configurer.setItem(true));
+            Item item = configurer.setItem(true);
+            this.itemList.add(item);
+            notifyObservers(item);
         } else if (optionSelection == 2) {
-            this.itemList.add(configurer.setItem(false));
+            Item item = configurer.setItem(false);
+            this.itemList.add(item);
+            notifyObservers(item);
         } else if (optionSelection == 3) {
             interface1.print(itemList);
-        } else if (optionSelection == 4) {
+        } else {
+            runOptionSelection2(optionSelection);
+        }
+    }
+
+    private void runOptionSelection2(int optionSelection) throws UserEndProgram, IOException {
+        if (optionSelection == 4) {
             interface1.print(itemList);
             itemFlagger();
         } else if (optionSelection == 5) {

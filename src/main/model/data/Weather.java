@@ -9,8 +9,4 @@ public class Weather {
     public String getDescription() {
         return description;
     }
-
-    public String getMain() {
-        return main;
-    }
 }

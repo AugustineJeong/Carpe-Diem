@@ -26,10 +26,3 @@ very long exam
 25
 107
 false
-false
-Tuesday
-Test
-0
-0
-0
-false

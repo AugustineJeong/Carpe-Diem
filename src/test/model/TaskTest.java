@@ -2,10 +2,7 @@ package model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import model.item.Event;
-import model.item.Item;
 import model.item.Task;
-import model.marker.Flag;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
