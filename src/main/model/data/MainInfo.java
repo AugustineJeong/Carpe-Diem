@@ -6,7 +6,7 @@ public class MainInfo {
     public String getTempInCelsius() {
         Double celsius = (temp - 273.15);
         String celsiusString = celsius.toString();
-        celsiusString = celsiusString.substring(0, 3);
+        celsiusString = celsiusString.substring(0, 4);
 
         return celsiusString;
     }
