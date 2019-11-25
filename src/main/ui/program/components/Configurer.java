@@ -58,7 +58,7 @@ public class Configurer {
         interface1.askItemDuration();
         String response = inputManagement.anyStringResponse();
 
-        if (response.matches("[.]*[^0-9]*[.]*")) {
+        if (response.matches("[^0-9]*")) {
             throw new IntExpectedDuration();
         }
 

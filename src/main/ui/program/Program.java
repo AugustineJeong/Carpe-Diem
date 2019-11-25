@@ -6,23 +6,19 @@ import model.data.WeatherData;
 import model.item.Item;
 import model.marker.Flag;
 import network.WebDataLoad;
-import observer.Subject;
 import ui.program.components.*;
 
 import java.io.*;
 import java.util.*;
 
 
-public class Program extends Subject {
+public class Program {
     private TextSaveLoad textSaveLoad;
     private List<Item> itemList;
     private Map<Flag, List<Item>> flagMap;
     private Interface interface1;
     private InputManagement inputManagement;
     private Configurer configurer;
-
-    private WebDataLoad webDataLoad = new WebDataLoad();
-    private WeatherData weatherData = webDataLoad.dataLoad();
 
     //constructor: creates an instance of a program
     //MODIFIES: this
@@ -75,11 +71,9 @@ public class Program extends Subject {
         if (optionSelection == 1) {
             Item item = configurer.setItem(true);
             this.itemList.add(item);
-            notifyObservers(item);
         } else if (optionSelection == 2) {
             Item item = configurer.setItem(false);
             this.itemList.add(item);
-            notifyObservers(item);
         } else if (optionSelection == 3) {
             interface1.print(itemList);
         } else {
@@ -94,8 +88,7 @@ public class Program extends Subject {
         } else if (optionSelection == 5) {
             getFlaggedItems();
         } else if (optionSelection == 6) {
-            System.out.println("It is currently " + weatherData.getMain().getTempInCelsius()
-                    + " degrees celsius with " + weatherData.getWeather().get(0).getDescription() + " in Vancouver");
+            interface1.printWeatherInformation();
         } else {
             textSaveLoad.save(this.itemList);
             throw new UserEndProgram();

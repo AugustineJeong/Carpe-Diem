@@ -1,16 +1,28 @@
 package ui.program.components;
 
+import model.data.WeatherData;
 import model.item.Item;
+import network.WebDataLoad;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Interface {
 
     private InputManagement inputManagement;
+    private WebDataLoad webDataLoad = new WebDataLoad();
+    private WeatherData weatherData;
 
     //constructor: constructs new Interface object
     public Interface() {
+        {
+            try {
+                weatherData = webDataLoad.dataLoad();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void drawLine() {
@@ -88,7 +100,7 @@ public class Interface {
     }
 
     public void askItemDuration() {
-        System.out.println("How long, in hours, is this event? (ex. 1 hour 30 minutes = 1.5)");
+        System.out.println("How many hours, in integer, is the duration of this event? (ex. 1 hour = 1)");
     }
 
     public void pressEnterToContinue() {
@@ -144,5 +156,11 @@ public class Interface {
     //EFFECTS: prints message asking user if whether the user would like to add or remove a flag
     public void addOrRemoveFlag() {
         System.out.println("Would you like to add or remove a flag?");
+    }
+
+    //EFFECTS: prints weather information
+    public void printWeatherInformation() {
+        System.out.println("It is currently " + weatherData.getMain().getTempInCelsius()
+                + " degrees celsius with " + weatherData.getWeather().get(0).getDescription() + " in Vancouver");
     }
 }
