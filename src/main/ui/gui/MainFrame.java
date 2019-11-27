@@ -1,20 +1,37 @@
 package ui.gui;
 
+import model.data.TextSaveLoad;
+import model.item.Item;
+
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.util.List;
 
 //CITATION: Class copied / modified from youtube "Advanced Java: Swing (GUI) Programming" tutorial series by
 //"Cave of Programming" Part 2.
 // Part 2: https://www.youtube.com/watch?v=svM0SBFqp4s
 
+//this is a FRAME
 public class MainFrame extends JFrame {
 
+    private List<Item> itemList;
+
+    //this is a PANEL
     private ItemListPanel itemListPanel;
 
     public MainFrame(String title) {
         super(title);
+
+        try {
+            TextSaveLoad textSaveLoad = new TextSaveLoad();
+            this.itemList = textSaveLoad.load();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
         //layout
         setLayout(new BorderLayout());
@@ -22,7 +39,7 @@ public class MainFrame extends JFrame {
         //swing component
         JTextArea textArea = new JTextArea();
         JButton button = new JButton("Name of button");
-        this.itemListPanel = new ItemListPanel();
+        this.itemListPanel = new ItemListPanel(this.itemList);
 
         //add swing component to content pane
         Container container = getContentPane();
@@ -30,12 +47,13 @@ public class MainFrame extends JFrame {
         container.add(button, BorderLayout.SOUTH);
         container.add(itemListPanel, BorderLayout.WEST);
 
-        //add behaviour
-        button.addActionListener(new ActionListener() {
+        ActionListener actionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                textArea.append("Hello, you have clicked a button!\n");
+
             }
-        });
+        };
+
+        button.addActionListener(actionListener);
     }
 }
