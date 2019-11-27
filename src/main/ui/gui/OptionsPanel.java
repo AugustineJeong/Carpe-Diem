@@ -1,13 +1,25 @@
 package ui.gui;
 
-import model.item.Item;
+import ui.gui.observer.Observable;
+import ui.gui.observer.Observer;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
-public class OptionsPanel extends JPanel {
+//CITATION: lines 25-30, 37-38, 42-57 copied / modified from youtube "Advanced Java: Swing (GUI) Programming"
+// tutorial series by "Cave of Programming" Part 3 and Part 4.
+//i.e. RunTextInterface details regarding "Panels and Forms" and "GridBagLayout" learned / copied from the tutorial
+// series.
+//Part 3: https://www.youtube.com/watch?v=DJqlT1d67jI
+//Part 4: https://www.youtube.com/watch?v=YKaea4ezQQE
+
+public class OptionsPanel extends JPanel implements Observable {
+
+    List<Observer> observerList = new ArrayList<>();
 
     public OptionsPanel() {
         Dimension size = getPreferredSize();
@@ -43,5 +55,26 @@ public class OptionsPanel extends JPanel {
 
         gridBagConstraints.gridy = n;
         add(saveProgram, gridBagConstraints);
+
+        ActionListener showAllItems = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                notifyObserver(1);
+            }
+        };
+
+        viewAllItems.addActionListener(showAllItems);
+    }
+
+    @Override
+    public void addObserver(Observer observer) {
+        this.observerList.add(observer);
+    }
+
+    @Override
+    public void notifyObserver(int i) {
+        for (Observer observer : this.observerList) {
+            observer.update(i);
+        }
     }
 }

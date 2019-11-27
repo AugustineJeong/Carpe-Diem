@@ -2,6 +2,8 @@ package ui.gui;
 
 import model.data.TextSaveLoad;
 import model.item.Item;
+import ui.gui.observer.Observable;
+import ui.gui.observer.Observer;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -16,7 +18,7 @@ import java.util.List;
 // Part 2: https://www.youtube.com/watch?v=svM0SBFqp4s
 
 //this is a FRAME
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame implements Observer {
 
     private List<Item> itemList;
 
@@ -39,14 +41,11 @@ public class MainFrame extends JFrame {
         //layout
         setLayout(new BorderLayout());
 
-
-
         //swing component
         this.itemListPanel = new ItemListPanel(this.itemList);
-        this.optionsPanel =  new OptionsPanel();
+        this.optionsPanel = new OptionsPanel();
+        this.optionsPanel.addObserver(this);
         this.centerPanel = new CenterPanel();
-
-        JButton button = new JButton("pls work");
 
         //add swing component to content pane
         Container container = getContentPane();
@@ -54,11 +53,12 @@ public class MainFrame extends JFrame {
         container.add(optionsPanel, BorderLayout.EAST);
         container.add(centerPanel, BorderLayout.CENTER);
 
-        ActionListener actionListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
 
-            }
-        };
+    }
+
+    @Override
+    public void update(int i) {
+
     }
 }
+
