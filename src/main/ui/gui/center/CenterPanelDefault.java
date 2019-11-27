@@ -1,4 +1,4 @@
-package ui.gui;
+package ui.gui.center;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,15 +10,15 @@ import java.awt.*;
 //Part 3: https://www.youtube.com/watch?v=DJqlT1d67jI
 //Part 4: https://www.youtube.com/watch?v=YKaea4ezQQE
 
-public class CenterPanel extends JPanel {
+public class CenterPanelDefault extends JPanel {
 
-    public CenterPanel() {
+
+    public CenterPanelDefault() {
         Dimension size = getPreferredSize();
         size.width = 350;
         size.height = 350;
         setPreferredSize(size);
 
         setBorder(BorderFactory.createTitledBorder("Display"));
-        
     }
 }

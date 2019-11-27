@@ -62,30 +62,17 @@ public class ItemListPanel extends JPanel {
         add(new JLabel(" "), gridBagConstraints);
         n++;
 
-        int x = n + 10;
-        while (n < x) {
-            gridBagConstraints.gridy = n;
-
-            int numberOfItem = 0;
-            //see if there is any item left in itemlist.
-            for (Item item : this.itemList) {
-                if (item.getIsEvent()) {
-                    numberOfItem++;
-                }
-            }
-
-            if (this.itemList.isEmpty() || numberOfItem == 0) {
+        int counter = 0;
+        for (Item item : this.itemList) {
+            if (counter >= 10) {
                 break;
             }
-
-            for (Item item : this.itemList) {
-                if (item.getIsEvent()) {
-                    JLabel eventDetail = new JLabel(item.returnItemDetails());
-                    add(eventDetail, gridBagConstraints);
-                    n++;
-                    this.itemList.remove(item);
-                    break;
-                }
+            if (item.getIsEvent()) {
+                JLabel eventDetail = new JLabel(item.returnItemDetails());
+                gridBagConstraints.gridy = n;
+                add(eventDetail, gridBagConstraints);
+                n++;
+                counter++;
             }
         }
 
@@ -108,17 +95,18 @@ public class ItemListPanel extends JPanel {
         add(new JLabel(" "), gridBagConstraints);
         n++;
 
-        int z = n + 10;
-        while (n < z) {
-            gridBagConstraints.gridy = n;
-
-            if (this.itemList.isEmpty()) {
+        counter = 0;
+        for (Item item : this.itemList) {
+            if (counter >= 10) {
                 break;
             }
-            JLabel eventDetail = new JLabel(this.itemList.get(0).returnItemDetails());
-            add(eventDetail, gridBagConstraints);
-            n++;
-            this.itemList.remove(0);
+            if (!item.getIsEvent()) {
+                JLabel eventDetail = new JLabel(item.returnItemDetails());
+                gridBagConstraints.gridy = n;
+                add(eventDetail, gridBagConstraints);
+                n++;
+                counter++;
+            }
         }
 
         gridBagConstraints.anchor = GridBagConstraints.CENTER;
