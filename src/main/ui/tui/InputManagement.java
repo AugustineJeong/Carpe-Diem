@@ -1,4 +1,4 @@
-package ui.program.components;
+package ui.tui;
 
 import model.item.Item;
 import model.marker.Flag;

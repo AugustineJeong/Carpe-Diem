@@ -1,4 +1,4 @@
-package ui.program.components;
+package ui.tui;
 
 import model.data.WeatherData;
 import model.item.Item;

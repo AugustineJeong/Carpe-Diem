@@ -1,12 +1,10 @@
-package ui.program;
+package ui.tui;
 
 import exceptions.*;
 import model.data.TextSaveLoad;
-import model.data.WeatherData;
 import model.item.Item;
 import model.marker.Flag;
-import network.WebDataLoad;
-import ui.program.components.*;
+import ui.components.Configurer;
 
 import java.io.*;
 import java.util.*;
