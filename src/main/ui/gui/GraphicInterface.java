@@ -14,6 +14,8 @@ public class GraphicInterface {
         JFrame frame = new MainFrame("Dashboard");
 
         frame.setSize(1200, 650);
+        frame.setMinimumSize(frame.getSize());
+        frame.setMaximumSize(frame.getSize());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }

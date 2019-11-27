@@ -27,7 +27,11 @@ public abstract class Item {
     public String returnItemDetails() {
         String message;
 
-        message = " '" + this.activity + "'" + " by " + this.date;
+        if (this.isEvent) {
+            message = " '" + this.activity + "'" + " on " + this.date;
+        } else {
+            message = " '" + this.activity + "'" + " by " + this.date;
+        }
 
         if (this.isEvent) {
             message = message + " from "

@@ -1,11 +1,13 @@
 package ui.gui;
 
+import model.item.Event;
 import model.item.Item;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collections;
 import java.util.List;
 
 //CITATION: RunTextInterface details of Class copied / modified from youtube "Advanced Java: Swing (GUI) Programming"
@@ -21,39 +23,58 @@ public class ItemListPanel extends JPanel {
     private List<Item> itemList;
 
     public ItemListPanel(List<Item> itemList) {
+
         this.itemList = itemList;
 
+        //CITATION: Learned how to reverse an ArrayList as seen on following line on stack overflow by Shankar Agarwal's
+        // answer that had been edited by Ryan Emerle
+        // https://stackoverflow.com/questions/10766492/what-is-the-simplest-way-to-reverse-an-arraylist
+        Collections.reverse(this.itemList);
+
         Dimension size = getPreferredSize();
-        size.width = 400;
+        size.width = 350;
         setPreferredSize(size);
 
-        setBorder(BorderFactory.createTitledBorder("Upcoming Items"));
+        setBorder(BorderFactory.createTitledBorder("Recently Added Items"));
 
         JLabel eventLabel = new JLabel("Events: ");
         JLabel taskLabel = new JLabel("Tasks: ");
         JButton addItemButton = new JButton("Add new Item");
 
 
-
-
         setLayout(new GridBagLayout());
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
 
 
+        int n = 0;
 
 
-        gridBagConstraints.insets = new Insets(0,0,0, 180);
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.gridy = n;
+        add(new JLabel(" "), gridBagConstraints);
+        n++;
 
+        gridBagConstraints.gridy = n;
         add(eventLabel, gridBagConstraints);
+        n++;
 
-        int n = 1;
-        while (n < 11) {
-            gridBagConstraints.insets = new Insets(0, 0, 0, 0);
+        gridBagConstraints.gridy = n;
+        add(new JLabel(" "), gridBagConstraints);
+        n++;
+
+        int x = n + 10;
+        while (n < x) {
             gridBagConstraints.gridy = n;
 
-            if (itemList.isEmpty()) {
+            int numberOfItem = 0;
+            //see if there is any item left in itemlist.
+            for (Item item : this.itemList) {
+                if (item.getIsEvent()) {
+                    numberOfItem++;
+                }
+            }
+
+            if (this.itemList.isEmpty() || numberOfItem == 0) {
                 break;
             }
 
@@ -64,29 +85,59 @@ public class ItemListPanel extends JPanel {
                     n++;
                     this.itemList.remove(item);
                     break;
-                } else {
-                    this.itemList.remove(item);
                 }
             }
         }
 
-        gridBagConstraints.insets = new Insets(0,0,0, 185);
+        int y = 0;
+        while (y < 2) {
+            gridBagConstraints.anchor = GridBagConstraints.WEST;
+            gridBagConstraints.gridy = n;
+            add(new JLabel(" "), gridBagConstraints);
+            y++;
+            n++;
+        }
+
+        gridBagConstraints.insets = new Insets(0, 0, 0, 185);
         gridBagConstraints.gridy = n;
         add(taskLabel, gridBagConstraints);
         n++;
 
-        gridBagConstraints.insets = new Insets(0,0,0, 0);
-        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.gridy = n;
+        add(new JLabel(" "), gridBagConstraints);
+        n++;
+
+        int z = n + 10;
+        while (n < z) {
+            gridBagConstraints.gridy = n;
+
+            if (this.itemList.isEmpty()) {
+                break;
+            }
+            JLabel eventDetail = new JLabel(this.itemList.get(0).returnItemDetails());
+            add(eventDetail, gridBagConstraints);
+            n++;
+            this.itemList.remove(0);
+        }
+
+        gridBagConstraints.anchor = GridBagConstraints.CENTER;
+        gridBagConstraints.anchor = GridBagConstraints.SOUTH;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new Insets(0, 0, 2, 0);
         gridBagConstraints.gridy = n;
         add(addItemButton, gridBagConstraints);
 
 
 
-        addItemButton.addActionListener(new ActionListener() {
+        ActionListener actionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+
             }
-        });
+        };
+
+        addItemButton.addActionListener(actionListener);
     }
 }

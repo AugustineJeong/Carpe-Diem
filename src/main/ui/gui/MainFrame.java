@@ -22,6 +22,9 @@ public class MainFrame extends JFrame {
 
     //this is a PANEL
     private ItemListPanel itemListPanel;
+    private OptionsPanel optionsPanel;
+    private CenterPanel centerPanel;
+
 
     public MainFrame(String title) {
         super(title);
@@ -36,16 +39,20 @@ public class MainFrame extends JFrame {
         //layout
         setLayout(new BorderLayout());
 
+
+
         //swing component
-        JTextArea textArea = new JTextArea();
-        JButton button = new JButton("Name of button");
         this.itemListPanel = new ItemListPanel(this.itemList);
+        this.optionsPanel =  new OptionsPanel();
+        this.centerPanel = new CenterPanel();
+
+        JButton button = new JButton("pls work");
 
         //add swing component to content pane
         Container container = getContentPane();
-        container.add(textArea, BorderLayout.CENTER);
-        container.add(button, BorderLayout.SOUTH);
         container.add(itemListPanel, BorderLayout.WEST);
+        container.add(optionsPanel, BorderLayout.EAST);
+        container.add(centerPanel, BorderLayout.CENTER);
 
         ActionListener actionListener = new ActionListener() {
             @Override
@@ -53,7 +60,5 @@ public class MainFrame extends JFrame {
 
             }
         };
-
-        button.addActionListener(actionListener);
     }
 }
