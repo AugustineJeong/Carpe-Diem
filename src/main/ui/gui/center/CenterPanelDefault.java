@@ -12,11 +12,10 @@ import java.awt.*;
 
 public class CenterPanelDefault extends JPanel {
 
-
     public CenterPanelDefault() {
         Dimension size = getPreferredSize();
-        size.width = 350;
-        size.height = 350;
+        size.width = 300;
+        size.height = 500;
         setPreferredSize(size);
 
         setBorder(BorderFactory.createTitledBorder("Display"));

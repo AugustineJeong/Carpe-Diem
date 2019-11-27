@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.util.Collections;
 import java.util.List;
 
-//CITATION: RunTextInterface details of Class copied / modified from youtube "Advanced Java: Swing (GUI) Programming"
+//CITATION: RunTextInterface details of Class modified / added on from youtube "Advanced Java: Swing (GUI) Programming"
 // tutorial series by "Cave of Programming" Part 3 and Part 4.
 //i.e. RunTextInterface details regarding "Panels and Forms" and "GridBagLayout" learned / copied from the tutorial
 // series.
