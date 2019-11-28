@@ -10,7 +10,7 @@ import java.awt.*;
 //Part 3: https://www.youtube.com/watch?v=DJqlT1d67jI
 //Part 4: https://www.youtube.com/watch?v=YKaea4ezQQE
 //ATTENTION: Actual implementation of action lister functions, observer pattern, program specific functions and designs
-// project are all my original work.
+// in this project are all my original work.
 
 public class CenterPanelDefault extends JPanel {
 
@@ -22,6 +22,6 @@ public class CenterPanelDefault extends JPanel {
 
         setBorder(BorderFactory.createTitledBorder("Display"));
 
-        setBackground(Color.white);
+        setBackground(new Color(173, 216, 230));
     }
 }

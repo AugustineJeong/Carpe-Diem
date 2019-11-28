@@ -17,7 +17,7 @@ import java.util.List;
 //Part 3: https://www.youtube.com/watch?v=DJqlT1d67jI
 //Part 4: https://www.youtube.com/watch?v=YKaea4ezQQE
 //ATTENTION: Actual implementation of action lister functions, observer pattern, program specific functions and designs
-// project are all my original work.
+// in this project are all my original work.
 
 public class OptionsPanel extends JPanel implements Observable {
 
@@ -31,10 +31,22 @@ public class OptionsPanel extends JPanel implements Observable {
 
         setBorder(BorderFactory.createTitledBorder("Options Menu"));
 
-        JButton viewAllItems = new JButton("View All Items");
+        JButton viewAllItems = new JButton("    View All Items    ");
         JButton flagUnFlagItem = new JButton("Flag / un-flag Item");
         JButton viewAllFlaggedItem = new JButton("View Flagged Items");
-        JButton saveProgram = new JButton("Save Changes");
+        JButton saveProgram = new JButton("     Save Changes    ");
+
+        viewAllItems.setBorderPainted(false);
+        flagUnFlagItem.setBorderPainted(false);
+        viewAllFlaggedItem.setBorderPainted(false);
+        saveProgram.setBorderPainted(false);
+
+        viewAllItems.setOpaque(true);
+        flagUnFlagItem.setOpaque(true);
+        viewAllFlaggedItem.setOpaque(true);
+        saveProgram.setOpaque(true);
+
+
 
         setLayout(new GridBagLayout());
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
@@ -58,7 +70,7 @@ public class OptionsPanel extends JPanel implements Observable {
         gridBagConstraints.gridy = n;
         add(saveProgram, gridBagConstraints);
 
-        setBackground(Color.white);
+        setBackground(new Color(173, 216, 230));
 
         ActionListener showAllItems = new ActionListener() {
             @Override

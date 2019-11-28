@@ -20,7 +20,7 @@ import java.util.List;
 //Part 3: https://www.youtube.com/watch?v=DJqlT1d67jI
 //Part 4: https://www.youtube.com/watch?v=YKaea4ezQQE
 //ATTENTION: Actual implementation of action lister functions, observer pattern, program specific functions and designs
-// project are all my original work.
+// in this project are all my original work.
 
 public class NewItemConfigureCenter extends CenterPanelDefault implements Observable {
 
@@ -186,6 +186,8 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
 
         createEvent.addActionListener(eventCreateClick);
         createTask.addActionListener(taskCreateClick);
+
+        setBackground(new Color(173, 216, 230));
     }
 
 

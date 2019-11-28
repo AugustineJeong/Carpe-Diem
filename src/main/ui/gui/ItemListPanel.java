@@ -1,6 +1,5 @@
 package ui.gui;
 
-import model.item.Event;
 import model.item.Item;
 import ui.gui.observer.Observable;
 import ui.gui.observer.Observer;
@@ -20,7 +19,7 @@ import java.util.List;
 //Part 3: https://www.youtube.com/watch?v=DJqlT1d67jI
 //Part 4: https://www.youtube.com/watch?v=YKaea4ezQQE
 //ATTENTION: Actual implementation of action lister functions, observer pattern, program specific functions and designs
-// project are all my original work.
+// in this project are all my original work.
 
 //this is a PANEL
 public class ItemListPanel extends JPanel implements Observable {
@@ -30,6 +29,7 @@ public class ItemListPanel extends JPanel implements Observable {
 
     public ItemListPanel(List<Item> itemList) {
 
+        //Made a copy of the itemList so that it doesn't mess with the original field in MainFrame...
         this.itemList = makeCopyOfItemList(itemList);
 
         this.observerList = new ArrayList<>();
@@ -49,19 +49,20 @@ public class ItemListPanel extends JPanel implements Observable {
         JLabel taskLabel = new JLabel("Tasks: ");
         JButton addItemButton = new JButton("Add new Item");
 
+        addItemButton.setBackground(Color.ORANGE);
+        addItemButton.setOpaque(true);
+        addItemButton.setBorderPainted(false);
 
         setLayout(new GridBagLayout());
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
 
-
         int n = 0;
 
-
-        gridBagConstraints.anchor = GridBagConstraints.WEST;
         gridBagConstraints.gridy = n;
         add(new JLabel(" "), gridBagConstraints);
         n++;
 
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
         gridBagConstraints.gridy = n;
         add(eventLabel, gridBagConstraints);
         n++;
@@ -93,7 +94,7 @@ public class ItemListPanel extends JPanel implements Observable {
             n++;
         }
 
-        gridBagConstraints.insets = new Insets(0, 0, 0, 185);
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
         gridBagConstraints.gridy = n;
         add(taskLabel, gridBagConstraints);
         n++;
@@ -124,7 +125,7 @@ public class ItemListPanel extends JPanel implements Observable {
         gridBagConstraints.gridy = n;
         add(addItemButton, gridBagConstraints);
 
-        setBackground(Color.white);
+        setBackground(new Color(173, 216, 230));
 
         ActionListener actionListener = new ActionListener() {
             @Override

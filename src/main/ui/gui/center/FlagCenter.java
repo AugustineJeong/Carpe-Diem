@@ -18,12 +18,14 @@ import java.util.List;
 //Part 3: https://www.youtube.com/watch?v=DJqlT1d67jI
 //Part 4: https://www.youtube.com/watch?v=YKaea4ezQQE
 //ATTENTION: Actual implementation of action lister functions, observer pattern, program specific functions and designs
-// project are all my original work.
+// in this project are all my original work.
 
 public class FlagCenter extends CenterPanelDefault implements Observable {
 
     private List<Item> itemList;
     private List<Observer> observerList;
+    private GridBagConstraints gridBagConstraints;
+    int spacer = 0;
 
     public FlagCenter(List<Item> list) {
         super();
@@ -38,99 +40,84 @@ public class FlagCenter extends CenterPanelDefault implements Observable {
         JButton flag = new JButton("FLAG");
         JButton unFlag = new JButton("UN-FLAG");
 
+        flag.setBorderPainted(false);
+        unFlag.setBorderPainted(false);
+        flag.setOpaque(true);
+        unFlag.setOpaque(true);
+
         setLayout(new GridBagLayout());
-        GridBagConstraints gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints = new GridBagConstraints();
 
-        int n = 0;
+        emptySpace();
+        emptySpace();
 
-        int counter = 0;
-        while (counter < 2) {
-            gridBagConstraints.anchor = GridBagConstraints.WEST;
-            gridBagConstraints.gridy = n;
-            add(new JLabel(" "), gridBagConstraints);
-            n++;
-            counter++;
-        }
-
-        gridBagConstraints.gridy = n;
+        gridBagConstraints.gridy = spacer;
         add(eventLabel, gridBagConstraints);
-        n++;
+        spacer++;
 
-        gridBagConstraints.gridy = n;
+        gridBagConstraints.gridy = spacer;
         add(new JLabel(" "), gridBagConstraints);
-        n++;
+        spacer++;
 
 
         for (Item item : this.itemList) {
             if (item.getIsEvent()) {
                 JLabel eventDetail = new JLabel(item.returnItemDetails());
-                gridBagConstraints.gridy = n;
+                gridBagConstraints.gridy = spacer;
                 add(eventDetail, gridBagConstraints);
-                n++;
+                spacer++;
             }
         }
 
-        int y = 0;
-        while (y < 2) {
-            gridBagConstraints.anchor = GridBagConstraints.WEST;
-            gridBagConstraints.gridy = n;
-            add(new JLabel(" "), gridBagConstraints);
-            y++;
-            n++;
-        }
+        emptySpace();
+        emptySpace();
 
         gridBagConstraints.insets = new Insets(0, 0, 0, 185);
-        gridBagConstraints.gridy = n;
+        gridBagConstraints.gridy = spacer;
         add(taskLabel, gridBagConstraints);
-        n++;
+        spacer++;
 
         gridBagConstraints.anchor = GridBagConstraints.WEST;
-        gridBagConstraints.gridy = n;
+        gridBagConstraints.gridy = spacer;
         add(new JLabel(" "), gridBagConstraints);
-        n++;
+        spacer++;
 
         for (Item item : this.itemList) {
             if (!item.getIsEvent()) {
                 JLabel eventDetail = new JLabel(item.returnItemDetails());
-                gridBagConstraints.gridy = n;
+                gridBagConstraints.gridy = spacer;
                 add(eventDetail, gridBagConstraints);
-                n++;
+                spacer++;
             }
         }
 
-        counter = 0;
-        while (counter < 2) {
-            gridBagConstraints.anchor = GridBagConstraints.WEST;
-            gridBagConstraints.gridy = n;
-            add(new JLabel(" "), gridBagConstraints);
-            n++;
-            counter++;
-        }
+        emptySpace();
+        emptySpace();
 
         gridBagConstraints.insets = new Insets(5, 0, 0, 0);
         gridBagConstraints.anchor = GridBagConstraints.CENTER;
-        gridBagConstraints.gridy = n;
+        gridBagConstraints.gridy = spacer;
         add(activityLabel, gridBagConstraints);
-        n++;
+        spacer++;
 
         gridBagConstraints.anchor = GridBagConstraints.CENTER;
-        gridBagConstraints.gridy = n;
+        gridBagConstraints.gridy = spacer;
         add(itemChoice, gridBagConstraints);
-        n++;
+        spacer++;
 
-        gridBagConstraints.gridy = n;
+        gridBagConstraints.gridy = spacer;
         add(flag, gridBagConstraints);
-        n++;
+        spacer++;
 
-        gridBagConstraints.gridy = n;
+        gridBagConstraints.gridy = spacer;
         add(unFlag, gridBagConstraints);
 
-        setBackground(Color.white);
+        setBackground(new Color(173, 216, 230));
 
         ActionListener actionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                notifyObserver(1, null);
+
             }
         };
 
@@ -149,5 +136,12 @@ public class FlagCenter extends CenterPanelDefault implements Observable {
         for (Observer observer : this.observerList) {
             observer.update(i, o);
         }
+    }
+
+    private void emptySpace() {
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.gridy = spacer;
+        add(new JLabel(" "), gridBagConstraints);
+        spacer++;
     }
 }

@@ -21,7 +21,7 @@ import java.util.Map;
 //i.e. Class built based on details regarding "adding components" copied / learned from the tutorial series
 // Part 2: https://www.youtube.com/watch?v=svM0SBFqp4s
 //ATTENTION: Actual implementation of action lister functions, observer pattern, program specific functions and designs
-// project are all my original work.
+// in this project are all my original work.
 
 //this is a FRAME
 public class MainFrame extends JFrame implements Observer {
@@ -78,19 +78,19 @@ public class MainFrame extends JFrame implements Observer {
     public void update(int i, Object o) {
         if (i == 1) {
             updateHelper();
+            this.displayItemsCenter = new DisplayItemsCenter(this.itemList);
             container.add(displayItemsCenter);
-            container.revalidate();
-            container.repaint();
+            repaintAndValidate();
         } else if (i == 2) {
             updateHelper();
+            this.flagCenter = new FlagCenter(this.itemList);
             container.add(flagCenter);
-            container.revalidate();
-            container.repaint();
+            repaintAndValidate();
         } else if (i == 7) {
             updateHelper();
             container.add(newItemConfigureCenter);
-            container.revalidate();
-            container.repaint();
+            repaintAndValidate();
+
         }
         updateExtender(i, o);
     }
@@ -102,8 +102,7 @@ public class MainFrame extends JFrame implements Observer {
             container.add(new ItemListPanel(this.itemList), BorderLayout.WEST);
             container.add(optionsPanel, BorderLayout.EAST);
             container.add(newItemConfigureCenter);
-            container.revalidate();
-            container.repaint();
+            repaintAndValidate();
         }
     }
 
@@ -113,6 +112,11 @@ public class MainFrame extends JFrame implements Observer {
         container.add(itemListPanel, BorderLayout.WEST);
         itemListPanel.addObserver(this);
         container.add(optionsPanel, BorderLayout.EAST);
+    }
+
+    private void repaintAndValidate() {
+        container.repaint();
+        container.revalidate();
     }
 
 
