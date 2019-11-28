@@ -2,13 +2,15 @@ package ui.gui;
 
 import javax.swing.JFrame;
 
-public class GraphicInterface {
+//CITATION: Class modified / added on from youtube "Advanced Java: Swing (GUI) Programming" tutorial series by
+//"Cave of Programming" Part 1.
+// Part 1: https://www.youtube.com/watch?v=jUEOWVjnIR8
+// Line 16 from Part 2.
+// Part 2: https://www.youtube.com/watch?v=svM0SBFqp4s
+//ATTENTION: Actual implementation of action lister functions, observer pattern, program specific functions and designs
+// in this project are all my original work.
 
-    //CITATION: Class modified / added on from youtube "Advanced Java: Swing (GUI) Programming" tutorial series by
-    //"Cave of Programming" Part 1.
-    // Part 1: https://www.youtube.com/watch?v=jUEOWVjnIR8
-    // Line 14 from Part 2.
-    // Part 2: https://www.youtube.com/watch?v=svM0SBFqp4s
+public class GraphicInterface {
 
     public GraphicInterface() {
         JFrame frame = new MainFrame("Dashboard");

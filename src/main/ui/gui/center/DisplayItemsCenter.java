@@ -8,10 +8,12 @@ import java.util.List;
 
 //CITATION: Class modified / added on from youtube "Advanced Java: Swing (GUI) Programming"
 // tutorial series by "Cave of Programming" Part 3 and Part 4.
-//i.e. RunTextInterface details regarding "Panels and Forms" and "GridBagLayout" learned / copied from the tutorial
+//i.e. Class built based on details regarding "Panels and Forms" and "GridBagLayout" learned / copied from the tutorial
 // series.
 //Part 3: https://www.youtube.com/watch?v=DJqlT1d67jI
 //Part 4: https://www.youtube.com/watch?v=YKaea4ezQQE
+//ATTENTION: Actual implementation of action lister functions, observer pattern, program specific functions and designs
+// project are all my original work.
 
 public class DisplayItemsCenter extends CenterPanelDefault {
 
@@ -90,5 +92,7 @@ public class DisplayItemsCenter extends CenterPanelDefault {
                 n++;
             }
         }
+
+        setBackground(Color.white);
     }
 }

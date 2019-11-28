@@ -6,6 +6,7 @@ import model.marker.Flag;
 import ui.gui.center.CenterPanelDefault;
 import ui.gui.center.DisplayItemsCenter;
 import ui.gui.center.FlagCenter;
+import ui.gui.center.NewItemConfigureCenter;
 import ui.gui.observer.Observer;
 
 import javax.swing.*;
@@ -15,9 +16,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//CITATION: Lines 29-35, 49-62 modified / added on from youtube "Advanced Java: Swing (GUI) Programming" tutorial series
+//CITATION: Class modified / added on from youtube "Advanced Java: Swing (GUI) Programming" tutorial series
 // by "Cave of Programming" Part 2.
+//i.e. Class built based on details regarding "adding components" copied / learned from the tutorial series
 // Part 2: https://www.youtube.com/watch?v=svM0SBFqp4s
+//ATTENTION: Actual implementation of action lister functions, observer pattern, program specific functions and designs
+// project are all my original work.
 
 //this is a FRAME
 public class MainFrame extends JFrame implements Observer {
@@ -31,6 +35,7 @@ public class MainFrame extends JFrame implements Observer {
     private CenterPanelDefault centerPanelDefault;
     private DisplayItemsCenter displayItemsCenter;
     private FlagCenter flagCenter;
+    private NewItemConfigureCenter newItemConfigureCenter;
 
     private Container container = getContentPane();
 
@@ -51,33 +56,56 @@ public class MainFrame extends JFrame implements Observer {
         //swing component
         this.itemListPanel = new ItemListPanel(this.itemList);
         this.optionsPanel = new OptionsPanel();
+        this.newItemConfigureCenter = new NewItemConfigureCenter();
+        this.itemListPanel.addObserver(this);
         this.optionsPanel.addObserver(this);
+        this.newItemConfigureCenter.addObserver(this);
         this.centerPanelDefault = new CenterPanelDefault();
         this.displayItemsCenter = new DisplayItemsCenter(this.itemList);
         this.flagCenter = new FlagCenter(this.itemList);
+        this.newItemConfigureCenter = new NewItemConfigureCenter();
 
         //add swing component to content pane
         container.add(itemListPanel, BorderLayout.WEST);
         container.add(optionsPanel, BorderLayout.EAST);
         container.add(centerPanelDefault, BorderLayout.CENTER);
-
     }
 
     @Override
-    public void update(int i) {
+    public void update(int i, Object o) {
         if (i == 1) {
-            container.remove(centerPanelDefault);
-            container.remove(flagCenter);
+            updateHelper();
             container.add(displayItemsCenter);
             container.revalidate();
             container.repaint();
         } else if (i == 2) {
-            container.remove(centerPanelDefault);
-            container.remove(displayItemsCenter);
+            updateHelper();
             container.add(flagCenter);
             container.revalidate();
             container.repaint();
+        } else if (i == 7) {
+            updateHelper();
+            container.add(newItemConfigureCenter);
+            container.revalidate();
+            container.repaint();
+        }
+        updateExtender(i, o);
+    }
+
+    private void updateExtender(int i, Object o) {
+        if (i == 10) {
+            this.itemList.add((Item) o);
+            updateHelper();
+            container.add(centerPanelDefault);
         }
     }
+
+    private void updateHelper() {
+        container.removeAll();
+        container.add(itemListPanel);
+        container.add(optionsPanel);
+    }
+
+
 }
 

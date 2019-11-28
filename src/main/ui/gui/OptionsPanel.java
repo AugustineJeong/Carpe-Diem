@@ -10,12 +10,14 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-//CITATION: lines 25-30, 37-38, 42-57 copied / modified from youtube "Advanced Java: Swing (GUI) Programming"
+//CITATION: Class copied / modified from youtube "Advanced Java: Swing (GUI) Programming"
 // tutorial series by "Cave of Programming" Part 3 and Part 4.
-//i.e. RunTextInterface details regarding "Panels and Forms" and "GridBagLayout" learned / copied from the tutorial
+//i.e. Class built based on details regarding "Panels and Forms" and "GridBagLayout" learned / copied from the tutorial
 // series.
 //Part 3: https://www.youtube.com/watch?v=DJqlT1d67jI
 //Part 4: https://www.youtube.com/watch?v=YKaea4ezQQE
+//ATTENTION: Actual implementation of action lister functions, observer pattern, program specific functions and designs
+// project are all my original work.
 
 public class OptionsPanel extends JPanel implements Observable {
 
@@ -56,17 +58,19 @@ public class OptionsPanel extends JPanel implements Observable {
         gridBagConstraints.gridy = n;
         add(saveProgram, gridBagConstraints);
 
+        setBackground(Color.white);
+
         ActionListener showAllItems = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                notifyObserver(1);
+                notifyObserver(1, null);
             }
         };
 
         ActionListener flagger = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                notifyObserver(2);
+                notifyObserver(2, null);
             }
         };
 
@@ -76,13 +80,15 @@ public class OptionsPanel extends JPanel implements Observable {
 
     @Override
     public void addObserver(Observer observer) {
-        this.observerList.add(observer);
+        if (!this.observerList.contains(observer)) {
+            this.observerList.add(observer);
+        }
     }
 
     @Override
-    public void notifyObserver(int i) {
+    public void notifyObserver(int i, Object o) {
         for (Observer observer : this.observerList) {
-            observer.update(i);
+            observer.update(i, o);
         }
     }
 }

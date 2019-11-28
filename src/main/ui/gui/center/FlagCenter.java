@@ -8,12 +8,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-//CITATION: Lines 35-120 modified / added on from youtube "Advanced Java: Swing (GUI) Programming"
+//CITATION: Class modified / added on from youtube "Advanced Java: Swing (GUI) Programming"
 // tutorial series by "Cave of Programming" Part 3 and Part 4.
-//i.e. RunTextInterface details regarding "Panels and Forms" and "GridBagLayout" learned / copied from the tutorial
+//i.e. Class built based on details regarding "Panels and Forms" and "GridBagLayout" learned / copied from the tutorial
 // series.
 //Part 3: https://www.youtube.com/watch?v=DJqlT1d67jI
 //Part 4: https://www.youtube.com/watch?v=YKaea4ezQQE
+//ATTENTION: Actual implementation of action lister functions, observer pattern, program specific functions and designs
+// project are all my original work.
 
 public class FlagCenter extends CenterPanelDefault implements Observable {
 
@@ -118,17 +120,21 @@ public class FlagCenter extends CenterPanelDefault implements Observable {
 
         gridBagConstraints.gridy = n;
         add(unFlag, gridBagConstraints);
+
+        setBackground(Color.white);
     }
 
     @Override
     public void addObserver(Observer observer) {
-        this.observerList.add(observer);
+        if (!this.observerList.contains(observer)) {
+            this.observerList.add(observer);
+        }
     }
 
     @Override
-    public void notifyObserver(int i) {
+    public void notifyObserver(int i, Object o) {
         for (Observer observer : this.observerList) {
-            observer.update(0);
+            observer.update(i, o);
         }
     }
 }

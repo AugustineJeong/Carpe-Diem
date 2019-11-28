@@ -2,29 +2,36 @@ package ui.gui;
 
 import model.item.Event;
 import model.item.Item;
+import ui.gui.observer.Observable;
+import ui.gui.observer.Observer;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-//CITATION: RunTextInterface details of Class modified / added on from youtube "Advanced Java: Swing (GUI) Programming"
+//CITATION: Class modified / added on from youtube "Advanced Java: Swing (GUI) Programming"
 // tutorial series by "Cave of Programming" Part 3 and Part 4.
-//i.e. RunTextInterface details regarding "Panels and Forms" and "GridBagLayout" learned / copied from the tutorial
+//i.e. Class built based on details regarding "Panels and Forms" and "GridBagLayout" learned / copied from the tutorial
 // series.
 //Part 3: https://www.youtube.com/watch?v=DJqlT1d67jI
 //Part 4: https://www.youtube.com/watch?v=YKaea4ezQQE
+//ATTENTION: Actual implementation of action lister functions, observer pattern, program specific functions and designs
+// project are all my original work.
 
 //this is a PANEL
-public class ItemListPanel extends JPanel {
+public class ItemListPanel extends JPanel implements Observable {
 
     private List<Item> itemList;
+    private List<Observer> observerList;
 
     public ItemListPanel(List<Item> itemList) {
 
         this.itemList = itemList;
+        this.observerList = new ArrayList<>();
 
         //CITATION: Learned how to reverse an ArrayList as seen on following line on stack overflow by Shankar Agarwal's
         // answer that had been edited by Ryan Emerle
@@ -116,16 +123,29 @@ public class ItemListPanel extends JPanel {
         gridBagConstraints.gridy = n;
         add(addItemButton, gridBagConstraints);
 
-
+        setBackground(Color.white);
 
         ActionListener actionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-
+                notifyObserver(7, null);
             }
         };
 
         addItemButton.addActionListener(actionListener);
+    }
+
+    @Override
+    public void addObserver(Observer observer) {
+        if (!this.observerList.contains(observer)) {
+            this.observerList.add(observer);
+        }
+    }
+
+    @Override
+    public void notifyObserver(int i, Object o) {
+        for (Observer observer : this.observerList) {
+            observer.update(i, o);
+        }
     }
 }

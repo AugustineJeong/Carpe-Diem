@@ -7,5 +7,5 @@ public interface Observable {
 
     void addObserver(Observer observer);
 
-    public void notifyObserver(int i);
+    public void notifyObserver(int i, Object o);
 }
