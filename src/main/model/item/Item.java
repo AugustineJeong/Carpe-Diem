@@ -140,16 +140,15 @@ public abstract class Item {
         int endTime;
         endTime = this.time + (this.duration * 100);
         if (endTime > 2400) {
-            int overTime = endTime / 2400;
-            this.end = endTime - overTime % 2400;
-            setCalculatedEndDateHelper(overTime);
+            this.end = endTime % 2400;
+            setCalculatedEndDateHelper();
             System.out.println("Warning: Your activity does not end on the day it starts.");
         } else {
             this.end = endTime;
         }
     }
 
-    private void setCalculatedEndDateHelper(int overTime) {
+    private void setCalculatedEndDateHelper() {
         int dayNum = 0;
         if (this.date.equals("Monday")) {
             dayNum = 1;
@@ -166,11 +165,11 @@ public abstract class Item {
         } else if (this.date.equals("Sunday")) {
             dayNum = 7;
         }
-        int overDays = overTime / 2400;
-        setCalculatedEndDateHelpersHelper((dayNum + overDays) % 7, overTime);
+        int overDays = this.duration / 2400;
+        setCalculatedEndDateHelpersHelper((dayNum + overDays) % 7);
     }
 
-    private void setCalculatedEndDateHelpersHelper(int dayNum, int overTime) {
+    private void setCalculatedEndDateHelpersHelper(int dayNum) {
         String endDay = "Monday";
         if (dayNum == 1) {
             endDay = "Tuesday";
