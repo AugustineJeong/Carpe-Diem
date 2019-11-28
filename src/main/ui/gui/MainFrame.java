@@ -12,6 +12,7 @@ import ui.gui.observer.Observer;
 import javax.swing.*;
 import java.awt.*;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -103,6 +104,20 @@ public class MainFrame extends JFrame implements Observer {
             container.add(optionsPanel, BorderLayout.EAST);
             container.add(newItemConfigureCenter);
             repaintAndValidate();
+        } else if (i == 3) {
+            TextSaveLoad textSaveLoad = new TextSaveLoad();
+            try {
+                textSaveLoad.save(this.itemList);
+                //CITATION: Copied the following line from
+                // https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html
+                JOptionPane.showMessageDialog(new JFrame(), "Program saved!");
+            } catch (IOException e) {
+                e.printStackTrace();
+                //CITATION: Copied the following line from
+                // https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html
+                JOptionPane.showMessageDialog(new JFrame(), "Error: Program not saved. Exception thrown.",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 

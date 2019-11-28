@@ -7,7 +7,7 @@ import java.io.*;
 import java.net.URL;
 
 //Citation: lines 15-17 modeled after CPSC 210 edX Deliverable 10 instructions
-//Citation: lines 19-36 taken from http://zetcode.com/articles/javareadwebpage/
+//Citation: lines 19-35 taken from http://zetcode.com/articles/javareadwebpage/
 //Citation: lines 39,41 taken from https://www.mkyong.com/java/how-to-parse-json-with-gson/
 
 public class WebDataLoad {

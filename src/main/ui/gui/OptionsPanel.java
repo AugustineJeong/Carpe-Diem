@@ -86,8 +86,17 @@ public class OptionsPanel extends JPanel implements Observable {
             }
         };
 
+        ActionListener saver = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                notifyObserver(3, null);
+            }
+        };
+
+
         viewAllItems.addActionListener(showAllItems);
         flagUnFlagItem.addActionListener(flagger);
+        saveProgram.addActionListener(saver);
     }
 
     @Override

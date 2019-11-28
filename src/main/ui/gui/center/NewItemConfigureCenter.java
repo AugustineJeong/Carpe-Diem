@@ -37,8 +37,8 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
     private JLabel eventWeather = new JLabel("Event Weather Sensitivity:");
     private JLabel taskName = new JLabel("Task name:");
     private JLabel taskDate = new JLabel("Task date:");
-    private JTextField nameChoice = new JTextField("        ");
-    private JTextField taskNameChoice = new JTextField("        ");
+    private JTextField nameChoice = new JTextField("               ");
+    private JTextField taskNameChoice = new JTextField("               ");
     private JComboBox weatherSelection;
     private JComboBox timeSelection;
     private JComboBox dateSelection;
@@ -172,6 +172,9 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
             public void actionPerformed(ActionEvent e) {
                 Item item = configureEvent();
                 notifyObserver(10, item);
+                //CITATION: Copied the following line from
+                // https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html
+                JOptionPane.showMessageDialog(new JFrame(), "Event Created!");
             }
         };
 
@@ -181,6 +184,10 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
             public void actionPerformed(ActionEvent e) {
                 Item item = configureTask();
                 notifyObserver(10, item);
+
+                //CITATION: Copied the following line from
+                // https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html
+                JOptionPane.showMessageDialog(new JFrame(), "Task Created!");
             }
         };
 
@@ -197,6 +204,7 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
         item.setDate(this.dateSelection.getSelectedItem().toString());
         item.setTime(Integer.parseInt(parseTime(this.timeSelection.getSelectedItem().toString())));
         item.setDuration(Integer.parseInt(parseDuration(this.durationChoice.getSelectedItem().toString())));
+        item.setCalculatedEnd();
         if (this.weatherSelection.getSelectedItem().toString().equals("No rain")) {
             item.setWeatherSensitive(false);
         } else {

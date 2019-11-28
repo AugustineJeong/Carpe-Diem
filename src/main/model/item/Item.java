@@ -3,6 +3,7 @@ package model.item;
 
 import model.marker.Flag;
 
+import javax.swing.*;
 import java.util.Objects;
 
 public abstract class Item {
@@ -35,9 +36,25 @@ public abstract class Item {
 
         if (this.isEvent) {
             message = message + " from "
-                    + this.time + " to " + this.end;
+                    + timeFormatHelper(this.time) + " to " + timeFormatHelper(this.end);
         }
         return message;
+    }
+
+    private String timeFormatHelper(int time) {
+        int hour = time / 100;
+        int minute = time % 100;
+        String hourString = "" + hour;
+        String minuteString = "" + minute;
+        if (hour < 10) {
+            hourString = "0" + hour;
+        }
+        if (minute == 0) {
+            minuteString = "0" + minute;
+        }
+        String formattedTime = hourString + ":" + minuteString;
+
+        return formattedTime;
     }
 
     //MODIFIES: this
@@ -123,11 +140,55 @@ public abstract class Item {
         int endTime;
         endTime = this.time + (this.duration * 100);
         if (endTime > 2400) {
-            this.end = endTime - ((endTime / 2400) * 2400);
+            int overTime = endTime / 2400;
+            this.end = endTime - overTime % 2400;
+            setCalculatedEndDateHelper(overTime);
             System.out.println("Warning: Your activity does not end on the day it starts.");
         } else {
             this.end = endTime;
         }
+    }
+
+    private void setCalculatedEndDateHelper(int overTime) {
+        int dayNum = 0;
+        if (this.date.equals("Monday")) {
+            dayNum = 1;
+        } else if (this.date.equals("Tuesday")) {
+            dayNum = 2;
+        } else if (this.date.equals("Wednesday")) {
+            dayNum = 3;
+        } else if (this.date.equals("Thursday")) {
+            dayNum = 4;
+        } else if (this.date.equals("Friday")) {
+            dayNum = 5;
+        } else if (this.date.equals("Saturday")) {
+            dayNum = 6;
+        } else if (this.date.equals("Sunday")) {
+            dayNum = 7;
+        }
+        int overDays = overTime / 2400;
+        setCalculatedEndDateHelpersHelper((dayNum + overDays) % 7, overTime);
+    }
+
+    private void setCalculatedEndDateHelpersHelper(int dayNum, int overTime) {
+        String endDay = "Monday";
+        if (dayNum == 1) {
+            endDay = "Tuesday";
+        } else if (dayNum == 2) {
+            endDay = "Wednesday";
+        } else if (dayNum == 3) {
+            endDay = "Thursday";
+        } else if (dayNum == 4) {
+            endDay = "Friday";
+        } else if (dayNum == 5) {
+            endDay = "Saturday";
+        } else if (dayNum == 6) {
+            endDay = "Sunday";
+        }
+        //CITATION: Copied the following line from
+        // https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html
+        JOptionPane.showMessageDialog(new JFrame(), "Warning: Your event does not end on the same day as "
+                + "it starts. It ends on: " + endDay,  "WARNING", JOptionPane.WARNING_MESSAGE);
     }
 
     public Flag getFlag() {
