@@ -221,19 +221,25 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
         return numTime;
     }
 
+    //this is like LeetCode
+    //return string without spaces, but include spaces between letters
+    //ex. given " this better work ", return "this better work"
     private String removeSpaces(String string) {
-        int length = string.length();
         String removed = "";
 
         int counter = 0;
-        while (counter < length) {
+        boolean hasSeenLetter = false;
+        while (counter < string.length()) {
             String str = string.substring(counter, (counter + 1));
             if (!str.equals(" ")) {
+                removed += str;
+                hasSeenLetter = true;
+            } else if (hasSeenLetter && (string.length() - counter) > 1
+                    && !string.substring((counter + 1), (counter + 2)).equals(" ")) {
                 removed += str;
             }
             counter++;
         }
-
         if (removed.equals("")) {
             return "un-named";
         }
