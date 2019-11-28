@@ -1,12 +1,12 @@
 package ui.gui;
 
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderRepeat;
 import model.data.TextSaveLoad;
+import model.item.Event;
 import model.item.Item;
 import model.marker.Flag;
-import ui.gui.center.CenterPanelDefault;
-import ui.gui.center.DisplayItemsCenter;
-import ui.gui.center.FlagCenter;
-import ui.gui.center.NewItemConfigureCenter;
+import ui.gui.center.*;
 import ui.gui.observer.Observer;
 
 import javax.swing.*;
@@ -57,13 +57,16 @@ public class MainFrame extends JFrame implements Observer {
         this.itemListPanel = new ItemListPanel(this.itemList);
         this.optionsPanel = new OptionsPanel();
         this.newItemConfigureCenter = new NewItemConfigureCenter();
+
         this.itemListPanel.addObserver(this);
         this.optionsPanel.addObserver(this);
         this.newItemConfigureCenter.addObserver(this);
+
         this.centerPanelDefault = new CenterPanelDefault();
         this.displayItemsCenter = new DisplayItemsCenter(this.itemList);
         this.flagCenter = new FlagCenter(this.itemList);
-        this.newItemConfigureCenter = new NewItemConfigureCenter();
+
+        this.flagCenter.addObserver(this);
 
         //add swing component to content pane
         container.add(itemListPanel, BorderLayout.WEST);
@@ -94,16 +97,22 @@ public class MainFrame extends JFrame implements Observer {
 
     private void updateExtender(int i, Object o) {
         if (i == 10) {
-            this.itemList.add((Item) o);
-            updateHelper();
+            container.removeAll();
+            this.itemList.add(new Event());
+            container.add(new ItemListPanel(this.itemList), BorderLayout.WEST);
+            container.add(optionsPanel, BorderLayout.EAST);
             container.add(centerPanelDefault);
+            container.revalidate();
+            container.repaint();
         }
     }
 
     private void updateHelper() {
         container.removeAll();
-        container.add(itemListPanel);
-        container.add(optionsPanel);
+        this.itemListPanel = new ItemListPanel(this.itemList);
+        container.add(itemListPanel, BorderLayout.WEST);
+        itemListPanel.addObserver(this);
+        container.add(optionsPanel, BorderLayout.EAST);
     }
 
 

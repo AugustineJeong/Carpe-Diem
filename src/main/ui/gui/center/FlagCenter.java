@@ -6,6 +6,9 @@ import ui.gui.observer.Observer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 //CITATION: Class modified / added on from youtube "Advanced Java: Swing (GUI) Programming"
@@ -26,6 +29,7 @@ public class FlagCenter extends CenterPanelDefault implements Observable {
         super();
 
         this.itemList = list;
+        this.observerList = new ArrayList<>();
 
         JLabel eventLabel = new JLabel("Events: ");
         JLabel taskLabel = new JLabel("Tasks: ");
@@ -122,6 +126,15 @@ public class FlagCenter extends CenterPanelDefault implements Observable {
         add(unFlag, gridBagConstraints);
 
         setBackground(Color.white);
+
+        ActionListener actionListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                notifyObserver(1, null);
+            }
+        };
+
+        flag.addActionListener(actionListener);
     }
 
     @Override

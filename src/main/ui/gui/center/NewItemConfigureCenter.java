@@ -2,6 +2,7 @@ package ui.gui.center;
 
 import model.item.Event;
 import model.item.Item;
+import model.item.Task;
 import ui.gui.observer.Observable;
 import ui.gui.observer.Observer;
 
@@ -36,8 +37,6 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
     private JLabel eventWeather = new JLabel("Event Weather Sensitivity:");
     private JLabel taskName = new JLabel("Task name:");
     private JLabel taskDate = new JLabel("Task date:");
-    private JButton createEvent = new JButton("Create event");
-    private JButton createTask = new JButton("Create task");
     private JTextField nameChoice = new JTextField("        ");
     private JTextField taskNameChoice = new JTextField("        ");
     private JComboBox weatherSelection;
@@ -54,22 +53,25 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
         //CITATION: Lines 55-72 modified from example provided at https://www.javatpoint.com/java-jcombobox
         String[] weather = {"No weather restriction", "No rain"};
         weatherSelection = new JComboBox(weather);
-        weatherSelection.setBounds(50,50,90, 20);
+        weatherSelection.setBounds(50, 50, 90, 20);
         String[] time = {"00:00", "00:30", "01:00", "01:30", "02:00", "02:30", "03:00", "03:30", "04:00", "04:30",
                 "05:00", "05:30", "06:00", "06:30", "07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00",
                 "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30",
                 "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00",
                 "21:30", "22:00", "22:30", "23:00", "23:30"};
         timeSelection = new JComboBox(time);
-        timeSelection.setBounds(50,50,90, 20);
+        timeSelection.setBounds(50, 50, 90, 20);
         String[] date = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
         dateSelection = new JComboBox(date);
-        dateSelection.setBounds(50,50,90, 20);
+        dateSelection.setBounds(50, 50, 90, 20);
         taskDateSelection = new JComboBox(date);
-        taskDateSelection.setBounds(50,50,90, 20);
+        taskDateSelection.setBounds(50, 50, 90, 20);
         String[] duration = {"1 hour", "2 hours", "3 hours", "4 hours", "5 hours", "6 hours", "7 hours"};
         durationChoice = new JComboBox(duration);
-        durationChoice.setBounds(50,50,90, 20);
+        durationChoice.setBounds(50, 50, 90, 20);
+
+        JButton createEvent = new JButton("Create event");
+        JButton createTask = new JButton("Create task");
 
         setLayout(new GridBagLayout());
         gridBagConstraints = new GridBagConstraints();
@@ -165,28 +167,31 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
         gridBagConstraints.gridy = spacer;
         add(createTask, gridBagConstraints);
 
-        this.createEvent.addActionListener(newEventClick);
-        this.createTask.addActionListener(newTaskClick);
+        ActionListener eventCreateClick = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Item item = configureEvent();
+                notifyObserver(10, item);
+            }
+        };
+
+
+        ActionListener taskCreateClick = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Item item = configureTask();
+                notifyObserver(10, item);
+            }
+        };
+
+        createEvent.addActionListener(eventCreateClick);
+        createTask.addActionListener(taskCreateClick);
     }
 
-    ActionListener newEventClick = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            Item item = configureEvent();
-            notifyObserver(10, item);
-        }
-    };
 
-    ActionListener newTaskClick = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            Item item = configureTask();
-            notifyObserver(10, item);
-        }
-    };
 
     private Item configureEvent() {
-        Item item = new Event();
+        Item item = new Task();
         item.setActivity(this.nameChoice.getText());
         item.setDate(this.dateSelection.getSelectedItem().toString());
         item.setTime(Integer.parseInt(parseTime(this.timeSelection.getSelectedItem().toString())));
@@ -207,14 +212,13 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
     }
 
 
-
     private String parseTime(String time) {
-        String numTime = time.substring(0,2) + time.substring(3);
+        String numTime = time.substring(0, 2) + time.substring(3);
         return numTime;
     }
 
     private String parseDuration(String duration) {
-        String numTime = duration.substring(0,1);
+        String numTime = duration.substring(0, 1);
         return numTime;
     }
 
