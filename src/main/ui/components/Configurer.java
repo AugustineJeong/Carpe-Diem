@@ -31,13 +31,13 @@ public class Configurer {
         item.setDate(inputManagement.anyStringResponse());
 
         if (isEvent) {
-            item = configureItemHelper1(item);
+            item = configureItemHelper1((Event) item);
         }
         return item;
     }
 
     //EFFECTS: configures the details of an Event
-    private Item configureItemHelper1(Item item) throws IntExpectedTime, IntExpectedDuration, InvalidTimeFormat {
+    private Item configureItemHelper1(Event item) throws IntExpectedTime, IntExpectedDuration, InvalidTimeFormat {
         interface1.askItemTime();
 
         String response = inputManagement.anyStringResponse();
@@ -56,7 +56,7 @@ public class Configurer {
     }
 
     //EFFECTS: configures the details of an Event
-    private Item configureItemHelper2(Item item) throws IntExpectedDuration {
+    private Item configureItemHelper2(Event item) throws IntExpectedDuration {
         interface1.askItemDuration();
         String response = inputManagement.anyStringResponse();
 

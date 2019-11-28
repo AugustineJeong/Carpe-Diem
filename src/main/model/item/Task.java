@@ -8,4 +8,13 @@ public class Task extends Item {
         super();
         this.isEvent = false;
     }
+
+    //EFFECTS: Returns the details of the item
+    public String returnItemDetails() {
+        String message;
+
+        message = " '" + this.activity + "'" + " by " + this.date;
+
+        return message;
+    }
 }

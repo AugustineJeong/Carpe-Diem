@@ -2,6 +2,7 @@ package model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import model.item.Event;
 import model.item.Item;
 import model.marker.Flag;
 import org.junit.jupiter.api.Test;
@@ -22,50 +23,6 @@ abstract class ItemTest {
         assertEquals("interview", item.getActivity());
     }
 
-    @Test
-     void testGetTimeAndSetTime() {
-        item.setTime(10);
-        assertEquals(10, item.getTime());
-    }
-
-    @Test
-     void testGetDurationAndSetDuration() {
-        item.setDuration(5);
-        assertEquals(5, item.getDuration());
-    }
-
-    @Test
-     void testGetTimeAndSetCalculatedEnd() {
-        item.setTime(1000);
-        item.setDuration(5);
-        item.setCalculatedEnd();
-        assertEquals(1500, item.getEnd());
-    }
-
-    @Test
-     void testGetTimeAndSetCalculatedEndNotSameDay() {
-        item.setTime(1000);
-        item.setDuration(30);
-        item.setCalculatedEnd();
-        assertEquals(1600, item.getEnd());
-    }
-
-    @Test
-     void getWeatherSensitive() {
-        assertEquals(false, item.getWeatherSensitive());
-    }
-
-    @Test
-     void setEndTest() {
-        item.setEnd(2300);
-        assertEquals(2300, item.getEnd());
-    }
-
-    @Test
-     void testSetWeatherSensitiveAndGetWeateherSensitive() {
-        item.setWeatherSensitive(true);
-        assertEquals(true, item.getWeatherSensitive());
-    }
 
     @Test
      void addFlagTest() {
@@ -118,4 +75,27 @@ abstract class ItemTest {
 
     @Test
      abstract void testSetIsEvent();
+
+    @Test
+    void testHashcodeAndEquals() {
+        Event item2 = null;
+        assertNotEquals(item, item2);
+
+        Flag fakeItem = new Flag("blue");
+        assertNotEquals(item, fakeItem);
+
+        item.setActivity("interview");
+        item.setDate("Monday");
+
+        item2 = new Event();
+        item2.setActivity("interview");
+        item2.setDate("Monday");
+        item2.setTime(10);
+        item2.setDuration(5);
+        item2.setCalculatedEnd();
+
+        assertEquals(item, item2);
+
+        assertEquals(item.hashCode(), item2.hashCode());
+    }
 }

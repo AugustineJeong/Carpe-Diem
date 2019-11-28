@@ -18,21 +18,21 @@ public class TextSaveLoadTest {
     void testLoadAndSave() throws IOException {
         List<Item> itemList = new ArrayList<>();
 
-        Item event1 = new Event();
+        Event event1 = new Event();
         event1.setActivity("interview");
         event1.setDate("Monday");
         event1.setTime(10);
         event1.setDuration(5);
         event1.setCalculatedEnd();
 
-        Item event2 = new Event();
+        Event event2 = new Event();
         event2.setActivity("study session");
         event2.setDate("Saturday");
         event2.setTime(7);
         event2.setDuration(10);
         event2.setCalculatedEnd();
 
-        Item event3 = new Event();
+        Event event3 = new Event();
         event3.setActivity("very long exam");
         event3.setDate("Wednesday");
         event3.setTime(7);
@@ -51,6 +51,9 @@ public class TextSaveLoadTest {
         TextSaveLoad textSaveLoad = new TextSaveLoad();
         textSaveLoad.save(itemList);
 
-        assertEquals(itemList, textSaveLoad.load());
+        assertTrue(textSaveLoad.load().contains(event1));
+        assertTrue(textSaveLoad.load().contains(event2));
+        assertTrue(textSaveLoad.load().contains(event3));
+        assertTrue(textSaveLoad.load().contains(task1));
     }
 }

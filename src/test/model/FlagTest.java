@@ -9,18 +9,18 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class FlagTest {
-    Item item;
+    Event event;
     Flag flag;
 
     @BeforeEach
      void setup() {
         flag = new Flag("blue");
-        item = new Event();
-        item.setActivity("interview");
-        item.setDate("Monday");
-        item.setTime(10);
-        item.setDuration(5);
-        item.setCalculatedEnd();
+        event = new Event();
+        event.setActivity("interview");
+        event.setDate("Monday");
+        event.setTime(10);
+        event.setDuration(5);
+        event.setCalculatedEnd();
     }
 
     @Test
@@ -31,29 +31,29 @@ public class FlagTest {
 
     @Test
      void testContainsSameItemAndAddItem() {
-        flag.addItem(item);
+        flag.addItem(event);
 
-        assertTrue(flag.containsSameItem(item));
+        assertTrue(flag.containsSameItem(event));
 
-        flag.removeItem(item);
+        flag.removeItem(event);
 
-        assertFalse(flag.containsSameItem(item));
+        assertFalse(flag.containsSameItem(event));
     }
 
     @Test
      void testContainsSameItemAndRemoveItem() {
         Flag flag = new Flag("blue");
 
-        flag.addItem(item);
+        flag.addItem(event);
 
-        flag.removeItem(item);
+        flag.removeItem(event);
 
-        assertFalse(flag.containsSameItem(item));
+        assertFalse(flag.containsSameItem(event));
     }
 
     @Test
     void testContainsSameItemFalse() {
-        assertFalse(flag.containsSameItem(item));
+        assertFalse(flag.containsSameItem(event));
     }
 
     @Test

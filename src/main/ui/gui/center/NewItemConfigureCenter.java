@@ -199,7 +199,7 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
 
 
     private Item configureEvent() {
-        Item item = new Event();
+        Event item = new Event();
         item.setActivity(removeSpaces(this.nameChoice.getText()));
         item.setDate(this.dateSelection.getSelectedItem().toString());
         item.setTime(Integer.parseInt(parseTime(this.timeSelection.getSelectedItem().toString())));

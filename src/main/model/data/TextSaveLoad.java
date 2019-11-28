@@ -9,51 +9,93 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-//citation: (line 15, 22-23, 35, 40) copied / learned from Paul Miskew's video: youtube.com/watch?v=k3K9KHPYZFc
+//citation: (line 16-17, 36-37, 47, 51-52, 58, 68, 87) copied / learned from Paul Miskew's video:
+// youtube.com/watch?v=k3K9KHPYZFc
 public class TextSaveLoad {
 
-    private File file = new File("./data/saveItems.txt");
-    private List<Item> itemList = new ArrayList<>();
+    private File eventFile = new File("./data/saveEvents.txt");
+    private File taskFile = new File("./data/saveTasks.txt");
 
-    //MODIFIES: saveItems.txt
+    //MODIFIES: saveEvents.txt
     //EFFECTS: save all items in itemList parameter
     public void save(List<Item> itemList) throws IOException {
-        int n = 0;
-        FileWriter fw = new FileWriter(file);
-        PrintWriter pw = new PrintWriter(fw);
+        List<Event> eventList = new ArrayList<>();
+        List<Task> taskList = new ArrayList<>();
+        for (Item item : itemList) {
+            if (item.getIsEvent()) {
+                eventList.add((Event) item);
+            } else {
+                taskList.add((Task) item);
+            }
+        }
+        saveEventList(eventList);
+        saveTaskList(taskList);
+    }
 
-        for (Item i : itemList) {
-            pw.println(itemList.get(n).getIsEvent());
-            pw.println(itemList.get(n).getDate());
-            pw.println(itemList.get(n).getActivity());
-            pw.println(itemList.get(n).getTime());
-            pw.println(itemList.get(n).getDuration());
-            pw.println(itemList.get(n).getEnd());
-            pw.println(itemList.get(n).getWeatherSensitive());
-            n++;
+    private void saveEventList(List<Event> eventList) throws IOException {
+        FileWriter fw = new FileWriter(eventFile);
+        PrintWriter pw = new PrintWriter(fw);
+        for (Event event : eventList) {
+            pw.println(event.getIsEvent());
+            pw.println(event.getDate());
+            pw.println(event.getActivity());
+            pw.println(event.getTime());
+            pw.println(event.getDuration());
+            pw.println(event.getEnd());
+            pw.println(event.getWeatherSensitive());
         }
         pw.close();
     }
 
-    //EFFECTS: Loads all Events from text file to this EventList
-    public List<Item> load() throws FileNotFoundException {
-        Scanner scan = new Scanner(file);
+    private void saveTaskList(List<Task> taskList) throws IOException {
+        FileWriter fw = new FileWriter(taskFile);
+        PrintWriter pw = new PrintWriter(fw);
+        for (Task task : taskList) {
+            pw.println(task.getIsEvent());
+            pw.println(task.getDate());
+            pw.println(task.getActivity());
+        }
+        pw.close();
+    }
 
-        while (scan.hasNext()) {
-            Item i = new Task();
-            boolean s = scan.nextBoolean();
-            if (s) {
-                i = new Event();
-            }
-            i.setIsEvent(s);
-            i.setDate(scan.next());
-            scan.nextLine();
-            i.setActivity(scan.nextLine());
-            i.setTime(scan.nextInt());
-            i.setDuration(scan.nextInt());
-            i.setEnd(scan.nextInt());
-            i.setWeatherSensitive(scan.nextBoolean());
-            itemList.add(i);
+    //EFFECTS: Loads all Items from text file and returns them as List of Items
+    public List<Item> load() throws FileNotFoundException {
+        List<Item> itemList = new ArrayList<>();
+        itemList.addAll(loadEvents());
+        itemList.addAll(loadTasks());
+        return itemList;
+    }
+
+    private List<Item> loadEvents() throws FileNotFoundException {
+        Scanner scanEvent = new Scanner(eventFile);
+        List<Item> itemList = new ArrayList<>();
+
+        while (scanEvent.hasNext()) {
+            Event event = new Event();
+            event.setIsEvent(scanEvent.nextBoolean());
+            event.setDate(scanEvent.next());
+            scanEvent.nextLine();
+            event.setActivity(scanEvent.nextLine());
+            event.setTime(scanEvent.nextInt());
+            event.setDuration(scanEvent.nextInt());
+            event.setEnd(scanEvent.nextInt());
+            event.setWeatherSensitive(scanEvent.nextBoolean());
+            itemList.add(event);
+        }
+        return itemList;
+    }
+
+    private List<Item> loadTasks() throws FileNotFoundException {
+        Scanner scanTask = new Scanner(taskFile);
+        List<Item> itemList = new ArrayList<>();
+
+        while (scanTask.hasNext()) {
+            Task task = new Task();
+            task.setIsEvent(scanTask.nextBoolean());
+            task.setDate(scanTask.next());
+            scanTask.nextLine();
+            task.setActivity(scanTask.nextLine());
+            itemList.add(task);
         }
         return itemList;
     }

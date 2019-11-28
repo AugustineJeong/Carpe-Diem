@@ -10,23 +10,26 @@ import org.junit.jupiter.api.Test;
 
 class EventTest extends ItemTest {
 
+    Event event;
+
     @BeforeEach
      void setup() {
+        event = new Event();
         item = new Event();
-        item.setActivity("interview");
-        item.setDate("Monday");
-        item.setTime(1000);
-        item.setDuration(5);
-        item.setCalculatedEnd();
+        event.setActivity("interview");
+        event.setDate("Monday");
+        event.setTime(1000);
+        event.setDuration(5);
+        event.setCalculatedEnd();
     }
 
     @Test
      void testReturnItemDetails() {
         String expectedDetails;
-        expectedDetails = " 'interview' by Monday from 1000 to 1500";
+        expectedDetails = " 'interview' on Monday from 10:00 to 15:00";
 
         String eventDetails;
-        eventDetails = item.returnItemDetails();
+        eventDetails = event.returnItemDetails();
 
         assertEquals(expectedDetails, eventDetails);
     }
@@ -34,39 +37,58 @@ class EventTest extends ItemTest {
     @Override
     @Test
     void testGetIsEvent() {
-        assertTrue(item.getIsEvent());
+        assertTrue(event.getIsEvent());
     }
 
     @Override
     @Test
     public void testSetIsEvent() {
-        item.setIsEvent(false);
-        assertFalse(item.getIsEvent());
+        event.setIsEvent(false);
+        assertFalse(event.getIsEvent());
     }
 
     @Test
-     void testHashcodeAndEquals() {
-        Item item2 = null;
-        assertNotEquals(item, item2);
+    void testGetTimeAndSetTime() {
+        event.setTime(10);
+        assertEquals(10, event.getTime());
+    }
 
-        Flag fakeItem = new Flag("blue");
-        assertNotEquals(item, fakeItem);
+    @Test
+    void testGetDurationAndSetDuration() {
+        event.setDuration(5);
+        assertEquals(5, event.getDuration());
+    }
 
-        item.setActivity("interview");
-        item.setDate("Monday");
-        item.setTime(10);
-        item.setDuration(5);
-        item.setCalculatedEnd();
+    @Test
+    void testGetTimeAndSetCalculatedEnd() {
+        event.setTime(1000);
+        event.setDuration(5);
+        event.setCalculatedEnd();
+        assertEquals(1500, event.getEnd());
+    }
 
-        item2 = new Event();
-        item2.setActivity("interview");
-        item2.setDate("Monday");
-        item2.setTime(10);
-        item2.setDuration(5);
-        item2.setCalculatedEnd();
+    @Test
+    void testGetTimeAndSetCalculatedEndNotSameDay() {
+        event.setTime(1000);
+        event.setDuration(30);
+        event.setCalculatedEnd();
+        assertEquals(1600, event.getEnd());
+    }
 
-        assertEquals(item, item2);
+    @Test
+    void getWeatherSensitive() {
+        assertEquals(false, event.getWeatherSensitive());
+    }
 
-        assertEquals(item.hashCode(), item2.hashCode());
+    @Test
+    void setEndTest() {
+        event.setEnd(2300);
+        assertEquals(2300, event.getEnd());
+    }
+
+    @Test
+    void testSetWeatherSensitiveAndGetWeateherSensitive() {
+        event.setWeatherSensitive(true);
+        assertEquals(true, event.getWeatherSensitive());
     }
 }
