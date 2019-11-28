@@ -1,13 +1,20 @@
 package model.item;
 
+import ui.gui.observer.Observable;
+import ui.gui.observer.Observer;
+
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Event extends Item {
+public class Event extends Item implements Observable {
 
-    protected int time;
-    protected int duration;
-    protected int end;
-    protected boolean weatherSensitive;
+    private int time;
+    private int duration;
+    private int end;
+    private boolean weatherSensitive;
+
+    private List<Observer> observerList = new ArrayList<>();
 
     //constructor: creates an Event object
     //MODIFIES: this
@@ -146,11 +153,22 @@ public class Event extends Item {
         } else if (dayNum == 6) {
             endDay = "Sunday";
         }
-        //CITATION: Copied the following line from
-        // https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html
-        JOptionPane.showMessageDialog(new JFrame(), "Warning: Your event does not end on the same day as "
-                + "it starts. It ends on: " + endDay,  "WARNING", JOptionPane.WARNING_MESSAGE);
+
+        notifyObserver(22, endDay);
     }
 
 
+    @Override
+    public void addObserver(Observer observer) {
+        if (!this.observerList.contains(observer)) {
+            this.observerList.add(observer);
+        }
+    }
+
+    @Override
+    public void notifyObserver(int i, Object o) {
+        for (Observer observer : this.observerList) {
+            observer.update(i, o);
+        }
+    }
 }

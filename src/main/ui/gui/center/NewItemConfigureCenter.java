@@ -22,7 +22,9 @@ import java.util.List;
 //ATTENTION: Actual implementation of action lister functions, observer pattern, program specific functions and designs
 // in this project are all my original work.
 
-public class NewItemConfigureCenter extends CenterPanelDefault implements Observable {
+
+//This is an Observer and an Observable at the same time!!!
+public class NewItemConfigureCenter extends CenterPanelDefault implements Observable, Observer {
 
     private List<Observer> observerList;
     private GridBagConstraints gridBagConstraints;
@@ -200,6 +202,7 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
 
     private Item configureEvent() {
         Event item = new Event();
+        item.addObserver(this);
         item.setActivity(removeSpaces(this.nameChoice.getText()));
         item.setDate(this.dateSelection.getSelectedItem().toString());
         item.setTime(Integer.parseInt(parseTime(this.timeSelection.getSelectedItem().toString())));
@@ -274,6 +277,16 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
     public void notifyObserver(int i, Object o) {
         for (Observer observer : this.observerList) {
             observer.update(i, o);
+        }
+    }
+
+    @Override
+    public void update(int i, Object o) {
+        if (i == 22) {
+            //CITATION: Copied the following line from
+            // https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html
+            JOptionPane.showMessageDialog(new JFrame(), "Warning: Your event does not end on the same day as "
+                    + "it starts. It ends on: " + o,  "WARNING", JOptionPane.WARNING_MESSAGE);
         }
     }
 }

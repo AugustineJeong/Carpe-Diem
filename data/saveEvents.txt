@@ -1,0 +1,21 @@
+true
+Monday
+interview
+10
+5
+510
+false
+true
+Saturday
+study session
+7
+10
+1007
+false
+true
+Wednesday
+very long exam
+7
+25
+107
+false
