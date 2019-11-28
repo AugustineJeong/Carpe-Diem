@@ -189,10 +189,9 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
     }
 
 
-
     private Item configureEvent() {
-        Item item = new Task();
-        item.setActivity(this.nameChoice.getText());
+        Item item = new Event();
+        item.setActivity(removeSpaces(this.nameChoice.getText()));
         item.setDate(this.dateSelection.getSelectedItem().toString());
         item.setTime(Integer.parseInt(parseTime(this.timeSelection.getSelectedItem().toString())));
         item.setDuration(Integer.parseInt(parseDuration(this.durationChoice.getSelectedItem().toString())));
@@ -205,8 +204,8 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
     }
 
     private Item configureTask() {
-        Item item = new Event();
-        item.setActivity(this.taskNameChoice.getText());
+        Item item = new Task();
+        item.setActivity(removeSpaces(this.taskNameChoice.getText()));
         item.setDate(this.taskDateSelection.getSelectedItem().toString());
         return item;
     }
@@ -220,6 +219,25 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
     private String parseDuration(String duration) {
         String numTime = duration.substring(0, 1);
         return numTime;
+    }
+
+    private String removeSpaces(String string) {
+        int length = string.length();
+        String removed = "";
+
+        int counter = 0;
+        while (counter < length) {
+            String str = string.substring(counter, (counter + 1));
+            if (!str.equals(" ")) {
+                removed += str;
+            }
+            counter++;
+        }
+
+        if (removed.equals("")) {
+            return "un-named";
+        }
+        return removed;
     }
 
 

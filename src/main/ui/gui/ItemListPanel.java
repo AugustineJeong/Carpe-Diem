@@ -30,7 +30,8 @@ public class ItemListPanel extends JPanel implements Observable {
 
     public ItemListPanel(List<Item> itemList) {
 
-        this.itemList = itemList;
+        this.itemList = makeCopyOfItemList(itemList);
+
         this.observerList = new ArrayList<>();
 
         //CITATION: Learned how to reverse an ArrayList as seen on following line on stack overflow by Shankar Agarwal's
@@ -147,5 +148,14 @@ public class ItemListPanel extends JPanel implements Observable {
         for (Observer observer : this.observerList) {
             observer.update(i, o);
         }
+    }
+
+    private List<Item> makeCopyOfItemList(List<Item> itemList) {
+        List<Item> newList = new ArrayList<>();
+        for (Item item : itemList) {
+            newList.add(item);
+        }
+
+        return newList;
     }
 }

@@ -98,10 +98,10 @@ public class MainFrame extends JFrame implements Observer {
     private void updateExtender(int i, Object o) {
         if (i == 10) {
             container.removeAll();
-            this.itemList.add(new Event());
+            this.itemList.add((Item) o);
             container.add(new ItemListPanel(this.itemList), BorderLayout.WEST);
             container.add(optionsPanel, BorderLayout.EAST);
-            container.add(centerPanelDefault);
+            container.add(newItemConfigureCenter);
             container.revalidate();
             container.repaint();
         }
