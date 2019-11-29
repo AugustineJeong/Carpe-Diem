@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 
 public class GraphicInterfaceCompact {
 
+    //constructor
     public GraphicInterfaceCompact() {
         JFrame frame = new MainFrameCompact("Dashboard - Nano Edition");
 
@@ -22,7 +23,7 @@ public class GraphicInterfaceCompact {
         frame.setMaximumSize(frame.getSize());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        //CITATION: Lines 26-27 copied from JRL's answer edited by Tot Zam on
+        //CITATION: Lines 29-30 copied from JRL's answer edited by Tot Zam on
         // https://stackoverflow.com/questions/2442599/how-to-set-jframe-to-appear-centered-regardless-of-
         // monitor-resolution
         frame.pack();

@@ -134,6 +134,7 @@ public class DeleteItemCenter extends CenterPanelDefault implements Observable {
                 taskDetail.setBorderPainted(false);
 
                 ActionListener actionListener = new ActionListener() {
+                    //EFFECTS: overrides actionPerformed method, removes item from object's itemList, notifies observers
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         itemList.remove(item);

@@ -45,7 +45,6 @@ public class MainFrame extends JFrame implements Observer {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-//        flagMap = new HashMap<>();
 
         //layout
         setLayout(new BorderLayout());
@@ -75,6 +74,8 @@ public class MainFrame extends JFrame implements Observer {
         container.add(centerPanelWeather, BorderLayout.CENTER);
     }
 
+    //MODIFIES: this, ./data/saveEvents.txt and ./data/saveTasks.txt
+    //EFFECTS: refreshes panels on this frame depending on value of i parameter and o parameter
     @Override
     public void update(int i, Object o) {
         if (i == 1) {
@@ -97,6 +98,8 @@ public class MainFrame extends JFrame implements Observer {
         updateExtender2(i, o);
     }
 
+    //MODIFIES: ./data/saveEvents.txt and ./data/saveTasks.txt
+    //EFFECTS: refreshes panels on this frame depending on value of i parameter and o parameter
     private void updateExtender(int i, Object o) {
         if (i == 10) {
             container.removeAll();
@@ -121,6 +124,8 @@ public class MainFrame extends JFrame implements Observer {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: refreshes panels on this frame depending on value of i parameter and o parameter
     private void updateExtender2(int i, Object o) {
         if (i == 4) {
             updateHelper();
@@ -140,6 +145,8 @@ public class MainFrame extends JFrame implements Observer {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: removes all panels from this frame, creates and adds new instance of itemListPanel, adds optionsPanel
     private void updateHelper() {
         container.removeAll();
         this.itemListPanel = new ItemListPanel(this.itemList);

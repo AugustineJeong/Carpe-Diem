@@ -24,13 +24,14 @@ public class OptionsPanelCompact extends JPanel implements Observable {
 
     List<Observer> observerList = new ArrayList<>();
 
+    //constructor
     public OptionsPanelCompact() {
         Dimension size = getPreferredSize();
         size.width = 350;
         size.height = 350;
         setPreferredSize(size);
 
-        //CITATION: Copied / modified the following 4 lines of code from Xiaoerge's answer on
+        //CITATION: Copied / modified Lines 36-39 from Xiaoerge's answer on
         //https://stackoverflow.com/questions/4564755/java-setting-fonts-color-in-setborder
         Border titledBorder = BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(),
                 "Options Menu", 0, 0,
@@ -44,7 +45,6 @@ public class OptionsPanelCompact extends JPanel implements Observable {
         JButton saveProgram = new JButton("     Save Changes     ");
         JButton homeButton = new JButton("        To Home         ");
         JButton newItemButton = new JButton("     Add new Item    ");
-
 
         viewAllItems.setBorderPainted(false);
         flagUnFlagItem.setBorderPainted(false);
@@ -62,7 +62,7 @@ public class OptionsPanelCompact extends JPanel implements Observable {
         homeButton.setOpaque(true);
         newItemButton.setOpaque(true);
 
-        //CITATION: Following 4 lines of code copied from
+        //CITATION: Copied Lines 67-70 from
         // http://www.nullpointer.at/2011/08/21/java-code-snippets-howto-resize-an-imageicon/#comment-11870
         ImageIcon itemIcon = new ImageIcon("./data/pencil.png");
         Image iconImage = itemIcon.getImage();
@@ -72,7 +72,7 @@ public class OptionsPanelCompact extends JPanel implements Observable {
         newItemButton.setIcon(itemIcon);
         newItemButton.setBackground(Color.orange);
 
-        //CITATION: copied / modified the following 7 lines of 'setFont' code from Asaf David's answer on
+        //CITATION: copied / modified Lines 78-84 of 'setFont' code from Asaf David's answer on
         // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
         // the-maximum-size
         viewAllItems.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
@@ -94,7 +94,7 @@ public class OptionsPanelCompact extends JPanel implements Observable {
         add(newItemButton, gridBagConstraints);
         n++;
 
-        //CITATION: Following 4 lines of code copied from
+        //CITATION: Copied Lines 99-102 from
         // http://www.nullpointer.at/2011/08/21/java-code-snippets-howto-resize-an-imageicon/#comment-11870
         ImageIcon allIcon = new ImageIcon("./data/search.png");
         Image allImage = allIcon.getImage();
@@ -108,7 +108,7 @@ public class OptionsPanelCompact extends JPanel implements Observable {
         add(viewAllItems, gridBagConstraints);
         n++;
 
-        //CITATION: Following 4 lines of code copied from
+        //CITATION: Copied Lines 113-116 from
         // http://www.nullpointer.at/2011/08/21/java-code-snippets-howto-resize-an-imageicon/#comment-11870
         ImageIcon dayIcon = new ImageIcon("./data/calendar-checkmark-line.png");
         Image dayImage = dayIcon.getImage();
@@ -122,7 +122,7 @@ public class OptionsPanelCompact extends JPanel implements Observable {
         add(viewItemsByDay, gridBagConstraints);
         n++;
 
-        //CITATION: Following 4 lines of code copied from
+        //CITATION: Following Lines 127-130 from
         // http://www.nullpointer.at/2011/08/21/java-code-snippets-howto-resize-an-imageicon/#comment-11870
         ImageIcon deleteIcon = new ImageIcon("./data/text-document-remove.png");
         Image deleteImage = deleteIcon.getImage();
@@ -135,7 +135,7 @@ public class OptionsPanelCompact extends JPanel implements Observable {
         add(deleteItems, gridBagConstraints);
         n++;
 
-        //CITATION: Following 4 lines of code copied from
+        //CITATION: Copied lines 140-143 from
         // http://www.nullpointer.at/2011/08/21/java-code-snippets-howto-resize-an-imageicon/#comment-11870
         ImageIcon flagIcon = new ImageIcon("./data/flag-line.png");
         Image flagImage = flagIcon.getImage();
@@ -148,7 +148,7 @@ public class OptionsPanelCompact extends JPanel implements Observable {
         add(flagUnFlagItem, gridBagConstraints);
         n++;
 
-        //CITATION: Following 4 lines copied from
+        //CITATION: Copied Lines 153-156 from
         // http://www.nullpointer.at/2011/08/21/java-code-snippets-howto-resize-an-imageicon/#comment-11870
         ImageIcon saveIcon = new ImageIcon("./data/save.png");
         Image saveImage = saveIcon.getImage();
@@ -165,7 +165,7 @@ public class OptionsPanelCompact extends JPanel implements Observable {
         add(new JLabel(" "), gridBagConstraints);
         n++;
 
-        //CITATION: Following 4 lines of code copied from
+        //CITATION: Copied Lines 170-173 from
         // http://www.nullpointer.at/2011/08/21/java-code-snippets-howto-resize-an-imageicon/#comment-11870
         ImageIcon homeIcon = new ImageIcon("./data/home.png");
         Image homeImage = homeIcon.getImage();
@@ -180,6 +180,7 @@ public class OptionsPanelCompact extends JPanel implements Observable {
         setBackground(new Color(173, 216, 230));
 
         ActionListener showAllItems = new ActionListener() {
+            //EFFECTS: overrides actionPerformed method, notifies observers
             @Override
             public void actionPerformed(ActionEvent e) {
                 notifyObserver(1, null);
@@ -187,6 +188,7 @@ public class OptionsPanelCompact extends JPanel implements Observable {
         };
 
         ActionListener showItemsByDay = new ActionListener() {
+            //EFFECTS: overrides actionPerformed method, notifies observers
             @Override
             public void actionPerformed(ActionEvent e) {
                 notifyObserver(9, null);
@@ -194,6 +196,7 @@ public class OptionsPanelCompact extends JPanel implements Observable {
         };
 
         ActionListener flagger = new ActionListener() {
+            //EFFECTS: overrides actionPerformed method, notifies observers
             @Override
             public void actionPerformed(ActionEvent e) {
                 notifyObserver(2, null);
@@ -201,6 +204,7 @@ public class OptionsPanelCompact extends JPanel implements Observable {
         };
 
         ActionListener deleter = new ActionListener() {
+            //EFFECTS: overrides actionPerformed method, notifies observers
             @Override
             public void actionPerformed(ActionEvent e) {
                 notifyObserver(4, null);
@@ -208,6 +212,7 @@ public class OptionsPanelCompact extends JPanel implements Observable {
         };
 
         ActionListener saver = new ActionListener() {
+            //EFFECTS: overrides actionPerformed method, notifies observers
             @Override
             public void actionPerformed(ActionEvent e) {
                 notifyObserver(3, null);
@@ -215,6 +220,7 @@ public class OptionsPanelCompact extends JPanel implements Observable {
         };
 
         ActionListener goHome = new ActionListener() {
+            //EFFECTS: overrides actionPerformed method, notifies observers
             @Override
             public void actionPerformed(ActionEvent e) {
                 notifyObserver(0, null);
@@ -222,6 +228,7 @@ public class OptionsPanelCompact extends JPanel implements Observable {
         };
 
         ActionListener createItem = new ActionListener() {
+            //EFFECTS: overrides actionPerformed method, notifies observers
             @Override
             public void actionPerformed(ActionEvent e) {
                 notifyObserver(7, null);
@@ -237,6 +244,8 @@ public class OptionsPanelCompact extends JPanel implements Observable {
         newItemButton.addActionListener(createItem);
     }
 
+    //MODIFIES: this
+    //EFFECTS: adds observer parameter to this object's List of observers if not already contained in the list
     @Override
     public void addObserver(Observer observer) {
         if (!this.observerList.contains(observer)) {
@@ -244,6 +253,7 @@ public class OptionsPanelCompact extends JPanel implements Observable {
         }
     }
 
+    //EFFECTS: calls update method on all Observers in this object's List of observers
     @Override
     public void notifyObserver(int i, Object o) {
         for (Observer observer : this.observerList) {

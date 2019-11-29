@@ -83,6 +83,7 @@ public class FlagCenter extends CenterPanelDefault implements Observable {
                 eventDetail.setBorderPainted(false);
 
                 ActionListener actionListener = new ActionListener() {
+                    //EFFECTS: overrides actionPerformed method, flags or un-flags item, notifies observers
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         if (item.isFlagged()) {
@@ -125,7 +126,7 @@ public class FlagCenter extends CenterPanelDefault implements Observable {
                 JButton taskDetail = new JButton(item.returnItemDetails());
                 gridBagConstraints.gridy = n;
 
-                //CITATION: copied / modified Line 131 of 'setFont' code from Asaf David's answer on
+                //CITATION: copied / modified Line 132 of 'setFont' code from Asaf David's answer on
                 // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
                 // the-maximum-size
                 taskDetail.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
@@ -138,6 +139,7 @@ public class FlagCenter extends CenterPanelDefault implements Observable {
                 taskDetail.setBorderPainted(false);
 
                 ActionListener actionListener = new ActionListener() {
+                    //EFFECTS: overrides actionPerformed method, flags or un-flags item, notifies observer
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         if (item.isFlagged()) {

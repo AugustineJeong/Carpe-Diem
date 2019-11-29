@@ -24,7 +24,6 @@ import java.util.List;
 public class MainFrameCompact extends JFrame implements Observer {
 
     private List<Item> itemList;
-//    private Map<Flag, List<Item>> flagMap;
 
     //this is a PANEL
     private OptionsPanelCompact optionsPanelCompact;
@@ -47,7 +46,6 @@ public class MainFrameCompact extends JFrame implements Observer {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-//        flagMap = new HashMap<>();
 
         //layout
         setLayout(new BorderLayout());
@@ -74,6 +72,8 @@ public class MainFrameCompact extends JFrame implements Observer {
         container.add(centerPanelWeather, BorderLayout.CENTER);
     }
 
+    //MODIFIES: this, ./data/saveEvents.txt and ./data/saveTasks.txt
+    //EFFECTS: refreshes panels on this frame depending on value of i parameter and o parameter
     @Override
     public void update(int i, Object o) {
         if (i == 1) {
@@ -96,6 +96,8 @@ public class MainFrameCompact extends JFrame implements Observer {
         updateExtender2(i, o);
     }
 
+    //MODIFIES: ./data/saveEvents.txt and ./data/saveTasks.txt
+    //EFFECTS: refreshes panels on this frame depending on value of i parameter and o parameter
     private void updateExtender(int i, Object o) {
         if (i == 10) {
             container.removeAll();
@@ -106,12 +108,12 @@ public class MainFrameCompact extends JFrame implements Observer {
             TextSaveLoad textSaveLoad = new TextSaveLoad();
             try {
                 textSaveLoad.save(this.itemList);
-                //CITATION: Copied the following line from
+                //CITATION: Copied Line 111 from
                 // https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html
                 JOptionPane.showMessageDialog(new JFrame(), "Program saved!");
             } catch (IOException e) {
                 e.printStackTrace();
-                //CITATION: Copied the following line from
+                //CITATION: Copied Lines 116-117 from
                 // https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html
                 JOptionPane.showMessageDialog(new JFrame(), "Error: Program not saved. Exception thrown.",
                         "Error", JOptionPane.ERROR_MESSAGE);
@@ -119,6 +121,8 @@ public class MainFrameCompact extends JFrame implements Observer {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: refreshes panels on this frame depending on value of i parameter and o parameter
     private void updateExtender2(int i, Object o) {
         if (i == 4) {
             updateHelper();
@@ -138,16 +142,16 @@ public class MainFrameCompact extends JFrame implements Observer {
         }
     }
 
+    //EFFECTS: removes all panels on this frame and adds optionsPanelCompact
     private void updateHelper() {
         container.removeAll();
         container.add(optionsPanelCompact, BorderLayout.EAST);
     }
 
+    //EFFECTS: repaints and re-validates this frame
     private void repaintAndValidate() {
         container.repaint();
         container.revalidate();
     }
-
-
 }
 

@@ -28,6 +28,7 @@ public class ItemListPanel extends JPanel implements Observable {
     private List<Item> itemList;
     private List<Observer> observerList;
 
+    //constructor
     public ItemListPanel(List<Item> itemList) {
 
         //Made a copy of the itemList so that it doesn't mess with the original field in MainFrame...
@@ -36,7 +37,7 @@ public class ItemListPanel extends JPanel implements Observable {
         this.observerList = new ArrayList<>();
 
         //CITATION: Learned how to reverse an ArrayList as seen on following line on stack overflow by Shankar Agarwal's
-        // answer that had been edited by Ryan Emerle
+        // answer that had been edited by Ryan Emerle (Copied Line 42)
         // https://stackoverflow.com/questions/10766492/what-is-the-simplest-way-to-reverse-an-arraylist
         Collections.reverse(this.itemList);
 
@@ -53,7 +54,7 @@ public class ItemListPanel extends JPanel implements Observable {
         JLabel taskLabel = new JLabel("Tasks: ");
         JButton addItemButton = new JButton("    Add new Item    ");
 
-        //CITATION: copied / modified the following line of 'setFont' code from Asaf David's answer on
+        //CITATION: copied / modified Line 60 'setFont' code from Asaf David's answer on
         // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
         // the-maximum-size
         addItemButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
@@ -62,7 +63,7 @@ public class ItemListPanel extends JPanel implements Observable {
         addItemButton.setOpaque(true);
         addItemButton.setBorderPainted(false);
 
-        //CITATION: Following 4 lines of code copied from
+        //CITATION: Following Lines 68-71 from
         // http://www.nullpointer.at/2011/08/21/java-code-snippets-howto-resize-an-imageicon/#comment-11870
         ImageIcon itemIcon = new ImageIcon("./data/pencil.png");
         Image iconImage = itemIcon.getImage();
@@ -71,7 +72,7 @@ public class ItemListPanel extends JPanel implements Observable {
 
         addItemButton.setIcon(itemIcon);
 
-        //CITATION: copied / modified the following 2 lines of 'setFont' code from Asaf David's answer on
+        //CITATION: copied / modified Lines 78-79 of 'setFont' code from Asaf David's answer on
         // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
         // the-maximum-size
         eventLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 15));
@@ -102,7 +103,7 @@ public class ItemListPanel extends JPanel implements Observable {
             }
             if (item.getIsEvent()) {
                 JLabel eventDetail = new JLabel(item.returnItemDetails());
-                //CITATION: copied / modified the following line of 'setFont' code from Asaf David's answer on
+                //CITATION: copied / modified Line 109 of 'setFont' code from Asaf David's answer on
                 // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
                 // the-maximum-size
                 eventDetail.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
@@ -139,7 +140,7 @@ public class ItemListPanel extends JPanel implements Observable {
             }
             if (!item.getIsEvent()) {
                 JLabel taskDetail = new JLabel(item.returnItemDetails());
-                //CITATION: copied / modified the following line of 'setFont' code from Asaf David's answer on
+                //CITATION: copied / modified Line 146 of 'setFont' code from Asaf David's answer on
                 // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
                 // the-maximum-size
                 taskDetail.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
@@ -160,6 +161,7 @@ public class ItemListPanel extends JPanel implements Observable {
         setBackground(new Color(173, 216, 230));
 
         ActionListener actionListener = new ActionListener() {
+            //EFFECTS: overrides actionPerformed method, notifies observers
             @Override
             public void actionPerformed(ActionEvent e) {
                 notifyObserver(7, null);
@@ -169,6 +171,8 @@ public class ItemListPanel extends JPanel implements Observable {
         addItemButton.addActionListener(actionListener);
     }
 
+    //MODIFIES: this
+    //EFFECTS: adds observer parameter to this object's List of observers if not already contained in the list
     @Override
     public void addObserver(Observer observer) {
         if (!this.observerList.contains(observer)) {
@@ -176,6 +180,7 @@ public class ItemListPanel extends JPanel implements Observable {
         }
     }
 
+    //EFFECTS: calls update method on all Observers in this object's List of observers
     @Override
     public void notifyObserver(int i, Object o) {
         for (Observer observer : this.observerList) {
@@ -183,12 +188,12 @@ public class ItemListPanel extends JPanel implements Observable {
         }
     }
 
+    //EFFECTS: creates and returns a copy of the itemList parameter
     private List<Item> makeCopyOfItemList(List<Item> itemList) {
         List<Item> newList = new ArrayList<>();
         for (Item item : itemList) {
             newList.add(item);
         }
-
         return newList;
     }
 }
