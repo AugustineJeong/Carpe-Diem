@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-//citation: (line 16-17, 36-37, 47, 51-52, 58, 68, 87) copied / learned from Paul Miskew's video:
-// youtube.com/watch?v=k3K9KHPYZFc
+//citation: (line 16-17, 38-39, 41-50, 56-57, 59-64, 77, 98) copied / learned from Paul Miskew's video:
+// https://www.youtube.com/watch?v=k3K9KHPYZFc
 public class TextSaveLoad {
 
     private File eventFile = new File("./data/saveEvents.txt");

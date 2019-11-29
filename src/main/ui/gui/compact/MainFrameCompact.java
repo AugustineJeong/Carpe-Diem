@@ -2,8 +2,6 @@ package ui.gui.compact;
 
 import model.data.TextSaveLoad;
 import model.item.Item;
-//import model.marker.Flag;
-import ui.gui.OptionsPanelCompact;
 import ui.gui.center.*;
 import ui.gui.observer.Observer;
 

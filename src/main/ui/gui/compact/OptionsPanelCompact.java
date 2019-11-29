@@ -1,4 +1,4 @@
-package ui.gui;
+package ui.gui.compact;
 
 import ui.gui.observer.Observable;
 import ui.gui.observer.Observer;
