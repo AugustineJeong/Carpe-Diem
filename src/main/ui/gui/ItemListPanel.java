@@ -164,6 +164,7 @@ public class ItemListPanel extends JPanel implements Observable {
             //EFFECTS: notifies observers
             @Override
             public void actionPerformed(ActionEvent e) {
+                beeper();
                 notifyObserver(7, null);
             }
         };
@@ -195,5 +196,11 @@ public class ItemListPanel extends JPanel implements Observable {
             newList.add(item);
         }
         return newList;
+    }
+
+    //EFFECTS: makes beep sound
+    private void beeper() {
+        //CITATION: Line 204 from http://java-demos.blogspot.com/2012/11/create-beep-sound-in-java.html
+        Toolkit.getDefaultToolkit().beep();
     }
 }
