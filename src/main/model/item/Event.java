@@ -108,16 +108,16 @@ public class Event extends Item implements Observable {
     public void setCalculatedEnd() {
         int endTime;
         endTime = this.time + (this.duration * 100);
-        if (endTime > 2400) {
+        if (endTime >= 2400) {
             this.end = endTime % 2400;
-            setCalculatedEndDateHelper();
+            setCalculatedEndDateHelper(endTime);
             System.out.println("Warning: Your activity does not end on the day it starts.");
         } else {
             this.end = endTime;
         }
     }
 
-    private void setCalculatedEndDateHelper() {
+    private void setCalculatedEndDateHelper(int endTime) {
         int dayNum = 0;
         if (this.date.equals("Monday")) {
             dayNum = 1;
@@ -134,24 +134,26 @@ public class Event extends Item implements Observable {
         } else if (this.date.equals("Sunday")) {
             dayNum = 7;
         }
-        int overDays = this.duration / 2400;
-        setCalculatedEndDateHelpersHelper((dayNum + overDays) % 7);
+
+        setCalculatedEndDateHelpersHelper(dayNum, endTime);
     }
 
-    private void setCalculatedEndDateHelpersHelper(int dayNum) {
-        String endDay = "Monday";
+    private void setCalculatedEndDateHelpersHelper(int dayNum, int endTime) {
+        dayNum = (dayNum + (endTime / 2400)) % 7;
+
+        String endDay = "Sunday";
         if (dayNum == 1) {
-            endDay = "Tuesday";
+            endDay = "Monday";
         } else if (dayNum == 2) {
-            endDay = "Wednesday";
+            endDay = "Tuesday";
         } else if (dayNum == 3) {
-            endDay = "Thursday";
+            endDay = "Wednesday";
         } else if (dayNum == 4) {
-            endDay = "Friday";
+            endDay = "Thursday";
         } else if (dayNum == 5) {
-            endDay = "Saturday";
+            endDay = "Friday";
         } else if (dayNum == 6) {
-            endDay = "Sunday";
+            endDay = "Saturday";
         }
 
         notifyObserver(22, endDay);

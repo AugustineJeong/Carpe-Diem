@@ -65,6 +65,7 @@ public class DeleteItemCenter extends CenterPanelDefault implements Observable {
         }
 
         gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.insets = new Insets(0, 5, 0, 0);
         gridBagConstraints.gridy = n;
         add(eventLabel, gridBagConstraints);
         n++;
@@ -110,7 +111,7 @@ public class DeleteItemCenter extends CenterPanelDefault implements Observable {
             n++;
         }
 
-        gridBagConstraints.insets = new Insets(0, 0, 0, 185);
+        gridBagConstraints.insets = new Insets(0, 5, 0, 0);
         gridBagConstraints.gridy = n;
         add(taskLabel, gridBagConstraints);
         n++;

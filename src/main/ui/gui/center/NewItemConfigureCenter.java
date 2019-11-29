@@ -80,7 +80,10 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
         dateSelection.setBounds(50, 50, 90, 20);
         taskDateSelection = new JComboBox(date);
         taskDateSelection.setBounds(50, 50, 90, 20);
-        String[] duration = {"1 hour", "2 hours", "3 hours", "4 hours", "5 hours", "6 hours", "7 hours"};
+        String[] duration = {"1 hour", "2 hours", "3 hours", "4 hours", "5 hours", "6 hours", "7 hours", "8 hours",
+                "9 hours", "10 hours", "11 hours", "12 hours", "13 hours", "14 hours", "15 hours", "16 hours",
+                "17 hours", "18 hours", "19 hours", "20 hours", "21 hours", "22 hours", "23 hours", "24 hours",
+                "48 hours", "72 hours", "96 hours", "120 hours"};
         durationChoice = new JComboBox(duration);
         durationChoice.setBounds(50, 50, 90, 20);
 
@@ -292,7 +295,14 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
     }
 
     private String parseDuration(String duration) {
-        String numTime = duration.substring(0, 1);
+        String numTime;
+        if (duration.length() == 9) {
+            numTime = duration.substring(0, 3);
+        } else if (duration.length() == 8) {
+            numTime = duration.substring(0, 2);
+        } else {
+            numTime = duration.substring(0, 1);
+        }
         return numTime;
     }
 

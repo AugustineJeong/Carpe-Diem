@@ -25,8 +25,6 @@ public class FlagCenter extends CenterPanelDefault implements Observable {
 
     private List<Item> itemList;
     private List<Observer> observerList;
-    private GridBagConstraints gridBagConstraints;
-    int spacer = 0;
 
     public FlagCenter(List<Item> list) {
         super();
@@ -38,104 +36,124 @@ public class FlagCenter extends CenterPanelDefault implements Observable {
 
         //CITATION: Copied / modified the following 4 lines of code from Xiaoerge's answer on
         //https://stackoverflow.com/questions/4564755/java-setting-fonts-color-in-setborder
-        Border titledBorder = BorderFactory.createTitledBorder(border, "Flag / Un-flag Items", 0,
-                0, new Font("Comic Sans MS", Font.PLAIN, 17), Color.black);
+        Border titledBorder = BorderFactory.createTitledBorder(border, "Delete Items - click item to delete",
+                0, 0, new Font("Comic Sans MS", Font.PLAIN, 17), Color.black);
         setBorder(titledBorder);
 
         JLabel eventLabel = new JLabel("Events: ");
         JLabel taskLabel = new JLabel("Tasks: ");
-        JLabel activityLabel = new JLabel("WHAT ACTIVITY WOULD YOU LIKE TO FLAG?");
-        JTextField itemChoice = new JTextField("ENTER ACTIVITY NAME");
-        JButton flag = new JButton("FLAG");
-        JButton unFlag = new JButton("UN-FLAG");
 
-        flag.setBorderPainted(false);
-        unFlag.setBorderPainted(false);
-        flag.setOpaque(true);
-        unFlag.setOpaque(true);
+        //CITATION: copied / modified the following 2 lines of 'setFont' code from Asaf David's answer on
+        // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
+        // the-maximum-size
+        eventLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+        taskLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+
+
 
         setLayout(new GridBagLayout());
-        gridBagConstraints = new GridBagConstraints();
+        GridBagConstraints gridBagConstraints = new GridBagConstraints();
 
-        emptySpace();
-        emptySpace();
+        int n = 0;
 
-        gridBagConstraints.gridy = spacer;
+        int counter = 0;
+        while (counter < 2) {
+            gridBagConstraints.gridy = n;
+            add(new JLabel(" "), gridBagConstraints);
+            n++;
+            counter++;
+        }
+
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.insets = new Insets(0, 5, 0, 0);
+        gridBagConstraints.gridy = n;
         add(eventLabel, gridBagConstraints);
-        spacer++;
+        n++;
 
-        gridBagConstraints.gridy = spacer;
+        gridBagConstraints.gridy = n;
         add(new JLabel(" "), gridBagConstraints);
-        spacer++;
+        n++;
 
 
         for (Item item : this.itemList) {
             if (item.getIsEvent()) {
-                JLabel eventDetail = new JLabel(item.returnItemDetails());
-                gridBagConstraints.gridy = spacer;
+                JButton eventDetail = new JButton(item.returnItemDetails());
+                gridBagConstraints.gridy = n;
+
+                //CITATION: copied / modified the following line of 'setFont' code from Asaf David's answer on
+                // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
+                // the-maximum-size
+                eventDetail.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+
+                eventDetail.setBorderPainted(false);
+
+                ActionListener actionListener = new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        itemList.remove(item);
+                        notifyObserver(4, null);
+                    }
+                };
+
+                eventDetail.addActionListener(actionListener);
+
                 add(eventDetail, gridBagConstraints);
-                spacer++;
+                n++;
             }
         }
 
-        emptySpace();
-        emptySpace();
+        int y = 0;
+        while (y < 2) {
+            gridBagConstraints.anchor = GridBagConstraints.WEST;
+            gridBagConstraints.gridy = n;
+            add(new JLabel(" "), gridBagConstraints);
+            y++;
+            n++;
+        }
 
-        gridBagConstraints.insets = new Insets(0, 0, 0, 185);
-        gridBagConstraints.gridy = spacer;
+        gridBagConstraints.insets = new Insets(0, 5, 0, 0);
+        gridBagConstraints.gridy = n;
         add(taskLabel, gridBagConstraints);
-        spacer++;
+        n++;
 
         gridBagConstraints.anchor = GridBagConstraints.WEST;
-        gridBagConstraints.gridy = spacer;
+        gridBagConstraints.gridy = n;
         add(new JLabel(" "), gridBagConstraints);
-        spacer++;
+        n++;
 
         for (Item item : this.itemList) {
             if (!item.getIsEvent()) {
-                JLabel eventDetail = new JLabel(item.returnItemDetails());
-                gridBagConstraints.gridy = spacer;
-                add(eventDetail, gridBagConstraints);
-                spacer++;
+                JButton taskDetail = new JButton(item.returnItemDetails());
+                gridBagConstraints.gridy = n;
+
+                //CITATION: copied / modified the following line of 'setFont' code from Asaf David's answer on
+                // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
+                // the-maximum-size
+                taskDetail.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+
+                taskDetail.setBorderPainted(false);
+
+                ActionListener actionListener = new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        itemList.remove(item);
+                        notifyObserver(4, null);
+                    }
+                };
+
+                taskDetail.addActionListener(actionListener);
+
+                add(taskDetail, gridBagConstraints);
+                n++;
             }
         }
 
-        emptySpace();
-        emptySpace();
-
-        gridBagConstraints.insets = new Insets(5, 0, 0, 0);
-        gridBagConstraints.anchor = GridBagConstraints.CENTER;
-        gridBagConstraints.gridy = spacer;
-        add(activityLabel, gridBagConstraints);
-        spacer++;
-
-        gridBagConstraints.anchor = GridBagConstraints.CENTER;
-        gridBagConstraints.gridy = spacer;
-        add(itemChoice, gridBagConstraints);
-        spacer++;
-
-        gridBagConstraints.gridy = spacer;
-        add(flag, gridBagConstraints);
-        spacer++;
-
-        gridBagConstraints.gridy = spacer;
-        add(unFlag, gridBagConstraints);
-
         setBackground(new Color(173, 216, 230));
-
-        ActionListener actionListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        };
-
-        flag.addActionListener(actionListener);
     }
 
     @Override
     public void addObserver(Observer observer) {
-        if (!this.observerList.contains(observer)) {
+        if (!this.itemList.contains(observer)) {
             this.observerList.add(observer);
         }
     }
@@ -145,12 +163,5 @@ public class FlagCenter extends CenterPanelDefault implements Observable {
         for (Observer observer : this.observerList) {
             observer.update(i, o);
         }
-    }
-
-    private void emptySpace() {
-        gridBagConstraints.anchor = GridBagConstraints.WEST;
-        gridBagConstraints.gridy = spacer;
-        add(new JLabel(" "), gridBagConstraints);
-        spacer++;
     }
 }
