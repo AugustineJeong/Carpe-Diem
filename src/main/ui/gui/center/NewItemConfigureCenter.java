@@ -31,15 +31,6 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
     private GridBagConstraints gridBagConstraints;
     private int spacer = 0;
 
-    private JLabel eventLabel = new JLabel("CONFIGURE EVENT: ");
-    private JLabel taskLabel = new JLabel("CONFIGURE TASK: ");
-    private JLabel eventName = new JLabel("Event name:");
-    private JLabel eventDate = new JLabel("Event date:");
-    private JLabel eventTime = new JLabel("Event time:");
-    private JLabel eventDuration = new JLabel("Event duration:");
-    private JLabel eventWeather = new JLabel("Event Weather Sensitivity:");
-    private JLabel taskName = new JLabel("Task name:");
-    private JLabel taskDate = new JLabel("Task date:");
     private JTextField nameChoice = new JTextField("               ");
     private JTextField taskNameChoice = new JTextField("               ");
     private JComboBox weatherSelection;
@@ -55,6 +46,16 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
 
         this.itemList = itemList;
         this.observerList = new ArrayList<>();
+
+        JLabel eventLabel = new JLabel("CONFIGURE EVENT: ");
+        JLabel taskLabel = new JLabel("CONFIGURE TASK: ");
+        JLabel eventName = new JLabel("Event name:");
+        JLabel eventDate = new JLabel("Event date:");
+        JLabel eventTime = new JLabel("Event time:");
+        JLabel eventDuration = new JLabel("Event duration:");
+        JLabel eventWeather = new JLabel("Event Weather Sensitivity:");
+        JLabel taskName = new JLabel("Task name:");
+        JLabel taskDate = new JLabel("Task date:");
 
         Border border = BorderFactory.createLineBorder(Color.white, 1);
 
@@ -275,9 +276,9 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
         item.setDuration(Integer.parseInt(parseDuration(this.durationChoice.getSelectedItem().toString())));
         item.setCalculatedEnd();
         if (this.weatherSelection.getSelectedItem().toString().equals("No rain")) {
-            item.setWeatherSensitive(false);
-        } else {
             item.setWeatherSensitive(true);
+        } else {
+            item.setWeatherSensitive(false);
         }
         return item;
     }

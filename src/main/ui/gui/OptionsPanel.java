@@ -39,23 +39,27 @@ public class OptionsPanel extends JPanel implements Observable {
 
         JButton viewAllItems = new JButton("    View All Items    ");
         JButton viewItemsByDay = new JButton(" View Items by Day ");
-        JButton flagUnFlagItem = new JButton("Flag / un-flag Item");
-        JButton deleteItems = new JButton("     Delete Items     ");
-        JButton saveProgram = new JButton("     Save Changes    ");
+        JButton flagUnFlagItem = new JButton(" Flag / un-flag Item");
+        JButton deleteItems = new JButton("      Delete Items     ");
+        JButton saveProgram = new JButton("     Save Changes     ");
+        JButton homeButton = new JButton("        To Home         ");
+
 
         viewAllItems.setBorderPainted(false);
         flagUnFlagItem.setBorderPainted(false);
         deleteItems.setBorderPainted(false);
         saveProgram.setBorderPainted(false);
         viewItemsByDay.setBorderPainted(false);
+        homeButton.setBorderPainted(false);
 
         viewAllItems.setOpaque(true);
         flagUnFlagItem.setOpaque(true);
         deleteItems.setOpaque(true);
         saveProgram.setOpaque(true);
         viewItemsByDay.setOpaque(true);
+        homeButton.setOpaque(true);
 
-        //CITATION: copied / modified the following 5 lines of 'setFont' code from Asaf David's answer on
+        //CITATION: copied / modified the following 6 lines of 'setFont' code from Asaf David's answer on
         // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
         // the-maximum-size
         viewAllItems.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
@@ -63,6 +67,7 @@ public class OptionsPanel extends JPanel implements Observable {
         deleteItems.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
         saveProgram.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
         viewItemsByDay.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
+        homeButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
 
         setLayout(new GridBagLayout());
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
@@ -90,6 +95,14 @@ public class OptionsPanel extends JPanel implements Observable {
 
         gridBagConstraints.gridy = n;
         add(saveProgram, gridBagConstraints);
+        n++;
+
+        gridBagConstraints.gridy = n;
+        add(new JLabel(" "), gridBagConstraints);
+        n++;
+
+        gridBagConstraints.gridy = n;
+        add(homeButton, gridBagConstraints);
 
         setBackground(new Color(173, 216, 230));
 
@@ -128,11 +141,19 @@ public class OptionsPanel extends JPanel implements Observable {
             }
         };
 
+        ActionListener goHome = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                notifyObserver(0, null);
+            }
+        };
+
         viewAllItems.addActionListener(showAllItems);
         flagUnFlagItem.addActionListener(flagger);
         saveProgram.addActionListener(saver);
         deleteItems.addActionListener(deleter);
         viewItemsByDay.addActionListener(showItemsByDay);
+        homeButton.addActionListener(goHome);
     }
 
     @Override

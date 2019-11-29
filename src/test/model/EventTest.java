@@ -37,6 +37,18 @@ class EventTest extends ItemTest {
     }
 
     @Test
+    void testReturnItemDetailsWeatherSensitive() {
+        String expectedDetails;
+        expectedDetails = " 'interview' on Monday from 10:00 to 15:00 *";
+
+        String eventDetails;
+        event.setWeatherSensitive(true);
+        eventDetails = event.returnItemDetails();
+
+        assertEquals(expectedDetails, eventDetails);
+    }
+
+    @Test
     void testReturnItemDetailsBeforeTwelve() {
         event.setTime(900);
         event.setDuration(7);

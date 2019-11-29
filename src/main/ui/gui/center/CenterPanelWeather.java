@@ -48,7 +48,7 @@ public class CenterPanelWeather extends CenterPanelDefault {
 
         //CITATION: Copied / modified the following 4 lines of code from Xiaoerge's answer on
         //https://stackoverflow.com/questions/4564755/java-setting-fonts-color-in-setborder
-        Border titledBorder = BorderFactory.createTitledBorder(border, "View All Items", 0,
+        Border titledBorder = BorderFactory.createTitledBorder(border, "Home Screen", 0,
                 0, new Font("Comic Sans MS", Font.PLAIN, 17), Color.black);
         setBorder(titledBorder);
 

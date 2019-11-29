@@ -139,6 +139,10 @@ public class MainFrame extends JFrame implements Observer {
             this.displayItemsByDayCenter = new DisplayItemsByDayCenter(this.itemList);
             container.add(displayItemsByDayCenter);
             repaintAndValidate();
+        } else if (i == 0) {
+            updateHelper();
+            container.add(new CenterPanelWeather());
+            repaintAndValidate();
         }
     }
 

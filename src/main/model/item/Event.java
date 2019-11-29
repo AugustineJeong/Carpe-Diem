@@ -37,6 +37,10 @@ public class Event extends Item implements Observable {
             message = message + " from "
                     + timeFormatHelper(this.time) + " to " + timeFormatHelper(this.end);
         }
+
+        if (this.weatherSensitive) {
+            message += " *";
+        }
         return message;
     }
 

@@ -55,14 +55,6 @@ public class DisplayItemsCenter extends CenterPanelDefault implements Observable
 
         int n = 0;
 
-        int counter = 0;
-        while (counter < 2) {
-            gridBagConstraints.gridy = n;
-            add(new JLabel(" "), gridBagConstraints);
-            n++;
-            counter++;
-        }
-
         gridBagConstraints.anchor = GridBagConstraints.WEST;
         gridBagConstraints.insets = new Insets(0, 5, 0, 0);
         gridBagConstraints.gridy = n;
