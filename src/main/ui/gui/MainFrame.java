@@ -58,12 +58,13 @@ public class MainFrame extends JFrame implements Observer {
         //swing component
         this.itemListPanel = new ItemListPanel(this.itemList);
         this.optionsPanel = new OptionsPanel();
-        this.newItemConfigureCenter = new NewItemConfigureCenter();
+        this.newItemConfigureCenter = new NewItemConfigureCenter(this.itemList);
         this.deleteItemCenter = new DeleteItemCenter(this.itemList);
 
         this.itemListPanel.addObserver(this);
         this.optionsPanel.addObserver(this);
         this.newItemConfigureCenter.addObserver(this);
+        this.deleteItemCenter.addObserver(this);
 
         this.centerPanelDefault = new CenterPanelDefault();
         this.displayItemsCenter = new DisplayItemsCenter(this.itemList);
@@ -94,7 +95,6 @@ public class MainFrame extends JFrame implements Observer {
             updateHelper();
             container.add(newItemConfigureCenter);
             repaintAndValidate();
-
         }
         updateExtender(i, o);
         updateExtender2(i, o);
@@ -103,7 +103,6 @@ public class MainFrame extends JFrame implements Observer {
     private void updateExtender(int i, Object o) {
         if (i == 10) {
             container.removeAll();
-            this.itemList.add((Item) o);
             container.add(new ItemListPanel(this.itemList), BorderLayout.WEST);
             container.add(optionsPanel, BorderLayout.EAST);
             container.add(newItemConfigureCenter);
@@ -129,6 +128,7 @@ public class MainFrame extends JFrame implements Observer {
         if (i == 4) {
             updateHelper();
             this.deleteItemCenter = new DeleteItemCenter(this.itemList);
+            deleteItemCenter.addObserver(this);
             container.add(deleteItemCenter);
             repaintAndValidate();
         }

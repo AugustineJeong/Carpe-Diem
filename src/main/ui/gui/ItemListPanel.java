@@ -77,7 +77,7 @@ public class ItemListPanel extends JPanel implements Observable {
         add(new JLabel(" "), gridBagConstraints);
         n++;
 
-        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
         gridBagConstraints.gridy = n;
         add(eventLabel, gridBagConstraints);
         n++;
@@ -88,7 +88,7 @@ public class ItemListPanel extends JPanel implements Observable {
 
         int counter = 0;
         for (Item item : this.itemList) {
-            if (counter >= 10) {
+            if (counter >= 5) {
                 break;
             }
             if (item.getIsEvent()) {
@@ -96,7 +96,7 @@ public class ItemListPanel extends JPanel implements Observable {
                 //CITATION: copied / modified the following line of 'setFont' code from Asaf David's answer on
                 // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
                 // the-maximum-size
-                eventDetail.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
+                eventDetail.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
                 gridBagConstraints.gridy = n;
                 add(eventDetail, gridBagConstraints);
                 n++;
@@ -125,7 +125,7 @@ public class ItemListPanel extends JPanel implements Observable {
 
         counter = 0;
         for (Item item : this.itemList) {
-            if (counter >= 10) {
+            if (counter >= 5) {
                 break;
             }
             if (!item.getIsEvent()) {
@@ -133,7 +133,7 @@ public class ItemListPanel extends JPanel implements Observable {
                 //CITATION: copied / modified the following line of 'setFont' code from Asaf David's answer on
                 // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
                 // the-maximum-size
-                taskDetail.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
+                taskDetail.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
                 gridBagConstraints.gridy = n;
                 add(taskDetail, gridBagConstraints);
                 n++;

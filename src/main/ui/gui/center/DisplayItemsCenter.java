@@ -1,10 +1,14 @@
 package ui.gui.center;
 
 import model.item.Item;
+import ui.gui.observer.Observable;
+import ui.gui.observer.Observer;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 //CITATION: Class referenced / modified from youtube "Advanced Java: Swing (GUI) Programming"
@@ -16,14 +20,16 @@ import java.util.List;
 //ATTENTION: Actual implementation of action lister functions, observer pattern, program specific functions and designs
 // in this project are all my original work.
 
-public class DisplayItemsCenter extends CenterPanelDefault {
+public class DisplayItemsCenter extends CenterPanelDefault implements Observable {
 
     private List<Item> itemList;
+    private List<Observer> observerList;
 
     public DisplayItemsCenter(List<Item> list) {
         super();
 
         this.itemList = list;
+        this.observerList = new ArrayList<>();
 
         Border border = BorderFactory.createLineBorder(Color.white, 1);
 
@@ -51,13 +57,13 @@ public class DisplayItemsCenter extends CenterPanelDefault {
 
         int counter = 0;
         while (counter < 2) {
-            gridBagConstraints.anchor = GridBagConstraints.WEST;
             gridBagConstraints.gridy = n;
             add(new JLabel(" "), gridBagConstraints);
             n++;
             counter++;
         }
 
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
         gridBagConstraints.gridy = n;
         add(eventLabel, gridBagConstraints);
         n++;
@@ -69,13 +75,15 @@ public class DisplayItemsCenter extends CenterPanelDefault {
 
         for (Item item : this.itemList) {
             if (item.getIsEvent()) {
-                JLabel eventDetail = new JLabel(item.returnItemDetails());
+                JButton eventDetail = new JButton(item.returnItemDetails());
                 gridBagConstraints.gridy = n;
 
                 //CITATION: copied / modified the following line of 'setFont' code from Asaf David's answer on
                 // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
                 // the-maximum-size
                 eventDetail.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+
+                eventDetail.setBorderPainted(false);
 
                 add(eventDetail, gridBagConstraints);
                 n++;
@@ -103,7 +111,7 @@ public class DisplayItemsCenter extends CenterPanelDefault {
 
         for (Item item : this.itemList) {
             if (!item.getIsEvent()) {
-                JLabel taskDetail = new JLabel(item.returnItemDetails());
+                JButton taskDetail = new JButton(item.returnItemDetails());
                 gridBagConstraints.gridy = n;
 
                 //CITATION: copied / modified the following line of 'setFont' code from Asaf David's answer on
@@ -111,11 +119,27 @@ public class DisplayItemsCenter extends CenterPanelDefault {
                 // the-maximum-size
                 taskDetail.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 
+                taskDetail.setBorderPainted(false);
+
                 add(taskDetail, gridBagConstraints);
                 n++;
             }
         }
 
         setBackground(new Color(173, 216, 230));
+    }
+
+    @Override
+    public void addObserver(Observer observer) {
+        if (!this.itemList.contains(observer)) {
+            this.observerList.add(observer);
+        }
+    }
+
+    @Override
+    public void notifyObserver(int i, Object o) {
+        for (Observer observer : this.observerList) {
+            observer.update(i, o);
+        }
     }
 }

@@ -4,7 +4,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 
-//CITATION: lines 18-21 copied / modified from youtube "Advanced Java: Swing (GUI) Programming" tutorial series by
+//CITATION: lines 19-24 copied / modified from youtube "Advanced Java: Swing (GUI) Programming" tutorial series by
 //"Cave of Programming" Part 3 and Part 4.
 //i.e. Class built based on details regarding "Panels and Forms" and "GridBagLayout" learned / copied from the tutorial
 // series.
@@ -20,6 +20,8 @@ public class CenterPanelDefault extends JPanel {
         size.width = 300;
         size.height = 500;
         setPreferredSize(size);
+
+        setBorder(BorderFactory.createLineBorder(Color.white, 1));
 
         setBackground(new Color(173, 216, 230));
     }

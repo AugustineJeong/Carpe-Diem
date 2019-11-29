@@ -48,9 +48,12 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
     private JComboBox taskDateSelection;
     private JComboBox durationChoice;
 
-    public NewItemConfigureCenter() {
+    private List<Item> itemList;
+
+    public NewItemConfigureCenter(List<Item> itemList) {
         super();
 
+        this.itemList = itemList;
         this.observerList = new ArrayList<>();
 
         Border border = BorderFactory.createLineBorder(Color.white, 1);
@@ -206,10 +209,24 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
             @Override
             public void actionPerformed(ActionEvent e) {
                 Item item = configureEvent();
-                notifyObserver(10, item);
-                //CITATION: Copied the following line from
-                // https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html
-                JOptionPane.showMessageDialog(new JFrame(), "Event Created!");
+
+                if (itemList.size() <= 16) {
+                    itemList.add(item);
+
+                    //CITATION: Copied the following line from
+                    // https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html
+                    JOptionPane.showMessageDialog(new JFrame(), "Event Created!");
+                } else {
+
+                    //CITATION: Copied the following line from
+                    // https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html
+                    JOptionPane.showMessageDialog(new JFrame(), "Warning: Max number of scheduled items "
+                                    + "reached. Delete an item first. (Limit: 17 items)", "WARNING",
+                            JOptionPane.WARNING_MESSAGE);
+                }
+
+                notifyObserver(10, null);
+
             }
         };
 
@@ -218,11 +235,23 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
             @Override
             public void actionPerformed(ActionEvent e) {
                 Item item = configureTask();
-                notifyObserver(10, item);
 
-                //CITATION: Copied the following line from
-                // https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html
-                JOptionPane.showMessageDialog(new JFrame(), "Task Created!");
+                if (itemList.size() <= 16) {
+                    itemList.add(item);
+
+                    //CITATION: Copied the following line from
+                    // https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html
+                    JOptionPane.showMessageDialog(new JFrame(), "Task Created!");
+                } else {
+                    
+                    //CITATION: Copied the following line from
+                    // https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html
+                    JOptionPane.showMessageDialog(new JFrame(), "Warning: Max number of scheduled items "
+                                    + "reached. Delete an item first. (Limit: 17 items)", "WARNING",
+                            JOptionPane.WARNING_MESSAGE);
+                }
+
+                notifyObserver(10, null);
             }
         };
 
@@ -319,7 +348,7 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
             //CITATION: Copied the following line from
             // https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html
             JOptionPane.showMessageDialog(new JFrame(), "Warning: Your event does not end on the same day as "
-                    + "it starts. It ends on: " + o,  "WARNING", JOptionPane.WARNING_MESSAGE);
+                    + "it starts. It ends on: " + o, "WARNING", JOptionPane.WARNING_MESSAGE);
         }
     }
 }
