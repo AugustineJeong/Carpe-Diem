@@ -5,7 +5,7 @@ interview
 5
 1500
 false
-false
+true
 true
 Saturday
 study session

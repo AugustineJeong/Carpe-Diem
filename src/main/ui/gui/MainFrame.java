@@ -33,7 +33,7 @@ public class MainFrame extends JFrame implements Observer {
     //this is a PANEL
     private ItemListPanel itemListPanel;
     private OptionsPanel optionsPanel;
-    private CenterPanelDefault centerPanelDefault;
+    private CenterPanelWeather centerPanelWeather;
     private DisplayItemsCenter displayItemsCenter;
     private FlagCenter flagCenter;
     private NewItemConfigureCenter newItemConfigureCenter;
@@ -67,7 +67,7 @@ public class MainFrame extends JFrame implements Observer {
         this.newItemConfigureCenter.addObserver(this);
         this.deleteItemCenter.addObserver(this);
 
-        this.centerPanelDefault = new CenterPanelDefault();
+        this.centerPanelWeather = new CenterPanelWeather();
         this.displayItemsCenter = new DisplayItemsCenter(this.itemList);
         this.flagCenter = new FlagCenter(this.itemList);
         this.displayItemsByDayCenter = new DisplayItemsByDayCenter(this.itemList);
@@ -78,7 +78,7 @@ public class MainFrame extends JFrame implements Observer {
         //add swing component to content pane
         container.add(itemListPanel, BorderLayout.WEST);
         container.add(optionsPanel, BorderLayout.EAST);
-        container.add(centerPanelDefault, BorderLayout.CENTER);
+        container.add(centerPanelWeather, BorderLayout.CENTER);
     }
 
     @Override
