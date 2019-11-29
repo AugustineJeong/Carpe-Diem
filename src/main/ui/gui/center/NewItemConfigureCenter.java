@@ -7,13 +7,14 @@ import ui.gui.observer.Observable;
 import ui.gui.observer.Observer;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-//CITATION: Class modified / added on from youtube "Advanced Java: Swing (GUI) Programming"
+//CITATION: Class referenced / modified from youtube "Advanced Java: Swing (GUI) Programming"
 // tutorial series by "Cave of Programming" Part 3 and Part 4.
 //i.e. Class built based on details regarding "Panels and Forms" and "GridBagLayout" learned / copied from the tutorial
 // series.
@@ -52,7 +53,15 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
 
         this.observerList = new ArrayList<>();
 
-        //CITATION: Lines 55-72 modified from example provided at https://www.javatpoint.com/java-jcombobox
+        Border border = BorderFactory.createLineBorder(Color.white, 1);
+
+        //CITATION: Copied / modified the following 4 lines of code from Xiaoerge's answer on
+        //https://stackoverflow.com/questions/4564755/java-setting-fonts-color-in-setborder
+        Border titledBorder = BorderFactory.createTitledBorder(border, "Configure New Item", 0,
+                0, new Font("Comic Sans MS", Font.PLAIN, 17), Color.black);
+        setBorder(titledBorder);
+
+        //CITATION: Lines 56-73 modified from example provided at https://www.javatpoint.com/java-jcombobox
         String[] weather = {"No weather restriction", "No rain"};
         weatherSelection = new JComboBox(weather);
         weatherSelection.setBounds(50, 50, 90, 20);
@@ -74,6 +83,30 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
 
         JButton createEvent = new JButton("Create event");
         JButton createTask = new JButton("Create task");
+
+        //CITATION: copied / modified the following 19 lines of 'setFont' code from Asaf David's answer on
+        // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
+        // the-maximum-size
+        eventLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
+        taskLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
+        eventName.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
+        eventDate.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
+        eventTime.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
+        eventDuration.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
+        eventWeather.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
+        taskName.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
+        taskDate.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
+        taskNameChoice.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
+        taskDateSelection.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
+        durationChoice.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
+        createEvent.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
+        createTask.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
+        weatherSelection.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
+        timeSelection.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
+        dateSelection.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
+        taskDateSelection.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
+        durationChoice.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
+
 
         setLayout(new GridBagLayout());
         gridBagConstraints = new GridBagConstraints();

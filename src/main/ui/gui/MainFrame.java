@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//CITATION: Class modified / added on from youtube "Advanced Java: Swing (GUI) Programming" tutorial series
+//CITATION: Class referenced / modified from youtube "Advanced Java: Swing (GUI) Programming" tutorial series
 // by "Cave of Programming" Part 2.
 //i.e. Class built based on details regarding "adding components" copied / learned from the tutorial series
 // Part 2: https://www.youtube.com/watch?v=svM0SBFqp4s
@@ -37,6 +37,7 @@ public class MainFrame extends JFrame implements Observer {
     private DisplayItemsCenter displayItemsCenter;
     private FlagCenter flagCenter;
     private NewItemConfigureCenter newItemConfigureCenter;
+    private DeleteItemCenter deleteItemCenter;
 
     private Container container = getContentPane();
 
@@ -58,6 +59,7 @@ public class MainFrame extends JFrame implements Observer {
         this.itemListPanel = new ItemListPanel(this.itemList);
         this.optionsPanel = new OptionsPanel();
         this.newItemConfigureCenter = new NewItemConfigureCenter();
+        this.deleteItemCenter = new DeleteItemCenter(this.itemList);
 
         this.itemListPanel.addObserver(this);
         this.optionsPanel.addObserver(this);
@@ -66,6 +68,7 @@ public class MainFrame extends JFrame implements Observer {
         this.centerPanelDefault = new CenterPanelDefault();
         this.displayItemsCenter = new DisplayItemsCenter(this.itemList);
         this.flagCenter = new FlagCenter(this.itemList);
+
 
         this.flagCenter.addObserver(this);
 
@@ -94,6 +97,7 @@ public class MainFrame extends JFrame implements Observer {
 
         }
         updateExtender(i, o);
+        updateExtender2(i, o);
     }
 
     private void updateExtender(int i, Object o) {
@@ -118,6 +122,15 @@ public class MainFrame extends JFrame implements Observer {
                 JOptionPane.showMessageDialog(new JFrame(), "Error: Program not saved. Exception thrown.",
                         "Error", JOptionPane.ERROR_MESSAGE);
             }
+        }
+    }
+
+    private void updateExtender2(int i, Object o) {
+        if (i == 4) {
+            updateHelper();
+            this.deleteItemCenter = new DeleteItemCenter(this.itemList);
+            container.add(deleteItemCenter);
+            repaintAndValidate();
         }
     }
 

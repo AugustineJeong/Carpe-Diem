@@ -16,11 +16,10 @@ import java.util.List;
 //ATTENTION: Actual implementation of action lister functions, observer pattern, program specific functions and designs
 // in this project are all my original work.
 
-public class DisplayItemsCenter extends CenterPanelDefault {
-
+public class DeleteItemCenter extends CenterPanelDefault {
     private List<Item> itemList;
 
-    public DisplayItemsCenter(List<Item> list) {
+    public DeleteItemCenter(List<Item> list) {
         super();
 
         this.itemList = list;
@@ -29,8 +28,8 @@ public class DisplayItemsCenter extends CenterPanelDefault {
 
         //CITATION: Copied / modified the following 4 lines of code from Xiaoerge's answer on
         //https://stackoverflow.com/questions/4564755/java-setting-fonts-color-in-setborder
-        Border titledBorder = BorderFactory.createTitledBorder(border, "View All Items", 0,
-                0, new Font("Comic Sans MS", Font.PLAIN, 17), Color.black);
+        Border titledBorder = BorderFactory.createTitledBorder(border, "Delete Items - click item to delete",
+                0, 0, new Font("Comic Sans MS", Font.PLAIN, 17), Color.black);
         setBorder(titledBorder);
 
         JLabel eventLabel = new JLabel("Events: ");
@@ -71,12 +70,6 @@ public class DisplayItemsCenter extends CenterPanelDefault {
             if (item.getIsEvent()) {
                 JLabel eventDetail = new JLabel(item.returnItemDetails());
                 gridBagConstraints.gridy = n;
-
-                //CITATION: copied / modified the following line of 'setFont' code from Asaf David's answer on
-                // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
-                // the-maximum-size
-                eventDetail.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-
                 add(eventDetail, gridBagConstraints);
                 n++;
             }
@@ -103,15 +96,9 @@ public class DisplayItemsCenter extends CenterPanelDefault {
 
         for (Item item : this.itemList) {
             if (!item.getIsEvent()) {
-                JLabel taskDetail = new JLabel(item.returnItemDetails());
+                JLabel eventDetail = new JLabel(item.returnItemDetails());
                 gridBagConstraints.gridy = n;
-
-                //CITATION: copied / modified the following line of 'setFont' code from Asaf David's answer on
-                // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
-                // the-maximum-size
-                taskDetail.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-
-                add(taskDetail, gridBagConstraints);
+                add(eventDetail, gridBagConstraints);
                 n++;
             }
         }

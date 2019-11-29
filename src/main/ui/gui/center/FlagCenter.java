@@ -5,13 +5,14 @@ import ui.gui.observer.Observable;
 import ui.gui.observer.Observer;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-//CITATION: Class modified / added on from youtube "Advanced Java: Swing (GUI) Programming"
+//CITATION: Class referenced / modified from youtube "Advanced Java: Swing (GUI) Programming"
 // tutorial series by "Cave of Programming" Part 3 and Part 4.
 //i.e. Class built based on details regarding "Panels and Forms" and "GridBagLayout" learned / copied from the tutorial
 // series.
@@ -32,6 +33,14 @@ public class FlagCenter extends CenterPanelDefault implements Observable {
 
         this.itemList = list;
         this.observerList = new ArrayList<>();
+
+        Border border = BorderFactory.createLineBorder(Color.white, 1);
+
+        //CITATION: Copied / modified the following 4 lines of code from Xiaoerge's answer on
+        //https://stackoverflow.com/questions/4564755/java-setting-fonts-color-in-setborder
+        Border titledBorder = BorderFactory.createTitledBorder(border, "Flag / Un-flag Items", 0,
+                0, new Font("Comic Sans MS", Font.PLAIN, 17), Color.black);
+        setBorder(titledBorder);
 
         JLabel eventLabel = new JLabel("Events: ");
         JLabel taskLabel = new JLabel("Tasks: ");

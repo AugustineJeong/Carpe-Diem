@@ -4,13 +4,14 @@ import ui.gui.observer.Observable;
 import ui.gui.observer.Observer;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-//CITATION: Class copied / modified from youtube "Advanced Java: Swing (GUI) Programming"
+//CITATION: Class referenced / modified from youtube "Advanced Java: Swing (GUI) Programming"
 // tutorial series by "Cave of Programming" Part 3 and Part 4.
 //i.e. Class built based on details regarding "Panels and Forms" and "GridBagLayout" learned / copied from the tutorial
 // series.
@@ -29,24 +30,35 @@ public class OptionsPanel extends JPanel implements Observable {
         size.height = 350;
         setPreferredSize(size);
 
-        setBorder(BorderFactory.createTitledBorder("Options Menu"));
+        //CITATION: Copied / modified the following 4 lines of code from Xiaoerge's answer on
+        //https://stackoverflow.com/questions/4564755/java-setting-fonts-color-in-setborder
+        Border titledBorder = BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(),
+                "Options Menu", 0, 0,
+                new Font("Comic Sans MS", Font.PLAIN, 17), Color.black);
+        setBorder(titledBorder);
 
         JButton viewAllItems = new JButton("    View All Items    ");
         JButton flagUnFlagItem = new JButton("Flag / un-flag Item");
-        JButton viewAllFlaggedItem = new JButton("View Flagged Items");
+        JButton deleteItems = new JButton("     Delete Items     ");
         JButton saveProgram = new JButton("     Save Changes    ");
 
         viewAllItems.setBorderPainted(false);
         flagUnFlagItem.setBorderPainted(false);
-        viewAllFlaggedItem.setBorderPainted(false);
+        deleteItems.setBorderPainted(false);
         saveProgram.setBorderPainted(false);
 
         viewAllItems.setOpaque(true);
         flagUnFlagItem.setOpaque(true);
-        viewAllFlaggedItem.setOpaque(true);
+        deleteItems.setOpaque(true);
         saveProgram.setOpaque(true);
 
-
+        //CITATION: copied / modified the following 4 lines of 'setFont' code from Asaf David's answer on
+        // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
+        // the-maximum-size
+        viewAllItems.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
+        flagUnFlagItem.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
+        deleteItems.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
+        saveProgram.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
 
         setLayout(new GridBagLayout());
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
@@ -60,11 +72,11 @@ public class OptionsPanel extends JPanel implements Observable {
         n++;
 
         gridBagConstraints.gridy = n;
-        add(flagUnFlagItem, gridBagConstraints);
+        add(deleteItems, gridBagConstraints);
         n++;
 
         gridBagConstraints.gridy = n;
-        add(viewAllFlaggedItem, gridBagConstraints);
+        add(flagUnFlagItem, gridBagConstraints);
         n++;
 
         gridBagConstraints.gridy = n;
@@ -93,10 +105,18 @@ public class OptionsPanel extends JPanel implements Observable {
             }
         };
 
+        ActionListener deleter = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                notifyObserver(4, null);
+            }
+        };
+
 
         viewAllItems.addActionListener(showAllItems);
         flagUnFlagItem.addActionListener(flagger);
         saveProgram.addActionListener(saver);
+        deleteItems.addActionListener(deleter);
     }
 
     @Override

@@ -1,21 +1,21 @@
 true
 Monday
 interview
-10
+1000
 5
-510
+1500
 false
 true
 Saturday
 study session
-7
+700
 10
-1007
+1700
 false
 true
 Wednesday
-very long exam
-7
-25
-107
+very looong exam
+700
+13
+2000
 false

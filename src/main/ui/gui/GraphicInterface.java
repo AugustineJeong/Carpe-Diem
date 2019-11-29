@@ -2,7 +2,7 @@ package ui.gui;
 
 import javax.swing.JFrame;
 
-//CITATION: Class modified / added on from youtube "Advanced Java: Swing (GUI) Programming" tutorial series by
+//CITATION: Class referencd / modified from youtube "Advanced Java: Swing (GUI) Programming" tutorial series by
 //"Cave of Programming" Part 1.
 // Part 1: https://www.youtube.com/watch?v=jUEOWVjnIR8
 // Line 16 from Part 2.

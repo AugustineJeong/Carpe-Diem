@@ -5,6 +5,7 @@ import ui.gui.observer.Observable;
 import ui.gui.observer.Observer;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-//CITATION: Class modified / added on from youtube "Advanced Java: Swing (GUI) Programming"
+//CITATION: Class referenced / modified from youtube "Advanced Java: Swing (GUI) Programming"
 // tutorial series by "Cave of Programming" Part 3 and Part 4.
 //i.e. Class built based on details regarding "Panels and Forms" and "GridBagLayout" learned / copied from the tutorial
 // series.
@@ -43,15 +44,29 @@ public class ItemListPanel extends JPanel implements Observable {
         size.width = 350;
         setPreferredSize(size);
 
-        setBorder(BorderFactory.createTitledBorder("Recently Added Items"));
+        Border titledBorder = BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(),
+                "Recently Added Items", 0, 0,
+                new Font("Comic Sans MS", Font.PLAIN, 17), Color.black);
+        setBorder(titledBorder);
 
         JLabel eventLabel = new JLabel("Events: ");
         JLabel taskLabel = new JLabel("Tasks: ");
         JButton addItemButton = new JButton("Add new Item");
 
+        //CITATION: copied / modified the following line of 'setFont' code from Asaf David's answer on
+        // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
+        // the-maximum-size
+        addItemButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
+
         addItemButton.setBackground(Color.ORANGE);
         addItemButton.setOpaque(true);
         addItemButton.setBorderPainted(false);
+
+        //CITATION: copied / modified the following 2 lines of 'setFont' code from Asaf David's answer on
+        // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
+        // the-maximum-size
+        eventLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 15));
+        taskLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 15));
 
         setLayout(new GridBagLayout());
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
@@ -78,6 +93,10 @@ public class ItemListPanel extends JPanel implements Observable {
             }
             if (item.getIsEvent()) {
                 JLabel eventDetail = new JLabel(item.returnItemDetails());
+                //CITATION: copied / modified the following line of 'setFont' code from Asaf David's answer on
+                // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
+                // the-maximum-size
+                eventDetail.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
                 gridBagConstraints.gridy = n;
                 add(eventDetail, gridBagConstraints);
                 n++;
@@ -110,9 +129,13 @@ public class ItemListPanel extends JPanel implements Observable {
                 break;
             }
             if (!item.getIsEvent()) {
-                JLabel eventDetail = new JLabel(item.returnItemDetails());
+                JLabel taskDetail = new JLabel(item.returnItemDetails());
+                //CITATION: copied / modified the following line of 'setFont' code from Asaf David's answer on
+                // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
+                // the-maximum-size
+                taskDetail.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
                 gridBagConstraints.gridy = n;
-                add(eventDetail, gridBagConstraints);
+                add(taskDetail, gridBagConstraints);
                 n++;
                 counter++;
             }
