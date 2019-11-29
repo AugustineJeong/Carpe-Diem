@@ -10,11 +10,10 @@ import java.util.List;
 
 public class Interface {
 
-    private InputManagement inputManagement;
     private WebDataLoad webDataLoad = new WebDataLoad();
     private WeatherData weatherData;
 
-    //constructor: constructs new Interface object
+    //constructor
     public Interface() {
         {
             try {
@@ -25,11 +24,12 @@ public class Interface {
         }
     }
 
+    //EFFECTS: prints a straight line
     public void drawLine() {
         System.out.println("_______________________________________________________");
     }
 
-    //EFFECTS: displays menu options of this interface
+    //EFFECTS: displays the menu options of this interface
     public void mainMenuOptions() {
         drawLine();
         System.out.println("PLEASE MAKE A SELECTION FROM THE FOLLOWING MENU OPTIONS");
@@ -62,8 +62,7 @@ public class Interface {
         drawLine();
     }
 
-    //EFFECTS: prints all the items in the itemList parameter, under Event if isEventList parameter is true,
-    //under Task if isEventList parameter is false
+    //EFFECTS: prints all the items in the itemList parameter, under Event or Task header accordingly
     private void printList(List<Item> list, boolean isEventList) {
         if (isEventList) {
             if (list.isEmpty()) {
@@ -87,22 +86,27 @@ public class Interface {
         }
     }
 
+    //EFFECTS: prints a message asking user what they would like to name the item as
     public void askItemName(String itemType) {
         System.out.println("What would you like to name the " + itemType + " ?");
     }
 
+    //EFFECTS: prints a message asking user what day the item is on
     public void askItemDate(String itemType) {
         System.out.println("What day is this " + itemType + " on?");
     }
 
+    //EFFECTS: prints a message asking user what time the Event is on
     public void askItemTime() {
         System.out.println("What time, in military hours, does this event start? (ex. 12:30PM = 1230, 7:30AM = 0730)");
     }
 
+    //EFFECTS: prints a message asking user what the duration of the Event is
     public void askItemDuration() {
         System.out.println("How many hours, in integer, is the duration of this event? (ex. 1 hour = 1)");
     }
 
+    //EFFECTS: prints a message asking to press enter to continue
     public void pressEnterToContinue() {
         System.out.println("Press enter to continue.");
     }
