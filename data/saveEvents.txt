@@ -1,20 +1,4 @@
 true
-Monday
-interview
-1000
-5
-1500
-false
-false
-true
-Saturday
-study session
-700
-10
-1700
-false
-false
-true
 Wednesday
 very looong exam
 700
@@ -22,3 +6,11 @@ very looong exam
 2000
 false
 false
+true
+Saturday
+Local Hack Day
+900
+10
+1900
+false
+true

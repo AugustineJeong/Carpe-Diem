@@ -51,7 +51,7 @@ public class ItemListPanel extends JPanel implements Observable {
 
         JLabel eventLabel = new JLabel("Events: ");
         JLabel taskLabel = new JLabel("Tasks: ");
-        JButton addItemButton = new JButton("   Add new Item   ");
+        JButton addItemButton = new JButton("    Add new Item    ");
 
         //CITATION: copied / modified the following line of 'setFont' code from Asaf David's answer on
         // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-

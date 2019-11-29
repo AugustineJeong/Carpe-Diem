@@ -16,7 +16,7 @@ public class TextSaveLoad {
     private File eventFile = new File("./data/saveEvents.txt");
     private File taskFile = new File("./data/saveTasks.txt");
 
-    //MODIFIES: saveEvents.txt
+    //MODIFIES: ./data/saveEvents.txt and ./data/saveTasks.txt
     //EFFECTS: save all items in itemList parameter
     public void save(List<Item> itemList) throws IOException {
         List<Event> eventList = new ArrayList<>();

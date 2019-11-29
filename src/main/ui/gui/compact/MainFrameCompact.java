@@ -1,8 +1,9 @@
-package ui.gui;
+package ui.gui.compact;
 
 import model.data.TextSaveLoad;
 import model.item.Item;
 //import model.marker.Flag;
+import ui.gui.OptionsPanelCompact;
 import ui.gui.center.*;
 import ui.gui.observer.Observer;
 
@@ -20,14 +21,13 @@ import java.util.List;
 // in this project are all my original work.
 
 //this is a FRAME
-public class MainFrame extends JFrame implements Observer {
+public class MainFrameCompact extends JFrame implements Observer {
 
     private List<Item> itemList;
 //    private Map<Flag, List<Item>> flagMap;
 
     //this is a PANEL
-    private ItemListPanel itemListPanel;
-    private OptionsPanel optionsPanel;
+    private OptionsPanelCompact optionsPanelCompact;
     private CenterPanelWeather centerPanelWeather;
     private DisplayItemsCenter displayItemsCenter;
     private FlagCenter flagCenter;
@@ -38,7 +38,7 @@ public class MainFrame extends JFrame implements Observer {
     private Container container = getContentPane();
 
     //constructor
-    public MainFrame(String title) {
+    public MainFrameCompact(String title) {
         super(title);
 
         try {
@@ -53,13 +53,11 @@ public class MainFrame extends JFrame implements Observer {
         setLayout(new BorderLayout());
 
         //swing component
-        this.itemListPanel = new ItemListPanel(this.itemList);
-        this.optionsPanel = new OptionsPanel();
+        this.optionsPanelCompact = new OptionsPanelCompact();
         this.newItemConfigureCenter = new NewItemConfigureCenter(this.itemList);
         this.deleteItemCenter = new DeleteItemCenter(this.itemList);
 
-        this.itemListPanel.addObserver(this);
-        this.optionsPanel.addObserver(this);
+        this.optionsPanelCompact.addObserver(this);
         this.newItemConfigureCenter.addObserver(this);
         this.deleteItemCenter.addObserver(this);
 
@@ -72,8 +70,7 @@ public class MainFrame extends JFrame implements Observer {
         this.flagCenter.addObserver(this);
 
         //add swing component to content pane
-        container.add(itemListPanel, BorderLayout.WEST);
-        container.add(optionsPanel, BorderLayout.EAST);
+        container.add(optionsPanelCompact, BorderLayout.EAST);
         container.add(centerPanelWeather, BorderLayout.CENTER);
     }
 
@@ -102,8 +99,7 @@ public class MainFrame extends JFrame implements Observer {
     private void updateExtender(int i, Object o) {
         if (i == 10) {
             container.removeAll();
-            container.add(new ItemListPanel(this.itemList), BorderLayout.WEST);
-            container.add(optionsPanel, BorderLayout.EAST);
+            container.add(optionsPanelCompact, BorderLayout.EAST);
             container.add(newItemConfigureCenter);
             repaintAndValidate();
         } else if (i == 3) {
@@ -144,10 +140,7 @@ public class MainFrame extends JFrame implements Observer {
 
     private void updateHelper() {
         container.removeAll();
-        this.itemListPanel = new ItemListPanel(this.itemList);
-        container.add(itemListPanel, BorderLayout.WEST);
-        itemListPanel.addObserver(this);
-        container.add(optionsPanel, BorderLayout.EAST);
+        container.add(optionsPanelCompact, BorderLayout.EAST);
     }
 
     private void repaintAndValidate() {

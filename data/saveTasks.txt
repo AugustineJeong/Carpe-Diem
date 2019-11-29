@@ -1,4 +1,4 @@
 false
 Friday
-wash dog
-false
+Get 4 on Project Deliverable 11
+true
