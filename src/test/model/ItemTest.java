@@ -4,12 +4,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import model.item.Event;
 import model.item.Item;
-import model.marker.Flag;
+//import model.marker.Flag;
 import org.junit.jupiter.api.Test;
 
 abstract class ItemTest {
     protected Item item;
-    protected Flag flag = new Flag("blue");
+//    protected Flag flag = new Flag("blue");
 
     @Test
      void testGetDateAndSetDate() {
@@ -24,51 +24,51 @@ abstract class ItemTest {
     }
 
 
-    @Test
-     void addFlagTest() {
-        item.addFlag(flag);
+//    @Test
+//     void addFlagTest() {
+//        item.addFlag(flag);
+//
+//        assertTrue(item.isFlagged());
+//        assertTrue(item.containsFlag(flag));
+//    }
+//
+//    @Test
+//     void addFlagTestAlreadyFlagged() {
+//        item.addFlag(flag);
+//        Flag flag2 = new Flag("green");
+//        item.addFlag(flag2);
+//
+//        assertTrue(item.isFlagged());
+//        assertFalse(item.containsFlag(flag));
+//        assertTrue(item.containsFlag(flag2));
+//
+//    }
 
-        assertTrue(item.isFlagged());
-        assertTrue(item.containsFlag(flag));
-    }
+//    @Test
+//     void removeFlagTest() {
+//        item.addFlag(flag);
+//
+//        item.removeFlag();
+//        assertFalse(item.isFlagged());
+//    }
+//
+//    @Test
+//     void testContainsFlagTrue() {
+//        item.addFlag(flag);
+//
+//        assertTrue(item.containsFlag(flag));
+//    }
 
-    @Test
-     void addFlagTestAlreadyFlagged() {
-        item.addFlag(flag);
-        Flag flag2 = new Flag("green");
-        item.addFlag(flag2);
-
-        assertTrue(item.isFlagged());
-        assertFalse(item.containsFlag(flag));
-        assertTrue(item.containsFlag(flag2));
-
-    }
-
-    @Test
-     void removeFlagTest() {
-        item.addFlag(flag);
-
-        item.removeFlag();
-        assertFalse(item.isFlagged());
-    }
-
-    @Test
-     void testContainsFlagTrue() {
-        item.addFlag(flag);
-
-        assertTrue(item.containsFlag(flag));
-    }
-
-    @Test
-     void testGetFlag() {
-        item.addFlag(flag);
-        assertEquals(flag, item.getFlag());
-    }
-
-    @Test
-     void testContainsFlagFalse() {
-        assertFalse(item.containsFlag(flag));
-    }
+//    @Test
+//     void testGetFlag() {
+//        item.addFlag(flag);
+//        assertEquals(flag, item.getFlag());
+//    }
+//
+//    @Test
+//     void testContainsFlagFalse() {
+//        assertFalse(item.containsFlag(flag));
+//    }
 
     @Test
      abstract void testGetIsEvent();
@@ -81,7 +81,7 @@ abstract class ItemTest {
         Event item2 = null;
         assertNotEquals(item, item2);
 
-        Flag fakeItem = new Flag("blue");
+        String fakeItem = "blue";
         assertNotEquals(item, fakeItem);
 
         item.setActivity("interview");

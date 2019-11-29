@@ -43,6 +43,7 @@ public class TextSaveLoad {
             pw.println(event.getDuration());
             pw.println(event.getEnd());
             pw.println(event.getWeatherSensitive());
+            pw.println(event.isFlagged());
         }
         pw.close();
     }
@@ -54,6 +55,7 @@ public class TextSaveLoad {
             pw.println(task.getIsEvent());
             pw.println(task.getDate());
             pw.println(task.getActivity());
+            pw.println(task.isFlagged());
         }
         pw.close();
     }
@@ -80,6 +82,7 @@ public class TextSaveLoad {
             event.setDuration(scanEvent.nextInt());
             event.setEnd(scanEvent.nextInt());
             event.setWeatherSensitive(scanEvent.nextBoolean());
+            event.setFlagged(scanEvent.nextBoolean());
             itemList.add(event);
         }
         return itemList;
@@ -95,6 +98,7 @@ public class TextSaveLoad {
             task.setDate(scanTask.next());
             scanTask.nextLine();
             task.setActivity(scanTask.nextLine());
+            task.setFlagged(scanTask.nextBoolean());
             itemList.add(task);
         }
         return itemList;

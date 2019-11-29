@@ -5,7 +5,7 @@ import javafx.scene.layout.BorderRepeat;
 import model.data.TextSaveLoad;
 import model.item.Event;
 import model.item.Item;
-import model.marker.Flag;
+//import model.marker.Flag;
 import ui.gui.center.*;
 import ui.gui.observer.Observer;
 
@@ -28,7 +28,7 @@ import java.util.Map;
 public class MainFrame extends JFrame implements Observer {
 
     private List<Item> itemList;
-    private Map<Flag, List<Item>> flagMap;
+//    private Map<Flag, List<Item>> flagMap;
 
     //this is a PANEL
     private ItemListPanel itemListPanel;
@@ -50,7 +50,7 @@ public class MainFrame extends JFrame implements Observer {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        flagMap = new HashMap<>();
+//        flagMap = new HashMap<>();
 
         //layout
         setLayout(new BorderLayout());

@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import model.item.Event;
 import model.item.Item;
 import model.item.Task;
-import model.marker.Flag;
+//import model.marker.Flag;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -49,7 +49,7 @@ public class TaskTest extends ItemTest {
         Item item2 = null;
         assertNotEquals(item, item2);
 
-        Flag fakeItem = new Flag("blue");
+        String fakeItem = "blue";
         assertNotEquals(item, fakeItem);
 
         item.setActivity("interview");

@@ -3,7 +3,7 @@ package ui.tui;
 import exceptions.*;
 import model.data.TextSaveLoad;
 import model.item.Item;
-import model.marker.Flag;
+//import model.marker.Flag;
 import ui.components.Configurer;
 
 import java.io.*;
@@ -13,7 +13,7 @@ import java.util.*;
 public class Program {
     private TextSaveLoad textSaveLoad;
     private List<Item> itemList;
-    private Map<Flag, List<Item>> flagMap;
+//    private Map<Flag, List<Item>> flagMap;
     private Interface interface1;
     private InputManagement inputManagement;
     private Configurer configurer;
@@ -26,7 +26,7 @@ public class Program {
         interface1 = new Interface();
         inputManagement = new InputManagement();
         configurer = new Configurer();
-        flagMap = new HashMap<>();
+//        flagMap = new HashMap<>();
     }
 
     //MODIFIES: this
@@ -81,10 +81,10 @@ public class Program {
 
     private void runOptionSelection2(int optionSelection) throws UserEndProgram, IOException {
         if (optionSelection == 4) {
-            interface1.print(itemList);
-            itemFlagger();
+//            interface1.print(itemList);
+//            itemFlagger();
         } else if (optionSelection == 5) {
-            getFlaggedItems();
+//            getFlaggedItems();
         } else if (optionSelection == 6) {
             interface1.printWeatherInformation();
         } else {
@@ -93,26 +93,25 @@ public class Program {
         }
     }
 
-    //MODIFIES: this
-    //EFFECTS: adds or removes a flag from an item
-    private void itemFlagger() {
-        interface1.addOrRemoveFlag();
-        if (inputManagement.addOrRemoveSelection()) {
-            interface1.pleaseSelectItemToFlag();
-            inputManagement.flagSelectedItemWithGivenActivityName(this.flagMap, this.itemList,
-                    inputManagement.anyStringResponse());
-        } else {
-            interface1.pleaseSelectItemToUnFlag();
-            inputManagement.unFlagSelectedItemWithGivenActivityName(this.flagMap, this.itemList,
-                    inputManagement.anyStringResponse());
-        }
+//    //MODIFIES: this
+//    //EFFECTS: adds or removes a flag from an item
+//    private void itemFlagger() {
+//        interface1.addOrRemoveFlag();
+//        if (inputManagement.addOrRemoveSelection()) {
+//            interface1.pleaseSelectItemToFlag();
+//            inputManagement.flagSelectedItemWithGivenActivityName(this.flagMap, this.itemList,
+//                    inputManagement.anyStringResponse());
+//        } else {
+//            interface1.pleaseSelectItemToUnFlag();
+//            inputManagement.unFlagSelectedItemWithGivenActivityName(this.flagMap, this.itemList,
+//                    inputManagement.anyStringResponse());
+//        }
+//    }
 
-    }
-
-    //EFFECTS: prints all flagged items
-    private void getFlaggedItems() {
-        interface1.whatColourFlagWouldYouLikeToView();
-        interface1.print(inputManagement.getItemsWithSameColourAsParameter(this.flagMap,
-                inputManagement.anyStringResponse()));
-    }
+//    //EFFECTS: prints all flagged items
+//    private void getFlaggedItems() {
+//        interface1.whatColourFlagWouldYouLikeToView();
+//        interface1.print(inputManagement.getItemsWithSameColourAsParameter(this.flagMap,
+//                inputManagement.anyStringResponse()));
+//    }
 }

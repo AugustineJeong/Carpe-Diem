@@ -5,6 +5,7 @@ interview
 5
 1500
 false
+false
 true
 Saturday
 study session
@@ -12,10 +13,12 @@ study session
 10
 1700
 false
+false
 true
 Wednesday
 very looong exam
 700
 13
 2000
+false
 false
