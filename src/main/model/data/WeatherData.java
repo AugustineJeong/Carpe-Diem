@@ -9,12 +9,12 @@ public class WeatherData {
     private List<Weather> weather;
     private MainInfo main;
 
-    //EFFECTS: returns the weather field
+    //EFFECTS: returns weather
     public List<Weather> getWeather() {
         return weather;
     }
 
-    //EFFECTS: returns the main weather field
+    //EFFECTS: returns main
     public MainInfo getMain() {
         return main;
     }

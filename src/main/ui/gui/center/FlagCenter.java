@@ -83,7 +83,8 @@ public class FlagCenter extends CenterPanelDefault implements Observable {
                 eventDetail.setBorderPainted(false);
 
                 ActionListener actionListener = new ActionListener() {
-                    //EFFECTS: overrides actionPerformed method, flags or un-flags item, notifies observers
+                    //MODIFIES: this Item
+                    //EFFECTS: flags or un-flags item, notifies observers
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         if (item.isFlagged()) {
@@ -126,7 +127,7 @@ public class FlagCenter extends CenterPanelDefault implements Observable {
                 JButton taskDetail = new JButton(item.returnItemDetails());
                 gridBagConstraints.gridy = n;
 
-                //CITATION: copied / modified Line 132 of 'setFont' code from Asaf David's answer on
+                //CITATION: copied / modified Line 133 of 'setFont' code from Asaf David's answer on
                 // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
                 // the-maximum-size
                 taskDetail.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
@@ -139,7 +140,8 @@ public class FlagCenter extends CenterPanelDefault implements Observable {
                 taskDetail.setBorderPainted(false);
 
                 ActionListener actionListener = new ActionListener() {
-                    //EFFECTS: overrides actionPerformed method, flags or un-flags item, notifies observer
+                    //MODIFIES: this Item
+                    //EFFECTS: flags or un-flags item, notifies observer
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         if (item.isFlagged()) {
@@ -162,7 +164,7 @@ public class FlagCenter extends CenterPanelDefault implements Observable {
     }
 
     //MODIFIES: this
-    //EFFECTS: adds observer parameter to this object's List of observers if not already contained in the list
+    //EFFECTS: adds observer parameter to this this.observerList if not already contained in the list
     @Override
     public void addObserver(Observer observer) {
         if (!this.itemList.contains(observer)) {
@@ -170,7 +172,7 @@ public class FlagCenter extends CenterPanelDefault implements Observable {
         }
     }
 
-    //EFFECTS: calls update method on all Observers in this object's List of observers
+    //EFFECTS: calls update method on all Observers in this.observerList
     @Override
     public void notifyObserver(int i, Object o) {
         for (Observer observer : this.observerList) {

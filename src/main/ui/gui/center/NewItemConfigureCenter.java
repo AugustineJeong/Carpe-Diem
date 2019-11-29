@@ -211,7 +211,8 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
         add(createTask, gridBagConstraints);
 
         ActionListener eventCreateClick = new ActionListener() {
-            //EFFECTS: overrides actionPerformed method, creates new event if itemList size is equal or less than 16
+            //MODIFIES: this
+            //EFFECTS: creates new event if itemList size is equal or less than 16, and add it to this.itemList
             @Override
             public void actionPerformed(ActionEvent e) {
                 Item item = configureEvent();
@@ -219,12 +220,12 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
                 if (itemList.size() <= 16) {
                     itemList.add(item);
 
-                    //CITATION: Copied Line 224 from
+                    //CITATION: Copied Line 225 from
                     // https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html
                     JOptionPane.showMessageDialog(new JFrame(), "Event Created!");
                 } else {
 
-                    //CITATION: Copied the Lines 229-231 from
+                    //CITATION: Copied the Lines 220-232 from
                     // https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html
                     JOptionPane.showMessageDialog(new JFrame(), "Warning: Max number of scheduled items "
                                     + "reached. Delete an item first. (Limit: 17 items)", "WARNING",
@@ -237,7 +238,8 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
         };
 
         ActionListener taskCreateClick = new ActionListener() {
-            //EFFECTS: overrides actionPerformed method, creates new event if itemList size is equal or less than 16
+            //MODIFIES: this
+            //EFFECTS: creates new Task if itemList size is equal or less than 16, and adds it to this.itemList
             @Override
             public void actionPerformed(ActionEvent e) {
                 Item item = configureTask();
@@ -245,12 +247,12 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
                 if (itemList.size() <= 16) {
                     itemList.add(item);
 
-                    //CITATION: Copied Line 250 from
+                    //CITATION: Copied Line 252 from
                     // https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html
                     JOptionPane.showMessageDialog(new JFrame(), "Task Created!");
                 } else {
                     
-                    //CITATION: Copied Line 255-257 from
+                    //CITATION: Copied Line 257-259 from
                     // https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html
                     JOptionPane.showMessageDialog(new JFrame(), "Warning: Max number of scheduled items "
                                     + "reached. Delete an item first. (Limit: 17 items)", "WARNING",
@@ -365,7 +367,7 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
     @Override
     public void update(int i, Object o) {
         if (i == 22) {
-            //CITATION: Copied Lines 370-371 from
+            //CITATION: Copied Lines 372-373 from
             // https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html
             JOptionPane.showMessageDialog(new JFrame(), "Warning: Your event does not end on the same day as "
                     + "it starts. It ends on: " + o, "WARNING", JOptionPane.WARNING_MESSAGE);

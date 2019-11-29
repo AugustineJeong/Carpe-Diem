@@ -5,7 +5,7 @@ import javax.swing.JFrame;
 //CITATION: Class copied / slightly modified from youtube "Advanced Java: Swing (GUI) Programming" tutorial series by
 //"Cave of Programming" Part 1.
 // Part 1: https://www.youtube.com/watch?v=jUEOWVjnIR8
-// Line 16 from Part 2.
+// Line 17 from Part 2.
 // Part 2: https://www.youtube.com/watch?v=svM0SBFqp4s
 //ATTENTION: Actual implementation of action lister functions, observer pattern, program specific functions and designs
 // in this project are all my original work.

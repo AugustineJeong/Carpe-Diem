@@ -26,7 +26,7 @@ public class Event extends Item implements Observable {
         this.weatherSensitive = false;
     }
 
-    //EFFECTS: Returns the details of the Event as a string
+    //EFFECTS: Returns the details of this Event as a string
     public String returnItemDetails() {
         String message;
 
@@ -74,7 +74,7 @@ public class Event extends Item implements Observable {
     }
 
     //MODIFIES: this
-    //EFFECTS: updates the end time of Event
+    //EFFECTS: updates the end time of this Event
     public void setEnd(int x) {
         this.end = x;
     }
@@ -105,8 +105,8 @@ public class Event extends Item implements Observable {
         return weatherSensitive;
     }
 
-    //MODIFIES: This
-    //EFFECTS: updates the end time of event
+    //MODIFIES: this
+    //EFFECTS: calculates and updates the end time of this Event
     public void setCalculatedEnd() {
         int endTime;
         endTime = this.time + (this.duration * 100);
@@ -119,7 +119,7 @@ public class Event extends Item implements Observable {
         }
     }
 
-    //EFFECTS: calculates end day of event
+    //EFFECTS: calculates the day this Event ends on
     private void setCalculatedEndDateHelper(int endTime) {
         int dayNum = 0;
         if (this.date.equals("Monday")) {
@@ -140,7 +140,7 @@ public class Event extends Item implements Observable {
         setCalculatedEndDateHelpersHelper(dayNum, endTime);
     }
 
-    //EFFECTS: calculates end day of event
+    //EFFECTS: calculates the day this Event ends on
     private void setCalculatedEndDateHelpersHelper(int dayNum, int endTime) {
         dayNum = (dayNum + (endTime / 2400)) % 7;
 

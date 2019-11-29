@@ -131,7 +131,7 @@ public class DisplayItemsCenter extends CenterPanelDefault implements Observable
     }
 
     //MODIFIES: this
-    //EFFECTS: adds observer parameter to this object's List of observers if not already contained in the list
+    //EFFECTS: adds observer parameter to this.observerList if not already contained in the list
     @Override
     public void addObserver(Observer observer) {
         if (!this.itemList.contains(observer)) {
@@ -139,7 +139,7 @@ public class DisplayItemsCenter extends CenterPanelDefault implements Observable
         }
     }
 
-    //EFFECTS: calls update method on all Observers in this object's List of observers
+    //EFFECTS: calls update method on all Observers in this.observerList
     @Override
     public void notifyObserver(int i, Object o) {
         for (Observer observer : this.observerList) {

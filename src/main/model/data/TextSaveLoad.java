@@ -33,7 +33,7 @@ public class TextSaveLoad {
     }
 
     //MODIFIES: ./data/saveEvents.txt
-    //EFFECTS: saves all Events in eventList parameter
+    //EFFECTS: saves all Events in eventList parameter to text file
     private void saveEventList(List<Event> eventList) throws IOException {
         FileWriter fw = new FileWriter(eventFile);
         PrintWriter pw = new PrintWriter(fw);
@@ -51,7 +51,7 @@ public class TextSaveLoad {
     }
 
     //MODIFIES: ./data/saveTasks.txt
-    //EFFECTS: saves all Tasks in eventList parameter
+    //EFFECTS: saves all Tasks in taskList parameter to text file
     private void saveTaskList(List<Task> taskList) throws IOException {
         FileWriter fw = new FileWriter(taskFile);
         PrintWriter pw = new PrintWriter(fw);

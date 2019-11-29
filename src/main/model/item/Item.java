@@ -60,6 +60,7 @@ public abstract class Item {
         return this.isFlagged;
     }
 
+    //MODIFIES: this
     //EFFECTS: updates the isFlagged value of this Item
     public void setFlagged(boolean flagged) {
         isFlagged = flagged;

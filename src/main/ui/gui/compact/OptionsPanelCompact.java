@@ -180,7 +180,7 @@ public class OptionsPanelCompact extends JPanel implements Observable {
         setBackground(new Color(173, 216, 230));
 
         ActionListener showAllItems = new ActionListener() {
-            //EFFECTS: overrides actionPerformed method, notifies observers
+            //EFFECTS: notifies observers
             @Override
             public void actionPerformed(ActionEvent e) {
                 notifyObserver(1, null);
@@ -188,7 +188,7 @@ public class OptionsPanelCompact extends JPanel implements Observable {
         };
 
         ActionListener showItemsByDay = new ActionListener() {
-            //EFFECTS: overrides actionPerformed method, notifies observers
+            //EFFECTS: notifies observers
             @Override
             public void actionPerformed(ActionEvent e) {
                 notifyObserver(9, null);
@@ -196,7 +196,7 @@ public class OptionsPanelCompact extends JPanel implements Observable {
         };
 
         ActionListener flagger = new ActionListener() {
-            //EFFECTS: overrides actionPerformed method, notifies observers
+            //EFFECTS: notifies observers
             @Override
             public void actionPerformed(ActionEvent e) {
                 notifyObserver(2, null);
@@ -204,7 +204,7 @@ public class OptionsPanelCompact extends JPanel implements Observable {
         };
 
         ActionListener deleter = new ActionListener() {
-            //EFFECTS: overrides actionPerformed method, notifies observers
+            //EFFECTS: notifies observers
             @Override
             public void actionPerformed(ActionEvent e) {
                 notifyObserver(4, null);
@@ -212,7 +212,7 @@ public class OptionsPanelCompact extends JPanel implements Observable {
         };
 
         ActionListener saver = new ActionListener() {
-            //EFFECTS: overrides actionPerformed method, notifies observers
+            //EFFECTS: notifies observers
             @Override
             public void actionPerformed(ActionEvent e) {
                 notifyObserver(3, null);
@@ -220,7 +220,7 @@ public class OptionsPanelCompact extends JPanel implements Observable {
         };
 
         ActionListener goHome = new ActionListener() {
-            //EFFECTS: overrides actionPerformed method, notifies observers
+            //EFFECTS: notifies observers
             @Override
             public void actionPerformed(ActionEvent e) {
                 notifyObserver(0, null);
@@ -228,7 +228,7 @@ public class OptionsPanelCompact extends JPanel implements Observable {
         };
 
         ActionListener createItem = new ActionListener() {
-            //EFFECTS: overrides actionPerformed method, notifies observers
+            //EFFECTS: notifies observers
             @Override
             public void actionPerformed(ActionEvent e) {
                 notifyObserver(7, null);
@@ -245,7 +245,7 @@ public class OptionsPanelCompact extends JPanel implements Observable {
     }
 
     //MODIFIES: this
-    //EFFECTS: adds observer parameter to this object's List of observers if not already contained in the list
+    //EFFECTS: adds observer parameter to this.observerList if not already contained in the list
     @Override
     public void addObserver(Observer observer) {
         if (!this.observerList.contains(observer)) {
@@ -253,7 +253,7 @@ public class OptionsPanelCompact extends JPanel implements Observable {
         }
     }
 
-    //EFFECTS: calls update method on all Observers in this object's List of observers
+    //EFFECTS: calls update method on all Observers in this.observerList
     @Override
     public void notifyObserver(int i, Object o) {
         for (Observer observer : this.observerList) {

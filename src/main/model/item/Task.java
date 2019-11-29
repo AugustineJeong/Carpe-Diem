@@ -10,7 +10,7 @@ public class Task extends Item {
         this.isEvent = false;
     }
 
-    //EFFECTS: Returns the details of the Task as a string
+    //EFFECTS: Returns the details of this Task as a string
     public String returnItemDetails() {
         String message;
 

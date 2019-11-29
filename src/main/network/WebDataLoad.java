@@ -17,7 +17,7 @@ public class WebDataLoad {
     private String vancouverWeatherURL = vancouverWeatherQuery + appID;
 
     //REQUIRES: vancouverWeatherURL is a valid URL that returns JSON
-    //EFFECTS: reads and returns JSON from vancouverWeatherURL and returns it as a StringBuilder
+    //EFFECTS: gets JSON from vancouverWeatherURL and returns it as a StringBuilder
     private StringBuilder read() throws IOException {
 
         BufferedReader br = null;

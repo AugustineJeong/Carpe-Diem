@@ -83,6 +83,8 @@ public class DeleteItemCenter extends CenterPanelDefault implements Observable {
                 eventDetail.setBorderPainted(false);
 
                 ActionListener actionListener = new ActionListener() {
+                    //MODIFIES: this
+                    //EFFECTS: removes item from this.itemList and notifies Observers
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         itemList.remove(item);
@@ -121,7 +123,7 @@ public class DeleteItemCenter extends CenterPanelDefault implements Observable {
                 JButton taskDetail = new JButton(item.returnItemDetails());
                 gridBagConstraints.gridy = n;
 
-                //CITATION: copied / modified Line 127 of 'setFont' code from Asaf David's answer on
+                //CITATION: copied / modified Line 129 of 'setFont' code from Asaf David's answer on
                 // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
                 // the-maximum-size
                 taskDetail.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
@@ -134,7 +136,8 @@ public class DeleteItemCenter extends CenterPanelDefault implements Observable {
                 taskDetail.setBorderPainted(false);
 
                 ActionListener actionListener = new ActionListener() {
-                    //EFFECTS: overrides actionPerformed method, removes item from object's itemList, notifies observers
+                    //MODIFIES: this
+                    //EFFECTS: removes item from this.itemList, notifies Observers
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         itemList.remove(item);
@@ -153,7 +156,7 @@ public class DeleteItemCenter extends CenterPanelDefault implements Observable {
     }
 
     //MODIFIES: this
-    //EFFECTS: adds observer parameter to this DeleteItemCenter's List of observers if not already contained by list
+    //EFFECTS: adds observer parameter to this.observerList if not already contained by list
     @Override
     public void addObserver(Observer observer) {
         if (!this.itemList.contains(observer)) {
@@ -161,7 +164,7 @@ public class DeleteItemCenter extends CenterPanelDefault implements Observable {
         }
     }
 
-    //EFFECTS: calls update method on all Observers in this DeleteItemCenter's List of observers
+    //EFFECTS: calls update method on all Observers in this.observerList
     @Override
     public void notifyObserver(int i, Object o) {
         for (Observer observer : this.observerList) {
