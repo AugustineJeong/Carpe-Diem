@@ -1,17 +1,14 @@
 package ui.gui.center;
 
 import model.data.WeatherData;
-import model.item.Item;
 import network.WebDataLoad;
-import ui.gui.observer.Observer;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+
 
 //CITATION: Class referenced / modified from youtube "Advanced Java: Swing (GUI) Programming"
 // tutorial series by "Cave of Programming" Part 3 and Part 4.
@@ -24,15 +21,13 @@ import java.util.List;
 
 public class CenterPanelWeather extends CenterPanelDefault {
 
-    private List<Item> itemList;
-    private List<Observer> observerList;
-
     private GridBagConstraints gridBagConstraints;
     private int spacer = 0;
 
     private WebDataLoad webDataLoad = new WebDataLoad();
     private WeatherData weatherData;
 
+    //constructor
     public CenterPanelWeather() {
         super();
 
@@ -42,11 +37,9 @@ public class CenterPanelWeather extends CenterPanelDefault {
             e.printStackTrace();
         }
 
-        this.observerList = new ArrayList<>();
-
         Border border = BorderFactory.createLineBorder(Color.white, 1);
 
-        //CITATION: Copied / modified the following 4 lines of code from Xiaoerge's answer on
+        //CITATION: Copied / modified Lines 44-46 from Xiaoerge's answer on
         //https://stackoverflow.com/questions/4564755/java-setting-fonts-color-in-setborder
         Border titledBorder = BorderFactory.createTitledBorder(border, "Home Screen", 0,
                 0, new Font("Comic Sans MS", Font.PLAIN, 17), Color.black);
@@ -55,7 +48,7 @@ public class CenterPanelWeather extends CenterPanelDefault {
         JLabel welcomeLabel = new JLabel("Good day!");
         JLabel weatherLabel = new JLabel("The current weather in Vancouver is: ");
 
-        //CITATION: LINES 60-63 copied from
+        //CITATION: LINES 53-56 copied from
         // http://www.nullpointer.at/2011/08/21/java-code-snippets-howto-resize-an-imageicon/#comment-11870
         ImageIcon weatherIcon = new ImageIcon("./data/warm-98534_640.png");
         Image weatherImage = weatherIcon.getImage();
@@ -69,7 +62,7 @@ public class CenterPanelWeather extends CenterPanelDefault {
         JLabel advisoryLabel2 = new JLabel(" ");
         JLabel advisoryLabel3 = new JLabel(" ");
 
-        //CITATION: copied / modified the following 6 lines of 'setFont' code from Asaf David's answer on
+        //CITATION: copied / modified Lines 68-73 of 'setFont' code from Asaf David's answer on
         // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
         // the-maximum-size
         welcomeLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
@@ -138,6 +131,7 @@ public class CenterPanelWeather extends CenterPanelDefault {
         add(advisoryLabel3, gridBagConstraints);
     }
 
+    //EFFECTS: adds empty vertical spacing in gridBagConstraints
     private void emptySpace() {
         gridBagConstraints.gridy = spacer;
         add(new JLabel(" "), gridBagConstraints);

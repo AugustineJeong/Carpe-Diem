@@ -3,7 +3,6 @@ package model.item;
 import ui.gui.observer.Observable;
 import ui.gui.observer.Observer;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 

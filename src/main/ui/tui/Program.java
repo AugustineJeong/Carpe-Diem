@@ -4,7 +4,6 @@ import exceptions.*;
 import model.data.TextSaveLoad;
 import model.item.Item;
 //import model.marker.Flag;
-import ui.components.Configurer;
 
 import java.io.*;
 import java.util.*;

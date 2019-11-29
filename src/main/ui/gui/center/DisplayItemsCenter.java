@@ -25,6 +25,7 @@ public class DisplayItemsCenter extends CenterPanelDefault implements Observable
     private List<Item> itemList;
     private List<Observer> observerList;
 
+    //constructor
     public DisplayItemsCenter(List<Item> list) {
         super();
 
@@ -33,7 +34,7 @@ public class DisplayItemsCenter extends CenterPanelDefault implements Observable
 
         Border border = BorderFactory.createLineBorder(Color.white, 1);
 
-        //CITATION: Copied / modified the following 4 lines of code from Xiaoerge's answer on
+        //CITATION: Copied / modified Lines 39-41 from Xiaoerge's answer on
         //https://stackoverflow.com/questions/4564755/java-setting-fonts-color-in-setborder
         Border titledBorder = BorderFactory.createTitledBorder(border, "View All Items", 0,
                 0, new Font("Comic Sans MS", Font.PLAIN, 17), Color.black);
@@ -42,13 +43,11 @@ public class DisplayItemsCenter extends CenterPanelDefault implements Observable
         JLabel eventLabel = new JLabel("Events: ");
         JLabel taskLabel = new JLabel("Tasks: ");
 
-        //CITATION: copied / modified the following 2 lines of 'setFont' code from Asaf David's answer on
+        //CITATION: copied / modified Lines 49-50 of 'setFont' code from Asaf David's answer on
         // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
         // the-maximum-size
         eventLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
         taskLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-
-
 
         setLayout(new GridBagLayout());
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
@@ -65,13 +64,12 @@ public class DisplayItemsCenter extends CenterPanelDefault implements Observable
         add(new JLabel(" "), gridBagConstraints);
         n++;
 
-
         for (Item item : this.itemList) {
             if (item.getIsEvent()) {
                 JButton eventDetail = new JButton(item.returnItemDetails());
                 gridBagConstraints.gridy = n;
 
-                //CITATION: copied / modified the following line of 'setFont' code from Asaf David's answer on
+                //CITATION: copied / modified Line 75 'setFont' code from Asaf David's answer on
                 // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
                 // the-maximum-size
                 eventDetail.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
@@ -112,7 +110,7 @@ public class DisplayItemsCenter extends CenterPanelDefault implements Observable
                 JButton taskDetail = new JButton(item.returnItemDetails());
                 gridBagConstraints.gridy = n;
 
-                //CITATION: copied / modified the following line of 'setFont' code from Asaf David's answer on
+                //CITATION: copied / modified Line 116 of 'setFont' code from Asaf David's answer on
                 // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
                 // the-maximum-size
                 taskDetail.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
@@ -132,6 +130,8 @@ public class DisplayItemsCenter extends CenterPanelDefault implements Observable
         setBackground(new Color(173, 216, 230));
     }
 
+    //MODIFIES: this
+    //EFFECTS: adds observer parameter to this object's List of observers if not already contained in the list
     @Override
     public void addObserver(Observer observer) {
         if (!this.itemList.contains(observer)) {
@@ -139,6 +139,7 @@ public class DisplayItemsCenter extends CenterPanelDefault implements Observable
         }
     }
 
+    //EFFECTS: calls update method on all Observers in this object's List of observers
     @Override
     public void notifyObserver(int i, Object o) {
         for (Observer observer : this.observerList) {

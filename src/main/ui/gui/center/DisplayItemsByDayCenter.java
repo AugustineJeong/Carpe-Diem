@@ -29,6 +29,7 @@ public class DisplayItemsByDayCenter extends CenterPanelDefault implements Obser
 
     int spacer = 0;
 
+    //constructor
     public DisplayItemsByDayCenter(List<Item> list) {
         super();
 
@@ -37,7 +38,7 @@ public class DisplayItemsByDayCenter extends CenterPanelDefault implements Obser
 
         Border border = BorderFactory.createLineBorder(Color.white, 1);
 
-        //CITATION: Copied / modified the following 4 lines of code from Xiaoerge's answer on
+        //CITATION: Copied / modified Lines 43-45 from Xiaoerge's answer on
         //https://stackoverflow.com/questions/4564755/java-setting-fonts-color-in-setborder
         Border titledBorder = BorderFactory.createTitledBorder(border, "View Items by Day", 0,
                 0, new Font("Comic Sans MS", Font.PLAIN, 17), Color.black);
@@ -54,7 +55,7 @@ public class DisplayItemsByDayCenter extends CenterPanelDefault implements Obser
         JLabel saturdayLabel = new JLabel("Saturday");
         JLabel sundayLabel = new JLabel("Sunday");
 
-        //CITATION: copied / modified the following 7 lines of 'setFont' code from Asaf David's answer on
+        //CITATION: copied / modified Lines 61-67 of 'setFont' code from Asaf David's answer on
         // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
         // the-maximum-size
         mondayLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 13));
@@ -81,7 +82,7 @@ public class DisplayItemsByDayCenter extends CenterPanelDefault implements Obser
                 JButton eventDetail = new JButton(item.returnItemDetails());
                 gridBagConstraints.gridy = spacer;
 
-                //CITATION: copied / modified the following line of 'setFont' code from Asaf David's answer on
+                //CITATION: copied / modified Line 88 of 'setFont' code from Asaf David's answer on
                 // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
                 // the-maximum-size
                 eventDetail.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
@@ -111,7 +112,7 @@ public class DisplayItemsByDayCenter extends CenterPanelDefault implements Obser
                 JButton eventDetail = new JButton(item.returnItemDetails());
                 gridBagConstraints.gridy = spacer;
 
-                //CITATION: copied / modified the following line of 'setFont' code from Asaf David's answer on
+                //CITATION: copied / modified Line 118 of 'setFont' code from Asaf David's answer on
                 // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
                 // the-maximum-size
                 eventDetail.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
@@ -141,7 +142,7 @@ public class DisplayItemsByDayCenter extends CenterPanelDefault implements Obser
                 JButton eventDetail = new JButton(item.returnItemDetails());
                 gridBagConstraints.gridy = spacer;
 
-                //CITATION: copied / modified the following line of 'setFont' code from Asaf David's answer on
+                //CITATION: copied / modified Line 148 of 'setFont' code from Asaf David's answer on
                 // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
                 // the-maximum-size
                 eventDetail.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
@@ -171,7 +172,7 @@ public class DisplayItemsByDayCenter extends CenterPanelDefault implements Obser
                 JButton eventDetail = new JButton(item.returnItemDetails());
                 gridBagConstraints.gridy = spacer;
 
-                //CITATION: copied / modified the following line of 'setFont' code from Asaf David's answer on
+                //CITATION: copied / modified Line 178 of 'setFont' code from Asaf David's answer on
                 // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
                 // the-maximum-size
                 eventDetail.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
@@ -201,7 +202,7 @@ public class DisplayItemsByDayCenter extends CenterPanelDefault implements Obser
                 JButton eventDetail = new JButton(item.returnItemDetails());
                 gridBagConstraints.gridy = spacer;
 
-                //CITATION: copied / modified the following line of 'setFont' code from Asaf David's answer on
+                //CITATION: copied / modified Line 208 of 'setFont' code from Asaf David's answer on
                 // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
                 // the-maximum-size
                 eventDetail.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
@@ -231,7 +232,7 @@ public class DisplayItemsByDayCenter extends CenterPanelDefault implements Obser
                 JButton eventDetail = new JButton(item.returnItemDetails());
                 gridBagConstraints.gridy = spacer;
 
-                //CITATION: copied / modified the following line of 'setFont' code from Asaf David's answer on
+                //CITATION: copied / modified Line 238 of 'setFont' code from Asaf David's answer on
                 // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
                 // the-maximum-size
                 eventDetail.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
@@ -261,7 +262,7 @@ public class DisplayItemsByDayCenter extends CenterPanelDefault implements Obser
                 JButton eventDetail = new JButton(item.returnItemDetails());
                 gridBagConstraints.gridy = spacer;
 
-                //CITATION: copied / modified the following line of 'setFont' code from Asaf David's answer on
+                //CITATION: copied / modified the following line 268 of 'setFont' code from Asaf David's answer on
                 // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
                 // the-maximum-size
                 eventDetail.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
@@ -281,6 +282,8 @@ public class DisplayItemsByDayCenter extends CenterPanelDefault implements Obser
         setBackground(new Color(173, 216, 230));
     }
 
+    //MODIFIES: this
+    //EFFECTS: adds observer parameter to this object's List of observers if not already contained in the list
     @Override
     public void addObserver(Observer observer) {
         if (!this.itemList.contains(observer)) {
@@ -288,16 +291,11 @@ public class DisplayItemsByDayCenter extends CenterPanelDefault implements Obser
         }
     }
 
+    //EFFECTS: calls update method on all Observers in this object's List of observers
     @Override
     public void notifyObserver(int i, Object o) {
         for (Observer observer : this.observerList) {
             observer.update(i, o);
         }
     }
-
-//    private void emptySpace() {
-//        gridBagConstraints.gridy = spacer;
-//        add(new JLabel(" "), gridBagConstraints);
-//        spacer++;
-//    }
 }

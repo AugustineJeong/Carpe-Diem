@@ -41,6 +41,7 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
 
     private List<Item> itemList;
 
+    //constructor
     public NewItemConfigureCenter(List<Item> itemList) {
         super();
 
@@ -59,13 +60,13 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
 
         Border border = BorderFactory.createLineBorder(Color.white, 1);
 
-        //CITATION: Copied / modified the following 4 lines of code from Xiaoerge's answer on
+        //CITATION: Copied / modified Lines 65-67 from Xiaoerge's answer on
         //https://stackoverflow.com/questions/4564755/java-setting-fonts-color-in-setborder
         Border titledBorder = BorderFactory.createTitledBorder(border, "Configure New Item", 0,
                 0, new Font("Comic Sans MS", Font.PLAIN, 17), Color.black);
         setBorder(titledBorder);
 
-        //CITATION: Lines 56-73 modified from example provided at https://www.javatpoint.com/java-jcombobox
+        //CITATION: Lines 70-90 modified from example provided at https://www.javatpoint.com/java-jcombobox
         String[] weather = {"No weather restriction", "No rain"};
         weatherSelection = new JComboBox(weather);
         weatherSelection.setBounds(50, 50, 90, 20);
@@ -91,7 +92,7 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
         JButton createEvent = new JButton("Create event");
         JButton createTask = new JButton("Create task");
 
-        //CITATION: copied / modified the following 20 lines of 'setFont' code from Asaf David's answer on
+        //CITATION: copied / modified the Lines 98-117 of 'setFont' code from Asaf David's answer on
         // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
         // the-maximum-size
         eventLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
@@ -114,7 +115,6 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
         taskDateSelection.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
         durationChoice.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
         nameChoice.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
-
 
         setLayout(new GridBagLayout());
         gridBagConstraints = new GridBagConstraints();
@@ -218,12 +218,12 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
                 if (itemList.size() <= 16) {
                     itemList.add(item);
 
-                    //CITATION: Copied the following line from
+                    //CITATION: Copied Line 223 from
                     // https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html
                     JOptionPane.showMessageDialog(new JFrame(), "Event Created!");
                 } else {
 
-                    //CITATION: Copied the following line from
+                    //CITATION: Copied the Lines 228-230 from
                     // https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html
                     JOptionPane.showMessageDialog(new JFrame(), "Warning: Max number of scheduled items "
                                     + "reached. Delete an item first. (Limit: 17 items)", "WARNING",
@@ -235,7 +235,6 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
             }
         };
 
-
         ActionListener taskCreateClick = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -244,12 +243,12 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
                 if (itemList.size() <= 16) {
                     itemList.add(item);
 
-                    //CITATION: Copied the following line from
+                    //CITATION: Copied Line 248 from
                     // https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html
                     JOptionPane.showMessageDialog(new JFrame(), "Task Created!");
                 } else {
                     
-                    //CITATION: Copied the following line from
+                    //CITATION: Copied Line 253-255 from
                     // https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html
                     JOptionPane.showMessageDialog(new JFrame(), "Warning: Max number of scheduled items "
                                     + "reached. Delete an item first. (Limit: 17 items)", "WARNING",
@@ -266,7 +265,7 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
         setBackground(new Color(173, 216, 230));
     }
 
-
+    //EFFECTS: creates and configures new Event based on user input
     private Item configureEvent() {
         Event item = new Event();
         item.addObserver(this);
@@ -283,6 +282,7 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
         return item;
     }
 
+    //EFFECTS: creates and configures new Task based on user input
     private Item configureTask() {
         Item item = new Task();
         item.setActivity(removeSpaces(this.taskNameChoice.getText()));
@@ -290,12 +290,13 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
         return item;
     }
 
-
+    //EFFECTS: parses and returns a string of numbers from time parameter
     private String parseTime(String time) {
         String numTime = time.substring(0, 2) + time.substring(3);
         return numTime;
     }
 
+    //EFFECTS: parses and returns a string of numbers from duration parameter
     private String parseDuration(String duration) {
         String numTime;
         if (duration.length() == 9) {
@@ -309,8 +310,9 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
     }
 
     //this is like LeetCode
-    //return string without spaces, but include spaces between letters
     //ex. given " this better work ", return "this better work"
+
+    //EFFECTS: return string parameter without spaces, but includes spaces between letters
     private String removeSpaces(String string) {
         String removed = "";
 
@@ -333,13 +335,15 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
         return removed;
     }
 
-
+    //EFFECTS: adds empty vertical spacing in gridBadConstraints
     private void emptySpacing() {
         gridBagConstraints.gridy = spacer;
         add(new JLabel(" "), gridBagConstraints);
         spacer++;
     }
 
+    //MODIFIES: this
+    //EFFECTS: adds observer parameter to this object's List of observers if not already contained in the list
     @Override
     public void addObserver(Observer observer) {
         if (!this.observerList.contains(observer)) {
@@ -347,6 +351,7 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
         }
     }
 
+    //EFFECTS: calls update method on all Observers in this object's List of observers
     @Override
     public void notifyObserver(int i, Object o) {
         for (Observer observer : this.observerList) {

@@ -2,7 +2,6 @@ package ui.gui;
 
 import model.data.TextSaveLoad;
 import model.item.Item;
-//import model.marker.Flag;
 import ui.gui.center.*;
 import ui.gui.observer.Observer;
 
@@ -23,7 +22,6 @@ import java.util.List;
 public class MainFrame extends JFrame implements Observer {
 
     private List<Item> itemList;
-//    private Map<Flag, List<Item>> flagMap;
 
     //this is a PANEL
     private ItemListPanel itemListPanel;

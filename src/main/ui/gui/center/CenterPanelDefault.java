@@ -1,20 +1,18 @@
 package ui.gui.center;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 
-//CITATION: lines 19-24 copied / modified from youtube "Advanced Java: Swing (GUI) Programming" tutorial series by
-//"Cave of Programming" Part 3 and Part 4.
-//i.e. Class built based on details regarding "Panels and Forms" and "GridBagLayout" learned / copied from the tutorial
-// series.
+//CITATION: Class copied / modified from youtube "Advanced Java: Swing (GUI) Programming" tutorial series by
+//"Cave of Programming" Part 3.
+//i.e. Class built based on details regarding "Panels and Forms" learned / copied from the tutorial series.
 //Part 3: https://www.youtube.com/watch?v=DJqlT1d67jI
-//Part 4: https://www.youtube.com/watch?v=YKaea4ezQQE
 //ATTENTION: Actual implementation of action lister functions, observer pattern, program specific functions and designs
 // in this project are all my original work.
 
 public class CenterPanelDefault extends JPanel {
 
+    //constructor
     public CenterPanelDefault() {
         Dimension size = getPreferredSize();
         size.width = 300;

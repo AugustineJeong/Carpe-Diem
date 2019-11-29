@@ -1,4 +1,4 @@
-package ui.components;
+package ui.tui;
 
 import exceptions.IntExpectedDuration;
 import exceptions.IntExpectedTime;

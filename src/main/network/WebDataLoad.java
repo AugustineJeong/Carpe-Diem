@@ -7,8 +7,8 @@ import java.io.*;
 import java.net.URL;
 
 //Citation: lines 15-17 modeled after CPSC 210 edX Deliverable 10 instructions
-//Citation: lines 19-35 taken from http://zetcode.com/articles/javareadwebpage/
-//Citation: lines 39,41 taken from https://www.mkyong.com/java/how-to-parse-json-with-gson/
+//Citation: lines 21-37 taken from http://zetcode.com/articles/javareadwebpage/
+//Citation: lines 43,45 taken from https://ww.mkyong.com/java/how-to-parse-json-with-gson/
 
 public class WebDataLoad {
 
@@ -16,6 +16,8 @@ public class WebDataLoad {
     private String appID = "b48c1d205df319039c044bfb694f2930";
     private String vancouverWeatherURL = vancouverWeatherQuery + appID;
 
+    //REQUIRES: vancouverWeatherURL is a valid URL that returns JSON
+    //EFFECTS: reads and returns JSON from vancouverWeatherURL and returns it as a StringBuilder
     private StringBuilder read() throws IOException {
 
         BufferedReader br = null;
@@ -35,6 +37,8 @@ public class WebDataLoad {
         return sb;
     }
 
+    //REQUIRES: a valid JSON string is returned by this.read()
+    //EFFECTS: gets data from JSON string and stores it to WeatherData class
     public WeatherData dataLoad() throws IOException {
         Gson gson = new Gson();
         String json = this.read().toString();
