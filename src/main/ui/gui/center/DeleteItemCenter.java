@@ -85,6 +85,11 @@ public class DeleteItemCenter extends CenterPanelDefault implements Observable {
                 // the-maximum-size
                 eventDetail.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 
+                if (item.isFlagged()) {
+                    eventDetail.setBackground(Color.pink);
+                    eventDetail.setOpaque(true);
+                }
+
                 eventDetail.setBorderPainted(false);
 
                 ActionListener actionListener = new ActionListener() {
@@ -130,6 +135,11 @@ public class DeleteItemCenter extends CenterPanelDefault implements Observable {
                 // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
                 // the-maximum-size
                 taskDetail.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+
+                if (item.isFlagged()) {
+                    taskDetail.setBackground(Color.pink);
+                    taskDetail.setOpaque(true);
+                }
 
                 taskDetail.setBorderPainted(false);
 

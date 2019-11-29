@@ -38,10 +38,11 @@ public class MainFrame extends JFrame implements Observer {
     private FlagCenter flagCenter;
     private NewItemConfigureCenter newItemConfigureCenter;
     private DeleteItemCenter deleteItemCenter;
+    private DisplayItemsByDayCenter displayItemsByDayCenter;
 
     private Container container = getContentPane();
 
-    MainFrame(String title) {
+    public MainFrame(String title) {
         super(title);
 
         try {
@@ -69,6 +70,7 @@ public class MainFrame extends JFrame implements Observer {
         this.centerPanelDefault = new CenterPanelDefault();
         this.displayItemsCenter = new DisplayItemsCenter(this.itemList);
         this.flagCenter = new FlagCenter(this.itemList);
+        this.displayItemsByDayCenter = new DisplayItemsByDayCenter(this.itemList);
 
 
         this.flagCenter.addObserver(this);
@@ -89,6 +91,7 @@ public class MainFrame extends JFrame implements Observer {
         } else if (i == 2) {
             updateHelper();
             this.flagCenter = new FlagCenter(this.itemList);
+            flagCenter.addObserver(this);
             container.add(flagCenter);
             repaintAndValidate();
         } else if (i == 7) {
@@ -130,6 +133,11 @@ public class MainFrame extends JFrame implements Observer {
             this.deleteItemCenter = new DeleteItemCenter(this.itemList);
             deleteItemCenter.addObserver(this);
             container.add(deleteItemCenter);
+            repaintAndValidate();
+        } else if (i == 9) {
+            updateHelper();
+            this.displayItemsByDayCenter = new DisplayItemsByDayCenter(this.itemList);
+            container.add(displayItemsByDayCenter);
             repaintAndValidate();
         }
     }

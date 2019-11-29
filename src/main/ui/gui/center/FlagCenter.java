@@ -36,7 +36,7 @@ public class FlagCenter extends CenterPanelDefault implements Observable {
 
         //CITATION: Copied / modified the following 4 lines of code from Xiaoerge's answer on
         //https://stackoverflow.com/questions/4564755/java-setting-fonts-color-in-setborder
-        Border titledBorder = BorderFactory.createTitledBorder(border, "Delete Items - click item to delete",
+        Border titledBorder = BorderFactory.createTitledBorder(border, "Flag Items - click item to flag / un-flag",
                 0, 0, new Font("Comic Sans MS", Font.PLAIN, 17), Color.black);
         setBorder(titledBorder);
 
@@ -48,7 +48,6 @@ public class FlagCenter extends CenterPanelDefault implements Observable {
         // the-maximum-size
         eventLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
         taskLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-
 
 
         setLayout(new GridBagLayout());
@@ -85,13 +84,22 @@ public class FlagCenter extends CenterPanelDefault implements Observable {
                 // the-maximum-size
                 eventDetail.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 
+                if (item.isFlagged()) {
+                    eventDetail.setBackground(Color.pink);
+                    eventDetail.setOpaque(true);
+                }
+
                 eventDetail.setBorderPainted(false);
 
                 ActionListener actionListener = new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        itemList.remove(item);
-                        notifyObserver(4, null);
+                        if (item.isFlagged()) {
+                            item.setFlagged(false);
+                        } else {
+                            item.setFlagged(true);
+                        }
+                        notifyObserver(2, null);
                     }
                 };
 
@@ -131,13 +139,22 @@ public class FlagCenter extends CenterPanelDefault implements Observable {
                 // the-maximum-size
                 taskDetail.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 
+                if (item.isFlagged()) {
+                    taskDetail.setBackground(Color.pink);
+                    taskDetail.setOpaque(true);
+                }
+
                 taskDetail.setBorderPainted(false);
 
                 ActionListener actionListener = new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        itemList.remove(item);
-                        notifyObserver(4, null);
+                        if (item.isFlagged()) {
+                            item.setFlagged(false);
+                        } else {
+                            item.setFlagged(true);
+                        }
+                        notifyObserver(2, null);
                     }
                 };
 

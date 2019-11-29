@@ -38,6 +38,7 @@ public class OptionsPanel extends JPanel implements Observable {
         setBorder(titledBorder);
 
         JButton viewAllItems = new JButton("    View All Items    ");
+        JButton viewItemsByDay = new JButton(" View Items by Day ");
         JButton flagUnFlagItem = new JButton("Flag / un-flag Item");
         JButton deleteItems = new JButton("     Delete Items     ");
         JButton saveProgram = new JButton("     Save Changes    ");
@@ -46,19 +47,22 @@ public class OptionsPanel extends JPanel implements Observable {
         flagUnFlagItem.setBorderPainted(false);
         deleteItems.setBorderPainted(false);
         saveProgram.setBorderPainted(false);
+        viewItemsByDay.setBorderPainted(false);
 
         viewAllItems.setOpaque(true);
         flagUnFlagItem.setOpaque(true);
         deleteItems.setOpaque(true);
         saveProgram.setOpaque(true);
+        viewItemsByDay.setOpaque(true);
 
-        //CITATION: copied / modified the following 4 lines of 'setFont' code from Asaf David's answer on
+        //CITATION: copied / modified the following 5 lines of 'setFont' code from Asaf David's answer on
         // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
         // the-maximum-size
         viewAllItems.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
         flagUnFlagItem.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
         deleteItems.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
         saveProgram.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
+        viewItemsByDay.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
 
         setLayout(new GridBagLayout());
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
@@ -69,6 +73,11 @@ public class OptionsPanel extends JPanel implements Observable {
         gridBagConstraints.insets = new Insets(25, 10, 25,10);
         gridBagConstraints.gridy = n;
         add(viewAllItems, gridBagConstraints);
+        n++;
+
+        gridBagConstraints.insets = new Insets(25, 10, 25,10);
+        gridBagConstraints.gridy = n;
+        add(viewItemsByDay, gridBagConstraints);
         n++;
 
         gridBagConstraints.gridy = n;
@@ -91,17 +100,17 @@ public class OptionsPanel extends JPanel implements Observable {
             }
         };
 
+        ActionListener showItemsByDay = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                notifyObserver(9, null);
+            }
+        };
+
         ActionListener flagger = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 notifyObserver(2, null);
-            }
-        };
-
-        ActionListener saver = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                notifyObserver(3, null);
             }
         };
 
@@ -112,11 +121,18 @@ public class OptionsPanel extends JPanel implements Observable {
             }
         };
 
+        ActionListener saver = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                notifyObserver(3, null);
+            }
+        };
 
         viewAllItems.addActionListener(showAllItems);
         flagUnFlagItem.addActionListener(flagger);
         saveProgram.addActionListener(saver);
         deleteItems.addActionListener(deleter);
+        viewItemsByDay.addActionListener(showItemsByDay);
     }
 
     @Override

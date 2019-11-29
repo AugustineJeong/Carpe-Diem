@@ -30,13 +30,11 @@ public class TaskTest extends ItemTest {
         assertEquals(message, expectedMessage);
     }
 
-    @Override
     @Test
      void testGetIsEvent() {
         assertFalse(item.getIsEvent());
     }
 
-    @Override
     @Test
      void testSetIsEvent() {
         item.setIsEvent(true);

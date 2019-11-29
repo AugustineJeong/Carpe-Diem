@@ -12,6 +12,15 @@ abstract class ItemTest {
 //    protected Flag flag = new Flag("blue");
 
     @Test
+    abstract void testReturnItemDetails();
+
+    @Test
+    abstract void testSetIsEvent();
+
+    @Test
+    abstract void testGetIsEvent();
+
+    @Test
      void testGetDateAndSetDate() {
         item.setDate("Monday");
         assertEquals("Monday", item.getDate());
@@ -71,10 +80,16 @@ abstract class ItemTest {
 //    }
 
     @Test
-     abstract void testGetIsEvent();
+    void testIsFlaggedAndSetFlaggedTrue() {
+        item.setFlagged(true);
+        assertTrue(item.isFlagged());
+    }
 
     @Test
-     abstract void testSetIsEvent();
+    void testIsFlaggedAndSetFlaggedFalse() {
+        item.setFlagged(false);
+        assertFalse(item.isFlagged());
+    }
 
     @Test
     void testHashcodeAndEquals() {

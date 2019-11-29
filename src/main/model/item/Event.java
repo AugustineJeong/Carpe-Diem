@@ -30,11 +30,8 @@ public class Event extends Item implements Observable {
     public String returnItemDetails() {
         String message;
 
-        if (this.isEvent) {
-            message = " '" + this.activity + "'" + " on " + this.date;
-        } else {
-            message = " '" + this.activity + "'" + " by " + this.date;
-        }
+        message = " '" + this.activity + "'" + " on " + this.date;
+
 
         if (this.isEvent) {
             message = message + " from "

@@ -90,7 +90,7 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
         JButton createEvent = new JButton("Create event");
         JButton createTask = new JButton("Create task");
 
-        //CITATION: copied / modified the following 19 lines of 'setFont' code from Asaf David's answer on
+        //CITATION: copied / modified the following 20 lines of 'setFont' code from Asaf David's answer on
         // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
         // the-maximum-size
         eventLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
@@ -112,6 +112,7 @@ public class NewItemConfigureCenter extends CenterPanelDefault implements Observ
         dateSelection.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
         taskDateSelection.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
         durationChoice.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
+        nameChoice.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
 
 
         setLayout(new GridBagLayout());
