@@ -17,7 +17,7 @@ public class TextSaveLoad {
     private File taskFile = new File("./data/saveTasks.txt");
 
     //MODIFIES: ./data/saveEvents.txt and ./data/saveTasks.txt
-    //EFFECTS: save all items in itemList parameter
+    //EFFECTS: saves all items in itemList parameter
     public void save(List<Item> itemList) throws IOException {
         List<Event> eventList = new ArrayList<>();
         List<Task> taskList = new ArrayList<>();
@@ -32,6 +32,8 @@ public class TextSaveLoad {
         saveTaskList(taskList);
     }
 
+    //MODIFIES: ./data/saveEvents.txt
+    //EFFECTS: saves all Events in eventList parameter
     private void saveEventList(List<Event> eventList) throws IOException {
         FileWriter fw = new FileWriter(eventFile);
         PrintWriter pw = new PrintWriter(fw);
@@ -48,6 +50,8 @@ public class TextSaveLoad {
         pw.close();
     }
 
+    //MODIFIES: ./data/saveTasks.txt
+    //EFFECTS: saves all Tasks in eventList parameter
     private void saveTaskList(List<Task> taskList) throws IOException {
         FileWriter fw = new FileWriter(taskFile);
         PrintWriter pw = new PrintWriter(fw);
@@ -60,7 +64,7 @@ public class TextSaveLoad {
         pw.close();
     }
 
-    //EFFECTS: Loads all Items from text file and returns them as List of Items
+    //EFFECTS: loads all Items from text files and returns them as a List of Items
     public List<Item> load() throws FileNotFoundException {
         List<Item> itemList = new ArrayList<>();
         itemList.addAll(loadEvents());
@@ -68,6 +72,7 @@ public class TextSaveLoad {
         return itemList;
     }
 
+    //EFFECTS: loads all Events from text file ./data/saveEvents.txt and returns them as a List of Items
     private List<Item> loadEvents() throws FileNotFoundException {
         Scanner scanEvent = new Scanner(eventFile);
         List<Item> itemList = new ArrayList<>();
@@ -88,6 +93,7 @@ public class TextSaveLoad {
         return itemList;
     }
 
+    //EFFECTS: loads all Tasks from text file ./data/saveTasks.txt and returns them as a List of Items
     private List<Item> loadTasks() throws FileNotFoundException {
         Scanner scanTask = new Scanner(taskFile);
         List<Item> itemList = new ArrayList<>();

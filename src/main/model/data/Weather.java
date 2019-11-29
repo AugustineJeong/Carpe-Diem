@@ -6,6 +6,7 @@ public class Weather {
     private String description;
     private String icon;
 
+    //EFFECTS: returns the description field
     public String getDescription() {
         return description;
     }

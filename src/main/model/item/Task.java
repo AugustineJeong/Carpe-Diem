@@ -2,14 +2,15 @@ package model.item;
 
 public class Task extends Item {
 
-    //constructor: creates a task object
+    //constructor
     //MODIFIES: this
+    //EFFECTS: creates a task object
     public Task() {
         super();
         this.isEvent = false;
     }
 
-    //EFFECTS: Returns the details of the item
+    //EFFECTS: Returns the details of the Task as a string
     public String returnItemDetails() {
         String message;
 

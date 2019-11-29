@@ -14,9 +14,9 @@ public abstract class Item {
 //    private Flag flag;
     protected boolean isFlagged;
 
-    //EFFECTS: Returns the details of the item
-    public abstract String returnItemDetails();
-
+    //constructor
+    //MODIFIES: this
+    //EFFECTS: creates an Item Object
     public Item() {
         this.date = "Place holder";
         this.activity = "Place holder";
@@ -24,20 +24,23 @@ public abstract class Item {
         this.isFlagged = false;
     }
 
+    //EFFECTS: Returns the details of the Item as a string
+    public abstract String returnItemDetails();
+
     //MODIFIES: this
-    //EFFECTS: update isEvent status of item
+    //EFFECTS: update isEvent status of this Item
     public void setIsEvent(boolean x) {
         this.isEvent = x;
     }
 
     //MODIFIES: this
-    //EFFECTS: update date of item
+    //EFFECTS: update date of this Item
     public void setDate(String x) {
         this.date = x;
     }
 
     //MODIFIES: this
-    //EFFECTS: update name of item
+    //EFFECTS: update name of this Item
     public void setActivity(String x) {
         this.activity = x;
     }
@@ -90,7 +93,7 @@ public abstract class Item {
 //        }
 //    }
 
-    //EFFECTS: returns true if the item is already flagged
+    //EFFECTS: returns true if this item is flagged
     public Boolean isFlagged() {
         return this.isFlagged;
     }
@@ -103,11 +106,12 @@ public abstract class Item {
 //        return (this.flag.equals(f));
 //    }
 
-
+    //EFFECTS: updates the isFlagged value of this Item
     public void setFlagged(boolean flagged) {
         isFlagged = flagged;
     }
 
+    //EFFECTS: overrides equals function of Item class, compares isEvent, activity, and date of items
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -120,6 +124,7 @@ public abstract class Item {
         return isEvent == item.isEvent && activity.equals(item.activity) && date.equals(item.date);
     }
 
+    //EFFECTS: overrides hashCode function of Item class
     @Override
     public int hashCode() {
         return Objects.hash(isEvent, date, activity);

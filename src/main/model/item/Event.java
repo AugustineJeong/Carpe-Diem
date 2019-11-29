@@ -16,8 +16,9 @@ public class Event extends Item implements Observable {
 
     private List<Observer> observerList = new ArrayList<>();
 
-    //constructor: creates an Event object
+    //constructor
     //MODIFIES: this
+    //EFFECTS: creates an Event object
     public Event() {
         super();
         this.isEvent = true;
@@ -26,7 +27,7 @@ public class Event extends Item implements Observable {
         this.weatherSensitive = false;
     }
 
-    //EFFECTS: Returns the details of the item
+    //EFFECTS: Returns the details of the Event as a string
     public String returnItemDetails() {
         String message;
 
@@ -44,6 +45,7 @@ public class Event extends Item implements Observable {
         return message;
     }
 
+    //EFFECTS: formats time parameter into ex. "12:00" format
     private String timeFormatHelper(int time) {
         int hour = time / 100;
         int minute = time % 100;
@@ -61,25 +63,25 @@ public class Event extends Item implements Observable {
     }
 
     //MODIFIES: this
-    //EFFECTS: update the start time of item
+    //EFFECTS: updates the time of this Event
     public void setTime(int x) {
         this.time = x;
     }
 
     //MODIFIES: this
-    //EFFECTS: update the duration of item
+    //EFFECTS: updates the duration of this Event
     public void setDuration(int x) {
         this.duration = x;
     }
 
     //MODIFIES: this
-    //EFFECTS: update the end time of item
+    //EFFECTS: updates the end time of Event
     public void setEnd(int x) {
         this.end = x;
     }
 
     //MODIFIES: this
-    //EFFECTS: update category of item
+    //EFFECTS: updates the weather sensitivity of this Event
     public void setWeatherSensitive(Boolean x) {
         this.weatherSensitive = x;
     }
@@ -99,13 +101,13 @@ public class Event extends Item implements Observable {
         return end;
     }
 
-    //EFFECTS: returns the boolean value of whether the item is weather sensitive
+    //EFFECTS: returns whether this Event is weather sensitive as a boolean value
     public Boolean getWeatherSensitive() {
         return weatherSensitive;
     }
 
     //MODIFIES: This
-    //EFFECTS: Update the end time of event
+    //EFFECTS: updates the end time of event
     public void setCalculatedEnd() {
         int endTime;
         endTime = this.time + (this.duration * 100);
@@ -118,6 +120,7 @@ public class Event extends Item implements Observable {
         }
     }
 
+    //EFFECTS: calculates end day of event
     private void setCalculatedEndDateHelper(int endTime) {
         int dayNum = 0;
         if (this.date.equals("Monday")) {
@@ -135,10 +138,10 @@ public class Event extends Item implements Observable {
         } else if (this.date.equals("Sunday")) {
             dayNum = 7;
         }
-
         setCalculatedEndDateHelpersHelper(dayNum, endTime);
     }
 
+    //EFFECTS: calculates end day of event
     private void setCalculatedEndDateHelpersHelper(int dayNum, int endTime) {
         dayNum = (dayNum + (endTime / 2400)) % 7;
 
@@ -160,7 +163,8 @@ public class Event extends Item implements Observable {
         notifyObserver(22, endDay);
     }
 
-
+    //MODIFIES: this
+    //EFFECTS: adds observer parameter to this Event's List of Observers if the list does not already contain it
     @Override
     public void addObserver(Observer observer) {
         if (!this.observerList.contains(observer)) {
@@ -168,6 +172,7 @@ public class Event extends Item implements Observable {
         }
     }
 
+    //EFFECTS: calls the update method on all the Observers in this Event's List of Observers
     @Override
     public void notifyObserver(int i, Object o) {
         for (Observer observer : this.observerList) {
