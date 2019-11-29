@@ -54,6 +54,15 @@ public class CenterPanelWeather extends CenterPanelDefault {
 
         JLabel welcomeLabel = new JLabel("Good day!");
         JLabel weatherLabel = new JLabel("The current weather in Vancouver is: ");
+
+        //CITATION: LINES 60-63 copied from
+        // http://www.nullpointer.at/2011/08/21/java-code-snippets-howto-resize-an-imageicon/#comment-11870
+        ImageIcon weatherIcon = new ImageIcon("./data/warm-98534_640.png");
+        Image weatherImage = weatherIcon.getImage();
+        weatherImage = weatherImage.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+        weatherIcon = new ImageIcon(weatherImage);
+
+        weatherLabel.setIcon(weatherIcon);
         JLabel weatherDetailLabel = new JLabel(weatherData.getMain().getTempInCelsius()
                 + " degrees celsius with " + weatherData.getWeather().get(0).getDescription());
         JLabel advisoryLabel1 = new JLabel(" ");

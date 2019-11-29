@@ -42,6 +42,7 @@ public class MainFrame extends JFrame implements Observer {
 
     private Container container = getContentPane();
 
+    //constructor
     public MainFrame(String title) {
         super(title);
 

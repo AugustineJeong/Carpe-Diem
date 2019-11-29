@@ -74,24 +74,69 @@ public class OptionsPanel extends JPanel implements Observable {
 
         int n = 0;
 
+        //CITATION: Following 4 lines of code copied from
+        // http://www.nullpointer.at/2011/08/21/java-code-snippets-howto-resize-an-imageicon/#comment-11870
+        ImageIcon allIcon = new ImageIcon("./data/search.png");
+        Image allImage = allIcon.getImage();
+        allImage = allImage.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+        allIcon = new ImageIcon(allImage);
+
+        viewAllItems.setIcon(allIcon);
+
         gridBagConstraints.anchor = GridBagConstraints.CENTER;
         gridBagConstraints.insets = new Insets(25, 10, 25,10);
         gridBagConstraints.gridy = n;
         add(viewAllItems, gridBagConstraints);
         n++;
 
+        //CITATION: Following 4 lines of code copied from
+        // http://www.nullpointer.at/2011/08/21/java-code-snippets-howto-resize-an-imageicon/#comment-11870
+        ImageIcon dayIcon = new ImageIcon("./data/calendar-checkmark-line.png");
+        Image dayImage = dayIcon.getImage();
+        dayImage = dayImage.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+        dayIcon = new ImageIcon(dayImage);
+
+        viewItemsByDay.setIcon(dayIcon);
+
         gridBagConstraints.insets = new Insets(25, 10, 25,10);
         gridBagConstraints.gridy = n;
         add(viewItemsByDay, gridBagConstraints);
         n++;
 
+        //CITATION: Following 4 lines of code copied from
+        // http://www.nullpointer.at/2011/08/21/java-code-snippets-howto-resize-an-imageicon/#comment-11870
+        ImageIcon deleteIcon = new ImageIcon("./data/text-document-remove.png");
+        Image deleteImage = deleteIcon.getImage();
+        deleteImage = deleteImage.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+        deleteIcon = new ImageIcon(deleteImage);
+
+        deleteItems.setIcon(deleteIcon);
+
         gridBagConstraints.gridy = n;
         add(deleteItems, gridBagConstraints);
         n++;
 
+        //CITATION: Following 4 lines of code copied from
+        // http://www.nullpointer.at/2011/08/21/java-code-snippets-howto-resize-an-imageicon/#comment-11870
+        ImageIcon flagIcon = new ImageIcon("./data/flag-line.png");
+        Image flagImage = flagIcon.getImage();
+        flagImage = flagImage.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+        flagIcon = new ImageIcon(flagImage);
+
+        flagUnFlagItem.setIcon(flagIcon);
+
         gridBagConstraints.gridy = n;
         add(flagUnFlagItem, gridBagConstraints);
         n++;
+
+        //CITATION: Following 4 lines copied from
+        // http://www.nullpointer.at/2011/08/21/java-code-snippets-howto-resize-an-imageicon/#comment-11870
+        ImageIcon saveIcon = new ImageIcon("./data/save.png");
+        Image saveImage = saveIcon.getImage();
+        saveImage = saveImage.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+        saveIcon = new ImageIcon(saveImage);
+
+        saveProgram.setIcon(saveIcon);
 
         gridBagConstraints.gridy = n;
         add(saveProgram, gridBagConstraints);
@@ -100,6 +145,15 @@ public class OptionsPanel extends JPanel implements Observable {
         gridBagConstraints.gridy = n;
         add(new JLabel(" "), gridBagConstraints);
         n++;
+
+        //CITATION: Following 4 lines of code copied from
+        // http://www.nullpointer.at/2011/08/21/java-code-snippets-howto-resize-an-imageicon/#comment-11870
+        ImageIcon homeIcon = new ImageIcon("./data/home.png");
+        Image homeImage = homeIcon.getImage();
+        homeImage = homeImage.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+        homeIcon = new ImageIcon(homeImage);
+
+        homeButton.setIcon(homeIcon);
 
         gridBagConstraints.gridy = n;
         add(homeButton, gridBagConstraints);

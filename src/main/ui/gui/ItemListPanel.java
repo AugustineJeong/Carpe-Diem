@@ -51,7 +51,7 @@ public class ItemListPanel extends JPanel implements Observable {
 
         JLabel eventLabel = new JLabel("Events: ");
         JLabel taskLabel = new JLabel("Tasks: ");
-        JButton addItemButton = new JButton("Add new Item");
+        JButton addItemButton = new JButton("   Add new Item   ");
 
         //CITATION: copied / modified the following line of 'setFont' code from Asaf David's answer on
         // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
@@ -61,6 +61,15 @@ public class ItemListPanel extends JPanel implements Observable {
         addItemButton.setBackground(Color.ORANGE);
         addItemButton.setOpaque(true);
         addItemButton.setBorderPainted(false);
+
+        //CITATION: Following 4 lines of code copied from
+        // http://www.nullpointer.at/2011/08/21/java-code-snippets-howto-resize-an-imageicon/#comment-11870
+        ImageIcon itemIcon = new ImageIcon("./data/pencil.png");
+        Image iconImage = itemIcon.getImage();
+        iconImage = iconImage.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+        itemIcon = new ImageIcon(iconImage);
+
+        addItemButton.setIcon(itemIcon);
 
         //CITATION: copied / modified the following 2 lines of 'setFont' code from Asaf David's answer on
         // https://stackoverflow.com/questions/2715118/how-to-change-the-size-of-the-font-of-a-jlabel-to-take-
