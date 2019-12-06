@@ -7,4 +7,4 @@ This project demonstrates applications of core concepts of Object-oriented progr
 This project also demonstrates unit testing using JUnit, version control using GitHub, usage of Swing library to create GUIs, JSON parsing using Gson library to get information from an API, and more. <Br/>
 <Br/>
 
-The two different interfaces of the program can be run by running 'RunGraphicInterfaceCompact.java' or 'RunGraphicInterface.java' <Br/>
+The two different interfaces of the program can be run by running 'RunGraphicInterfaceCompact.java' or 'RunGraphicInterface.java'. <Br/>
