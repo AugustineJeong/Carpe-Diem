@@ -11,7 +11,7 @@ The two different interfaces of the program can be run by running 'RunGraphicInt
 
 ## Screenshots
 
-<img width="850" alt="Screen Shot 2019-12-26 at 5 05 58 PM" src="https://user-images.githubusercontent.com/14143525/71495410-71a66f80-2802-11ea-986f-075e59900031.png">
+<img width="970" alt="Screen Shot 2019-12-26 at 5 11 46 PM" src="https://user-images.githubusercontent.com/14143525/71495468-ce098f00-2802-11ea-9feb-727d36e13841.png">
 <img width="848" alt="Screen Shot 2019-12-26 at 5 07 54 PM" src="https://user-images.githubusercontent.com/14143525/71495392-64898080-2802-11ea-86b3-c269e7086373.png">
 <img width="849" alt="Screen Shot 2019-12-26 at 5 07 45 PM" src="https://user-images.githubusercontent.com/14143525/71495397-66534400-2802-11ea-8a23-bd9b47826e59.png">
 <img width="849" alt="Screen Shot 2019-12-26 at 5 07 32 PM" src="https://user-images.githubusercontent.com/14143525/71495398-68b59e00-2802-11ea-872e-532c2dd943d7.png">
