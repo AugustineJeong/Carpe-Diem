@@ -1,4 +1,4 @@
-# PERSONAL-PLANNER
+# Carpe-Diem
 To-Do List style application with an intuitive graphic interface. 
 <Br/>
 
