@@ -21,7 +21,7 @@ public class WebDataLoad {
     private StringBuilder read() throws IOException {
 
         BufferedReader br = null;
-
+        //
         URL url = new URL(vancouverWeatherURL);
         br = new BufferedReader(new InputStreamReader(url.openStream()));
 
